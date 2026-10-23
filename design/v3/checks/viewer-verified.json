@@ -1,0 +1,21 @@
+{
+  "revision": "V3_COMPACT_SENTINEL_DESIGN_REVIEW",
+  "transport": "internal HTTP; managed cloud browser file navigation is restricted",
+  "checks": [
+    "JavaScript disabled: six native saved-view controls and embedded images passed",
+    "Desktop: first-paint image, comparison table, real WebGL pixels, orbit, zoom/reset, keyboard controls, saved-view return and exact embedded mesh passed",
+    "Mobile 390x844: six saved views, no horizontal overflow, opt-in 3D and saved-view return passed",
+    "Throwing context initialization: saved-image fallback and controls passed",
+    "Throwing asynchronous drawing: saved-image fallback and controls passed",
+    "WebGL disabled: saved image stays visible and controls work",
+    "Smaller image-only file: six views passed without WebGL or mesh data"
+  ],
+  "external_requests": [],
+  "page_errors": [],
+  "HTML_sha256": {
+    "KITTY-V3-SAVED-VIEWS.html": "c896c131f01cd16660d90fa0b3098b1dc8640f4f43fc8176ea1a5e48d9243af0",
+    "KITTY-V3-REVIEW.html": "cd2f6bf9bc8eaaf021fb82e8b489393446fb5dee3823862efcb768a23da13e9f"
+  },
+  "geometry_report": "last-verified.json",
+  "geometry_changed": true
+}

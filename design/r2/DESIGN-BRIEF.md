@@ -13,3 +13,5 @@ Latest user input selects BO motors, HC-SR04, TB6612 and OPPO A57. During comple
 Existing compact N20 and companion BO designs are preserved in the separate consolidated handoff. They are not interchangeable or the R2 design. A new fitted revision should use the selected real drivetrain, include STL+STEP+source, assembly view, quantities, mesh checks and fit checks. No new R2 STL is being called final while these inputs are missing.
 
 R2.1 design review: the user selected keeping the current body with a detachable tail and small refinements. The draft adds a curved rear tail with a keyed socket and proposed M3 cross screw, plus bevelled/recessed passive ear details and lower phone-bezel grooves. Appearance remains awaiting the user’s review; final print files follow that decision and the outstanding fit checks.
+
+V3 is now a separate refinement in [../v3/README.md](../v3/README.md), retaining this body family and reported hardware sizes while shortening the neck, reducing the tail projection and refining sensor, vent, bezel and chest details. R2.1 remains available for comparison. Final appearance and physical fit remain pending.
