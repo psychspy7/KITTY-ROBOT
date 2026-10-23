@@ -71,6 +71,22 @@ class HttpTests(unittest.TestCase):
             urlopen(req, timeout=3)
         self.assertEqual(caught.exception.code, 415)
 
+    def test_malformed_bodies_and_foreign_origins_cannot_change_state(self):
+        cases = [
+            (b'{', {}, 400),
+            (b'[]', {}, 400),
+            (b'{"action":"estop","extra":NaN}', {}, 400),
+            (b'{"action":"estop"}', {'Origin': 'https://example.invalid'}, 403),
+        ]
+        for body, headers, expected in cases:
+            with self.subTest(body=body, headers=headers):
+                req = Request(self.base + '/api/action', data=body,
+                              headers={'Content-Type': 'application/json', **headers})
+                with self.assertRaises(HTTPError) as caught:
+                    urlopen(req, timeout=3)
+                self.assertEqual(caught.exception.code, expected)
+                self.assertEqual(self.request('/api/state')['mode'], 'DISARMED')
+
 
 if __name__ == '__main__':
     unittest.main()

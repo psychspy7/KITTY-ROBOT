@@ -45,7 +45,7 @@ def validate(data, require_measured=True):
     wall, clear, rim = design['wall_mm'], design['fit_clearance_mm'], design['phone_rim_mm']
     if 2 * rim >= min(dims['phone_width_mm'], dims['phone_height_mm']):
         raise ParameterError('Phone rim consumes the camera/access opening')
-    if dims['sonar_pitch_mm'] <= dims['sonar_can_diameter_mm']:
+    if dims['sonar_pitch_mm'] <= dims['sonar_can_diameter_mm'] + 2 * clear:
         raise ParameterError('Sonar transducer openings overlap')
     hole = design['fastener_clearance_mm']
     if hole >= 12 or min(design['base_width_mm'], design['base_depth_mm']) <= 24 + hole:

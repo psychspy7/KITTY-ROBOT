@@ -38,6 +38,34 @@ class ParametersTests(unittest.TestCase):
         with self.assertRaisesRegex(ParameterError, 'evidence'):
             validate(data, require_measured=True)
 
+    def measured_fixture(self):
+        data = copy.deepcopy(self.example)
+        data['kind'] = 'measured'
+        data['evidence'] = {key: 'Synthetic test evidence; not a physical measurement'
+                            for key in data['dimensions']}
+        return data
+
+    def test_complete_measured_input_is_accepted_and_evidence_is_per_field(self):
+        data = self.measured_fixture()
+        self.assertIs(validate(data, require_measured=True), data)
+        data['evidence']['phone_width_mm'] = '  '
+        with self.assertRaisesRegex(ParameterError, 'phone_width_mm'):
+            validate(data, require_measured=True)
+
+    def test_sonar_openings_require_clearance_aware_spacing(self):
+        for measured in (False, True):
+            data = self.measured_fixture() if measured else copy.deepcopy(self.example)
+            opening = (data['dimensions']['sonar_can_diameter_mm']
+                       + 2 * data['design']['fit_clearance_mm'])
+            for pitch in (opening - 0.1, opening, opening + 0.1):
+                with self.subTest(measured=measured, pitch=pitch):
+                    data['dimensions']['sonar_pitch_mm'] = pitch
+                    if pitch <= opening:
+                        with self.assertRaisesRegex(ParameterError, 'overlap'):
+                            validate(data, require_measured=measured)
+                    else:
+                        validate(data, require_measured=measured)
+
     def test_phone_and_base_must_fit_printer_in_export_orientation(self):
         data = copy.deepcopy(self.example)
         data['dimensions']['printer_x_mm'] = 100
