@@ -19,7 +19,7 @@ def main():
     (ROOT/'STL').mkdir(exist_ok=True)
     for name in [*PARTS,'r2_printed_assembly','r2_complete_draft']:
         shape=read_step(ROOT/'STEP'/(name+'.step'))
-        if not bd.export_stl(shape,str(ROOT/'STL'/(name+'.stl')),tolerance=0.01,angular_tolerance=0.1):
+        if not bd.export_stl(shape,str(ROOT/'STL'/(name+'.stl')),tolerance=0.003,angular_tolerance=0.05):
             raise RuntimeError('OCCT STL export failed: '+name)
         print('Exported STL:',name,flush=True)
     verify()

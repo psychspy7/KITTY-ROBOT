@@ -9,16 +9,16 @@ from pathlib import Path
 import struct
 import sys
 
-from cadgen import read_scene, read_step
+from cadgen import build123d as bd, read_scene, read_step
 from cadgen.geometry import overlap_volume, closest_points
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
-from settings import load, datums
+from settings import load, datums, tail_placement
 
 PARTS=['r2_base','r2_cover_front','r2_cover_rear','r2_motor_left','r2_motor_right',
        'r2_battery_tray','r2_electronics_deck','r2_caster_bridge',
-       'r2_sensor_bracket','r2_neck','r2_phone_cradle','r2_phone_cap']
+       'r2_sensor_bracket','r2_neck','r2_phone_cradle','r2_phone_cap','r2_tail']
 
 
 def mesh(path):
@@ -42,6 +42,44 @@ def same(a,b,tolerance=1e-5):
 
 def bounds_intersect(a,b):
     return all(min(getattr(a.max,k),getattr(b.max,k))-max(getattr(a.min,k),getattr(b.min,k))>1e-6 for k in ('X','Y','Z'))
+
+
+def verify_tail_joint(p,a,saved,bodies):
+    """Probe the saved keyed fit and check withdrawal with the screw removed."""
+    tail=(tail_placement(p)*saved['r2_tail']).solids()[0]
+    rear=(bd.Pos(0,0,a['deck'])*saved['r2_cover_rear']).solids()[0]
+    y=a['tail_y']-12;z=p['tail_height']-4;r=p['tail_thickness']/2
+    for sign in (-1,1):
+        assert tail.is_inside((sign*(r-0.01),y,z)),'missing keyed root wall'
+        assert not tail.is_inside((sign*(r+0.01),y,z)),'oversize keyed root'
+        assert not rear.is_inside((sign*(r+p['tail_joint_gap']-0.01),y,z)),'insufficient socket gap'
+        assert rear.is_inside((sign*(r+p['tail_joint_gap']+0.01),y,z)),'missing socket wall'
+    assert not tail.is_inside((r-1,y,p['tail_height']+r-1)),'key corner not clipped'
+    assert tail.is_inside((r-1,y,p['tail_height']-r+1)),'key orientation lost'
+    assert rear.is_inside((0,a['tail_y']-24.5,p['tail_height'])),'socket has no blind backing'
+    for x in (0,10,-10):
+        assert not rear.is_inside((x,y,p['tail_height'])),'socket cross bore blocked'
+        assert not tail.is_inside((x,y,p['tail_height'])),'tail cross bore blocked'
+    assert not rear.is_inside((-12,p['body_depth']/2-1,44)),'rear service opening blocked'
+    # Tail plastic stays above the service-window band (maximum Z=54 mm).
+    assert tail.bounding_box().min.Z>54+20,'tail crosses lower service access'
+    failures=[]
+    for distance in (0,6,12,18,24,35):
+        moved=(bd.Pos(0,distance,0)*tail).solids()[0]
+        bounds=moved.bounding_box(optimal=False)
+        for label,other,other_bounds in bodies:
+            if label=='r2_tail' or not bounds_intersect(bounds,other_bounds):continue
+            volume=overlap_volume(moved,other)
+            if volume>0.01:failures.append((distance,label,volume))
+    assert not failures,('tail removal collision',failures)
+    return {'proposed_per_side_gap_mm':p['tail_joint_gap'],
+            'saved_flat_gap_probe_tolerance_mm':0.01,
+            'key':'one clipped corner, screw axis X',
+            'retention':'proposed M3 cross screw and hex nut; hardware/strength/fit unverified',
+            'removal':'remove screw, pull straight rearward (+Y)',
+            'withdrawal_positions_mm':[0,6,12,18,24,35],
+            'withdrawal_interference_failures':[],
+            'lower_service_window':'open; tail plastic above Z=74 mm'}
 
 
 def main():
@@ -79,7 +117,8 @@ def main():
         for solid in leaf.shape().solids():
             assert solid.is_valid and solid.volume>0,leaf.label
             bodies.append((leaf.label,solid,solid.bounding_box(optimal=False)))
-    assert len(bodies)==23,('assembly component count',len(bodies))
+    assert len(bodies)==24,('assembly component count',len(bodies))
+    report['tail_joint']=verify_tail_joint(p,a,saved,bodies)
     failures=[];exact=0;total=0
     for (na,sa,ba),(nb,sb,bb) in combinations(bodies,2):
         total+=1

@@ -14,9 +14,9 @@
 </head>
 <body>
 <header><div class="brand">KITTY<span>/ SENTINEL CAD</span></div><div class="tag">DRAFT · FIT CHECKS PENDING</div></header>
-<div class="intro"><div class="eyebrow">TEAM PROMETHEUS / MECHANICAL FRAMEWORK</div><h1>KITTY R2. The complete draft.</h1><p>Rotate and inspect the whole robot, or select one of its 12 proposed printed parts. Phone, wheel diameter and motor length/width use your reported measurements. Remaining interfaces still need confirmation.</p></div>
+<div class="intro"><div class="eyebrow">TEAM PROMETHEUS / MECHANICAL FRAMEWORK</div><h1>KITTY R2. The complete draft.</h1><p>Rotate and inspect the whole robot, or select one of its 13 proposed printed parts. Phone, wheel diameter and motor length/width use your reported measurements. Remaining interfaces still need confirmation.</p></div>
 <main class="layout">
-<aside aria-label="Choose a draft part"><div id="parts" style="display:contents"></div><div class="info"><h2>What you are viewing</h2><p>Complete robot includes bought-part stand-ins for viewing only. Printed assembly contains the 12 proposed plastic parts. Units are millimetres.</p><p>Motor height/shaft, wheel hubs, caster, AA holder, camera/case and printer settings still need fit checks. Slice individual parts after those checks; assembled STLs are for viewing.</p><p>This file works offline. No installation, account or server is needed.</p></div></aside>
+<aside aria-label="Choose a draft part"><div id="parts" style="display:contents"></div><div class="info"><h2>What you are viewing</h2><p>Complete robot includes bought-part stand-ins for viewing only. Printed assembly contains the 13 proposed plastic parts. Units are millimetres.</p><p>Motor height/shaft, wheel hubs, caster, AA holder, camera/case and printer settings still need fit checks. Slice individual parts after those checks; assembled STLs are for viewing.</p><p>This file works offline. No installation, account or server is needed.</p></div></aside>
 <section class="stage" aria-label="Interactive STL viewer">
 <p class="notice" id="notice" role="status"></p>
 <div class="viewport" id="viewport"><canvas id="canvas" style="display:none" tabindex="0" aria-label="3D model. Drag to rotate, scroll or pinch to zoom. Arrow keys rotate; plus and minus zoom; Home resets."></canvas><img class="fallback" id="fallback" src="__STATIC_IMAGE__" style="display:block" alt="Previously rendered CAD view of the selected draft part"><div class="corner">COMPLETE DRAFT / MILLIMETRES<b id="viewLabel">Isometric view</b></div><div class="hint">Drag to rotate · Scroll / pinch to zoom</div><div class="watermark">DRAFT / NOT FIT APPROVED</div></div>
@@ -25,7 +25,7 @@
 <div class="status" id="status" role="status">Loading embedded mesh…</div>
 </section>
 </main>
-<div class="foot">12 connected closed printed parts; static assembly interference checked. Physical fit, strength, supports and print settings remain unverified. Source: psychspy7/KITTY-ROBOT / complete-draft.</div>
+<div class="foot">13 connected closed printed parts; static assembly interference checked. Physical fit, strength, supports and print settings remain unverified. Source: psychspy7/KITTY-ROBOT / complete-draft.</div>
 <noscript><p>Enable JavaScript to rotate the embedded STL meshes and download individual draft files.</p></noscript>
 <script id="model-data" type="application/json">__MODEL_DATA__</script>
 <script>

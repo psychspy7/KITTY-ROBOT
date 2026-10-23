@@ -1,5 +1,5 @@
 from cadgen import build123d as bd, step
-from settings import load, datums
+from settings import load, datums, tail_placement
 from r2_base import r2_base
 from r2_cover_front import r2_cover_front
 from r2_cover_rear import r2_cover_rear
@@ -12,6 +12,7 @@ from r2_sensor_bracket import r2_sensor_bracket
 from r2_neck import r2_neck
 from r2_phone_cradle import r2_phone_cradle
 from r2_phone_cap import r2_phone_cap
+from r2_tail import r2_tail
 
 
 @step(out='../STEP/r2_printed_assembly.step')
@@ -31,6 +32,7 @@ def r2_printed_assembly():
         bd.Pos(0,0,p['cover_top'])*r2_neck(),
         head*r2_phone_cradle(),
         head*bd.Pos(0,0,3.4)*r2_phone_cap(),
+        tail_placement(p)*r2_tail(),
     ]
     return bd.Compound(children=placed,label='R2_DRAFT_printed_parts_assembly_NOT_one_piece_print')
 

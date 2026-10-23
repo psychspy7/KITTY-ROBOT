@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from cadgen import build123d as bd
 from cadgen import srgb
-from settings import datums
+from settings import datums, tail_placement
 
 
 def box(w, d, h, x=0, y=0, z=0):
@@ -80,7 +80,55 @@ def cover(p, front):
         shape = bore(shape,x,y,datums(p)['deck']-1,20,p['m3_clearance'])
         nut = bd.Pos(x,y,datums(p)['deck']+13)*bd.extrude(bd.RegularPolygon(3.3,6),amount=4)
         shape -= nut
+    if not front:
+        shape += tail_socket(p)
     return colored(shape,'front_cover_DRAFT' if front else 'rear_cover_DRAFT','#E9E6DC')
+
+
+def tail_key(p, clearance=0):
+    """Asymmetric keyed cross-section in X/Z, local sketch Y becomes Z."""
+    r=p['tail_thickness']/2;g=clearance
+    # One clipped corner prevents the tail from being fitted upside down.
+    profile=bd.Polygon((-r-g,-r-g),(r+g,-r-g),(r+g,r-3+g*(2**0.5-1)),
+                       (r-3+g*(2**0.5-1),r+g),(-r-g,r+g),align=None)
+    return profile
+
+
+def tail_cross_bore(p):
+    return (bd.Pos(-18,datums(p)['tail_y']-12,p['tail_height'])
+            * bd.Rot(0,90,0) * cylinder(p['m3_clearance']/2,36))
+
+
+def tail_socket(p):
+    """Rear-shell socket, blind inner end, cross screw and outside nut recess."""
+    y=datums(p)['tail_y'];z=p['tail_height']
+    shape=box(26,31,24,0,y-15.5,z-12)
+    cavity=(bd.Pos(0,y+2,z)*bd.Rot(90,0,0)
+            *bd.extrude(tail_key(p,p['tail_joint_gap']),amount=26))
+    shape -= cavity
+    shape -= tail_cross_bore(p)
+    # Nut enters from the right; screw enters from the left, above the wheels.
+    nut=bd.extrude(bd.RegularPolygon(3.3,6),amount=3)
+    shape -= bd.Pos(10,y-12,z)*bd.Rot(0,90,0)*nut
+    return shape
+
+
+def tail(p):
+    """Flat-print curved tail with a keyed root, no servo or magnets assumed."""
+    outer=bd.Spline((0,-7),(26,0),(45,24),(48,49),(37,69),(17,75),(3,64))
+    tip=bd.ThreePointArc((3,64),(-0.2,56.5),(7,53))
+    inner=bd.Spline((7,53),(17,61),(29,57),(34,45),(31,28),(17,13),(0,7))
+    root=bd.Line((0,7),(0,-7))
+    body=bd.extrude(bd.Face(bd.Wire([outer,tip,inner,root])),amount=p['tail_thickness'],dir=(0,0,1))
+    # Bevel only the two exposed perimeter rims; preserve the flat print faces.
+    rims=[e for e in body.edges() if e.bounding_box().size.Z<1e-6]
+    body=bd.chamfer(rims,length=1)
+    pose=tail_placement(p);y=datums(p)['tail_y'];z=p['tail_height']
+    tab=(bd.Pos(0,y+1,z)*bd.Rot(90,0,0)
+         *bd.extrude(tail_key(p),amount=24))
+    shape=(pose*body)+tab
+    shape -= tail_cross_bore(p)
+    return colored(pose.inverse()*shape,'detachable_curved_tail_DRAFT','#E9E6DC')
 
 
 def motor_mount(p, side):
@@ -179,6 +227,9 @@ def phone_cradle(p):
         nut=bd.extrude(bd.RegularPolygon(3.3,6),amount=2.8)
         shape -= bd.Pos(x,-ih/2-2.8,8)*bd.Rot(-90,0,0)*nut
     shape -= box(18,rim+2,10,0,-(ih+rim)/2,3)
+    for x in (-47,47):
+        detail=bd.Pos(x,-(ih+rim)/2,depth-0.8)*bd.extrude(bd.SlotOverall(34,1.6),amount=1.5)
+        shape -= detail
     return colored(shape,'phone_cradle_DRAFT_camera_case_fit_pending','#E9E6DC')
 
 
@@ -187,9 +238,16 @@ def phone_cap(p):
     y=h/2-rim/2
     shape=box(w-0.8,rim-0.6,depth-3.4,0,y,3.4)
     for side in (-1,1):
-        profile=bd.Polygon((side*67,h/2-2),(side*87,h/2-2),
-                           (side*84,h/2+12),(side*81,h/2+12))
-        shape += bd.Pos(0,0,3.4)*bd.extrude(profile,amount=depth-3.4,dir=(0,0,1))
+        profile=bd.Polygon((side*66,h/2-2),(side*87,h/2-2),
+                           (side*85,h/2+10),(side*83,h/2+13),
+                           (side*80,h/2+13),align=None)
+        ear=bd.Pos(0,0,3.4)*bd.extrude(profile,amount=depth-3.4,dir=(0,0,1))
+        front=[e for e in ear.edges() if abs(e.center().Z-depth)<1e-6]
+        ear=bd.chamfer(front,length=0.7)
+        inset=bd.Polygon((side*73,h/2+1),(side*83,h/2+1),
+                         (side*82,h/2+8),align=None)
+        ear -= bd.Pos(0,0,depth-1)*bd.extrude(inset,amount=2,dir=(0,0,1))
+        shape += ear
     for x in (-80,80):shape=bore(shape,x,y,2,depth+2,p['m3_clearance'])
     return colored(shape,'phone_top_cap_DRAFT_passive_cat_corners','#E9E6DC')
 

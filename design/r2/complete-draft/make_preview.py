@@ -9,7 +9,7 @@ import struct
 ROOT=Path(__file__).resolve().parent
 MODELS=[
     ('r2_complete_draft','Complete robot','Whole-robot preview including generic bought-component envelopes and display graphics. VIEW ONLY; do not slice this assembled file.'),
-    ('r2_printed_assembly','Printed assembly','All 12 proposed printed pieces in their assembled positions. VIEW ONLY; use the separate part files for manufacturing review.'),
+    ('r2_printed_assembly','Printed assembly','All 13 proposed printed pieces in their assembled positions. VIEW ONLY; use the separate part files for manufacturing review.'),
     ('r2_base','Base chassis','Chassis, shared mounting bores, caster passage and battery strap slots.'),
     ('r2_cover_front','Front cover','Faceted front body half with a sonar opening and cover fasteners.'),
     ('r2_cover_rear','Rear cover','Rear half with ventilation and provisional service openings.'),
@@ -22,6 +22,7 @@ MODELS=[
     ('r2_neck','Fixed neck','Broad fixed support with a cable passage and head fasteners. No servo phone load is assumed.'),
     ('r2_phone_cradle','Phone cradle','Uses your 164 × 76 × 8 mm phone envelope. Confirm case, padding, camera and access before printing.'),
     ('r2_phone_cap','Phone retainer','Removable upper retainer with passive cat corners and two screw bores.'),
+    ('r2_tail','Detachable tail','Curved flat-print tail with an asymmetric key and M3 cross bore. Proposed screw/nut and fit need verification.'),
 ]
 
 

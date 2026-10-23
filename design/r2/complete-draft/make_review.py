@@ -13,13 +13,15 @@ def main():
     parser.add_argument('--out-dir',type=Path,required=True)
     args=parser.parse_args()
     template=(ROOT/'review-template.html.in').read_text(encoding='utf-8')
-    images={'ISO':'assembly-iso','FRONT':'assembly-front','REAR':'assembly-back','INSIDE':'interior'}
+    images={'ISO':'assembly-iso','FRONT':'assembly-front','REAR':'assembly-rear-angle',
+            'SIDE':'assembly-side','INSIDE':'interior','JOINT':'r2_tail_joint_review'}
     for key,name in images.items():
         raw=(args.snapshots/(name+'.png')).read_bytes()
         if not raw.startswith(b'\x89PNG\r\n\x1a\n'):raise ValueError('Expected saved CAD PNG: '+name)
         template=template.replace('__'+key+'_IMAGE__','data:image/png;base64,'+base64.b64encode(raw).decode())
     report=json.loads((ROOT/'checks'/'last-verified.json').read_text())
     template=template.replace('__SIZE__',' × '.join(f'{v:g}' for v in report['assembled_bounds_mm']))
+    template=template.replace('__PART_COUNT__',str(len(report['parts'])))
     args.out_dir.mkdir(parents=True,exist_ok=True)
     for stem,mesh in [('KITTY-R2-REVIEW',True),('KITTY-R2-SAVED-VIEWS',False)]:
         data=base64.b64encode((ROOT/'STL'/'r2_complete_draft.stl').read_bytes()).decode() if mesh else ''

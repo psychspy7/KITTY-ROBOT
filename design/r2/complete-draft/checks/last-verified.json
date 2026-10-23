@@ -9,8 +9,8 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 9232,
-      "volume_mm3": 97122.568
+      "triangles": 18304,
+      "volume_mm3": 97122.365
     },
     "r2_cover_front": {
       "bounds_mm": [
@@ -20,19 +20,19 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 3392,
-      "volume_mm3": 101953.84
+      "triangles": 6676,
+      "volume_mm3": 101954.807
     },
     "r2_cover_rear": {
       "bounds_mm": [
         166.0,
-        79.7,
+        99.7,
         100.0
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 3600,
-      "volume_mm3": 106004.608
+      "triangles": 9050,
+      "volume_mm3": 119568.976
     },
     "r2_motor_left": {
       "bounds_mm": [
@@ -42,8 +42,8 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 1516,
-      "volume_mm3": 11748.711
+      "triangles": 2820,
+      "volume_mm3": 11748.727
     },
     "r2_motor_right": {
       "bounds_mm": [
@@ -53,8 +53,8 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 1516,
-      "volume_mm3": 11748.711
+      "triangles": 2820,
+      "volume_mm3": 11748.727
     },
     "r2_battery_tray": {
       "bounds_mm": [
@@ -64,8 +64,8 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 1588,
-      "volume_mm3": 28643.847
+      "triangles": 3004,
+      "volume_mm3": 28643.882
     },
     "r2_electronics_deck": {
       "bounds_mm": [
@@ -75,8 +75,8 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 4180,
-      "volume_mm3": 19418.824
+      "triangles": 8212,
+      "volume_mm3": 19420.776
     },
     "r2_caster_bridge": {
       "bounds_mm": [
@@ -86,8 +86,8 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 1140,
-      "volume_mm3": 13989.246
+      "triangles": 2148,
+      "volume_mm3": 13989.217
     },
     "r2_sensor_bracket": {
       "bounds_mm": [
@@ -97,8 +97,8 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 2052,
-      "volume_mm3": 7486.443
+      "triangles": 4068,
+      "volume_mm3": 7485.972
     },
     "r2_neck": {
       "bounds_mm": [
@@ -108,8 +108,8 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 3192,
-      "volume_mm3": 50579.805
+      "triangles": 6348,
+      "volume_mm3": 50579.737
     },
     "r2_phone_cradle": {
       "bounds_mm": [
@@ -119,19 +119,30 @@
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 2224,
-      "volume_mm3": 50462.643
+      "triangles": 6272,
+      "volume_mm3": 50376.436
     },
     "r2_phone_cap": {
       "bounds_mm": [
         180.8,
-        19.7,
+        20.7,
         11.4
       ],
       "valid_solids": 1,
       "closed_oriented_mesh": true,
-      "triangles": 1060,
-      "volume_mm3": 17980.977
+      "triangles": 2120,
+      "volume_mm3": 18489.915
+    },
+    "r2_tail": {
+      "bounds_mm": [
+        71.599,
+        82.346,
+        12.0
+      ],
+      "valid_solids": 1,
+      "closed_oriented_mesh": true,
+      "triangles": 7646,
+      "volume_mm3": 24288.225
     }
   },
   "unverified": [
@@ -141,24 +152,41 @@
     "actual mass and stability",
     "moving wheel sweep and sensor coverage"
   ],
+  "tail_joint": {
+    "proposed_per_side_gap_mm": 0.4,
+    "saved_flat_gap_probe_tolerance_mm": 0.01,
+    "key": "one clipped corner, screw axis X",
+    "retention": "proposed M3 cross screw and hex nut; hardware/strength/fit unverified",
+    "removal": "remove screw, pull straight rearward (+Y)",
+    "withdrawal_positions_mm": [
+      0,
+      6,
+      12,
+      18,
+      24,
+      35
+    ],
+    "withdrawal_interference_failures": [],
+    "lower_service_window": "open; tail plastic above Z=74 mm"
+  },
   "static_interference": {
-    "body_count": 23,
-    "pairs_considered": 253,
-    "exact_queries": 39,
+    "body_count": 24,
+    "pairs_considered": 276,
+    "exact_queries": 40,
     "maximum_allowed_mm3": 0.01,
     "failures": []
   },
   "assembled_bounds_mm": [
     224.0,
-    171.0,
-    280.6
+    239.599,
+    281.6
   ],
   "assembly_mesh": "View-only multishell assembly; not a single-piece manufacturing mesh",
   "key_passages": "base/cover bores, caster opening, neck cable route and sonar bores checked",
-  "model_cache": "current after removing obsolete mesh declarations from only this draft project cache",
-  "mesh_export": "native OCCT via build123d.export_stl; 0.01 mm / 0.1 rad",
+  "revision": "R2.1_REAR_TAIL_DESIGN_REVIEW",
+  "mesh_export": "native OCCT via build123d.export_stl; 0.003 mm / 0.05 rad (tightened for curved-tail volume accuracy)",
   "input_sources_sha256": {
-    "parameters.json": "6a3a075c268ea784fb7b51cf689b444704d802f248207f40f7fea288f55d0c7c",
+    "parameters.json": "5dca72d54cd1279e56fa2fee20ed959c997c6652d3bb912b6da94dc81c6d950a",
     "src/finish.py": "80959199fc6090a7c18d0f21ea48db5dac827d57f428dd9dae9b63fc9fbfca26",
     "src/r2_base.py": "4c30d679e326cf8a122c2adab0975de93d529227cf7397517a66631c2b254d86",
     "src/r2_battery_tray.py": "8e19eaf4c8854cfc0f1040a94f8190dfdd4e66e65b2d88a2f6cf2bb1468a3ef1",
@@ -172,38 +200,44 @@
     "src/r2_neck.py": "7dc22024671ef077c75b9ad843898351d2fefadb5d866c4ea1efeb9df1909a80",
     "src/r2_phone_cap.py": "f946f13591b470c1aa6158da84fabe07908159bbcb04cb6b0ca7e172cf3ab3e9",
     "src/r2_phone_cradle.py": "ead875bbc146d0f9fa6481d33a465e5794b2c2f5e45ad25d839017a40c2423dd",
-    "src/r2_printed_assembly.py": "9e275b5c98569d3fb8ca626073c596aeeb6d40f5fdef8436504631055587a62d",
+    "src/r2_printed_assembly.py": "8a0f212ec2da3bdab4072a86e8756fe23fe0c8b97171126fa186b2a189b58d50",
     "src/r2_reference_hardware.py": "43902046cf645c37e7a8b9097ab539083acda455d37b9595cfd539ed71469ab9",
     "src/r2_sensor_bracket.py": "badc6cec98cf8c49187e631fcecfad08c1a5b108d053adb97541d03585791d8b",
-    "src/settings.py": "6b9e76ef9afdbaf893fdbae7bcf7e603ddf7f14edba0442cedeab01501ad0899",
-    "src/shapes.py": "075ae62f9523ba4f05b0edb920214ed32776db3ae101a05e76af509c8965548a"
+    "src/r2_tail.py": "181b4b4eef67a3c000fbc177168f94bccad211a5c66ff7cc5e9d7a5f64c352fe",
+    "src/r2_tail_joint_review.py": "1d888ecbfa0884dff8cf380cbd437936eb821431acd5c102d8fa318a7169c3b1",
+    "src/settings.py": "3414a544a32fa6f999d8a783a6c03830f71fb39f7de7b6ef20efc5ba62344290",
+    "src/shapes.py": "9f60801100074c6e8e7f5af5a1cf1d8b4a4ff0d47467e34a666785be47f3809c"
   },
   "STL_sha256": {
-    "r2_base.stl": "a19b6ca7f8a561174056e83f55643fdb39266388f99fb96edbd08a338c9a76df",
-    "r2_battery_tray.stl": "540fe1b0de0e2f613ea8360959ca677eb6e2a8d58edb5df1e3b41796bc211874",
-    "r2_caster_bridge.stl": "3a9b0cd35f05cc853a57c4e34df9ca1c922a3abdfede05e17a01168175bca7d5",
-    "r2_complete_draft.stl": "d625ceca82ddea6fc9e4ba7470159ca875f02e4a86a5b0b7b68c1e71dde898d2",
-    "r2_cover_front.stl": "66af505e913ebfe1db777104242fdb1140ed5638cebb9298e93270860adf2bd1",
-    "r2_cover_rear.stl": "da4f8d1a6b1de8d7582eb32ea20e758c13ed43f551102397ac31ea5b8bf72523",
-    "r2_electronics_deck.stl": "0ab10f8d2eb82e4373f70a56077041f5c8ad372dbe62f5881cd298b20f183874",
-    "r2_motor_left.stl": "e7cc884a0967096628ff56c755b6ec1a330044f114c8c3afc862b5ca4e5cc263",
-    "r2_motor_right.stl": "880f2f7271de0ea335135d23d88f849244234a8ce5873a637cccced0ac05b1b6",
-    "r2_neck.stl": "f7622e291fbce7104816f6e3164c9c79efabbaa8d2074820cf911f3b9af6bada",
-    "r2_phone_cap.stl": "94881ae6b6b37e95fbbdce9b933bfede074f006160e8458176e69b45f7d7b771",
-    "r2_phone_cradle.stl": "b2f703d03186857e56919507affc36887cb5c174693b8cf09a3697c2f56dcce6",
-    "r2_printed_assembly.stl": "351fbc9e93d04eb642d8948a50bf77e4d87680fd13e29d10b4dc0195829c13ca",
-    "r2_sensor_bracket.stl": "8500664dbead6365c5a88dbba547f0f71f81d246d88c7faa25ea7252b3df5566"
+    "r2_base.stl": "d8c01c5b22626ba5c48c786c53217df4c24aceef729517510215bf16dfec7fad",
+    "r2_battery_tray.stl": "0d5a27e2eb550734566965199094ba4aa76eaa7969ed12729c4d57c04a8f3836",
+    "r2_caster_bridge.stl": "5ec9a1bc53757645511c31678f8f45b355dd7335f4c76716e622750865d9b620",
+    "r2_complete_draft.stl": "048d5a478c6653dbb6604965b5188e84645e1308822feb846f8f6942d37b73a2",
+    "r2_cover_front.stl": "1695dbebec2041bb0d04a72af0cf998947df40d1ba7d08bb006ac060c8a2879a",
+    "r2_cover_rear.stl": "b48c94409ec49482f88d7a7950e8e7cc574b82ebe5bf8efa1096cc4d9cee9901",
+    "r2_electronics_deck.stl": "c5da44346eac4765f47ae060b8077e4b78614b836adcb644459d3f7da04675f8",
+    "r2_motor_left.stl": "a4cc7d78f1e24cdcd090803e142ec80181f6496a1182a4ab0c305079ac4c5173",
+    "r2_motor_right.stl": "f2b138c2cb4cc942b653e7d889a2421648f744da28ce0cabe4fb635339f3c100",
+    "r2_neck.stl": "24a6c6280795240fef1f41dec2b263d1c5edc2aedffb7d24803ce43d09813d6e",
+    "r2_phone_cap.stl": "123f37713db84b05cb3127900905df0f3a708fca43c818d22e52f7afc7f75aa6",
+    "r2_phone_cradle.stl": "30ebd72c440fb6b20b0763439d5d7a48dc3a198262c659d2a8ada21bddbecf42",
+    "r2_printed_assembly.stl": "91fab9674ac3b94a022c7494f738c0c074cf29c42574bffd89b2264a0660a48a",
+    "r2_sensor_bracket.stl": "dec7f03ccfb1bf82660cccef74d612d0a8af8d5408a65ad6420a08fa091ad857",
+    "r2_tail.stl": "9392a6e7f6866fdfca442890464266ce1c5534d50be11cc10414147905670624"
   },
-  "browser": {
-    "models": 14,
-    "downloads": "all 14 match source bytes",
-    "WebGL": "real rendering and orbit passed",
-    "desktop": "1440x1000",
-    "mobile": "390x844; no horizontal overflow",
-    "external_requests": 0,
-    "JavaScript_errors": 0,
-    "no_WebGL": "embedded snapshot fallback passed",
-    "transport": "internal HTTP; cloud browser file navigation is restricted"
+  "review_snapshots_sha256": {
+    "assembly-back.png": "439d7ee2e9d60b5d33b3a27024f1833376594211f55380bc6d64ab3cb659d696",
+    "assembly-front.png": "a68f803c80fcc3b613915f8104ef7fddd254f2b23025835fdb16600daff2cc81",
+    "assembly-iso.png": "4218d9c070687e0c3e2611f907462beb100892fffde01bca418c9e09dc325092",
+    "assembly-rear-angle.png": "294f866607ea9ddd3fb61a4e65770fcf4149bffc326d831f39d9cfae2ca940ac",
+    "assembly-side.png": "517285048713c4e5e7decba9e09b8909169119c74852998c687e303c47b2865a",
+    "interior.png": "15cc007536bc59c03617bd5d0bce43672bace81009ffc24146f534a2c772bbb9",
+    "printed-assembly.png": "e08fe00cf49032d4e6e88b89ba58d3f91b648922600490e33bfaf62a84f19d9b",
+    "r2_cover_rear.png": "db2c5006a9eee85be5b990c2360212222d65a303b4284828b953c5906f4cee07",
+    "r2_phone_cap.png": "a360dd3cf865d3bb99cefe23d0ba1cdcc61bbb77bc429118e38d2165bf2b5242",
+    "r2_phone_cradle.png": "df7ecadbffdb6fa98c1e522828aeca53f49e5e521bc968987f64f15c510a254a",
+    "r2_tail.png": "9de48d54e4253aeed7e718c7d7d40aaa1f9ea6f4ba514919b1632fb246b2e79a",
+    "r2_tail_joint_review.png": "77cf7913372fcd0c195bbdd7f9012749c3b78502bb3d0dc4c8f0f53bc0bb3ab2"
   },
-  "visual_review": "assembly isometric/front/rear, printed assembly, exposed interior, cradle, cap, neck underside, chassis, motor channel, battery tray and rear cover snapshots inspected"
+  "visual_review": "Native complete assembly iso/front/back/rear angle/side, printed assembly, interior, rear cover/socket, revised cradle/cap, separate tail and exploded tail joint inspected. The exploded pair is pulled +Y 35 mm and omits the proposed screw."
 }

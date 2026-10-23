@@ -38,4 +38,12 @@ def datums(p):
         'head_depth': p['phone_thickness'] + gap + p['wall'] + 3,
         'wheel_y': p['motor_y'] + p['shaft_y'],
         'axle_z': p['wheel_diameter']/2,
+        'tail_y': p['body_depth']/2 + p['tail_socket_projection'],
     }
+
+
+def tail_placement(p):
+    """Flat-print XY profile -> rearward Y/upward Z, thickness along X."""
+    from cadgen import build123d as bd
+    return (bd.Pos(-p['tail_thickness']/2, datums(p)['tail_y'], p['tail_height'])
+            * bd.Rot(0,0,90) * bd.Rot(90,0,0))

@@ -1,13 +1,26 @@
 {
+  "revision": "R2.1_REAR_TAIL_DESIGN_REVIEW",
+  "transport": "internal HTTP; cloud browser file navigation is restricted",
   "checks": [
-    "JavaScript disabled: four embedded coloured images load and native CSS view buttons work",
-    "Real WebGL: opt-in rendering, orbit, zoom and return to saved views pass; desktop/mobile fit; zero JS errors or external requests",
-    "WebGL disabled: first paint and post-attempt saved images remain visible; all photo controls stay usable",
-    "Throwing graphics-context API: caught without hiding the saved image",
-    "Asynchronous draw exception: caught and saved image restored; real WebGL/orbit rechecked"
+    "JavaScript disabled: all six embedded saved views load and native CSS selection works",
+    "Desktop: first-paint image, real WebGL pixels, orbit, zoom/reset, return to saved joint view, exact embedded assembly mesh",
+    "Mobile 390x844: six saved views, no horizontal overflow, opt-in WebGL and return",
+    "Throwing graphics-context initialization: saved views stay visible and selectable",
+    "WebGL disabled: no blank model; saved views remain usable",
+    "Smaller saved-views file: six views work without WebGL or embedded mesh"
   ],
-  "geometry_changed": false,
-  "local_file_navigation": "not tested; managed cloud browser blocks file navigation; no external runtime dependencies",
-  "before_reproduction": "Original viewer leaves a blank visible canvas and hidden image when getContext raises an exception",
-  "legacy_viewer": "Static first paint, caught graphics exception and normal WebGL rendering passed"
+  "external_requests": [],
+  "page_errors": [],
+  "HTML_sha256": {
+    "KITTY-R2-REVIEW.html": "eb6ce2ffa6698dd94259badaf0c4fc114ed7f487e66d5e6bcf98ae46a03e3754",
+    "KITTY-R2-PARTS-VIEWER.html": "e99366499e4e89ff999d8be75a339a130147befda516cd2a20598dea7c80a3f5",
+    "KITTY-R2-SAVED-VIEWS.html": "7a8dc026a9571d113a793cf6acaed6a4447e53016c8cf42062438252e90e1548"
+  },
+  "geometry_changed": true,
+  "geometry_report": "last-verified.json",
+  "tested_artifacts": [
+    "KITTY-R2-REVIEW.html",
+    "KITTY-R2-SAVED-VIEWS.html"
+  ],
+  "notice": "Advanced parts viewer regenerated with 15 entries; this browser report covers the two design-review files."
 }

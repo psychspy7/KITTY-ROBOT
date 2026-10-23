@@ -46,7 +46,11 @@
     "sonar_z": 43,
     "printer_x": 220,
     "printer_y": 220,
-    "printer_z": 250
+    "printer_z": 250,
+    "tail_thickness": 12,
+    "tail_socket_projection": 20,
+    "tail_height": 86,
+    "tail_joint_gap": 0.4
   },
   "measurement_status": {
     "motor_length": "USER_REPORTED 61 mm, 23 October 2026; not independently inspected",
@@ -69,6 +73,7 @@
     "printer_y": "ASSUMED usable print volume",
     "printer_z": "ASSUMED usable print volume"
   },
-  "design_status": "Dimensions not listed in measurement_status are proposed design decisions, not measurements.",
-  "catalog_lookup": "api.step.parts search for TT motor was blocked by the cloud HTTPS egress proxy (403 CONNECT). No catalog absence or exact vendor-model match is claimed. Bought items are generic visual/clearance envelopes only."
+  "design_status": "Dimensions not listed in measurement_status are proposed design decisions, not measurements. R2.1 preserves the body envelope and reported component dimensions. Tail socket/root and 0.4 mm per-side clearance are proposed, untested design values; M3 fasteners are not confirmed as owned.",
+  "catalog_lookup": "api.step.parts search for TT motor was blocked by the cloud HTTPS egress proxy (403 CONNECT). No catalog absence or exact vendor-model match is claimed. Bought items are generic visual/clearance envelopes only.",
+  "revision": "R2.1_REAR_TAIL_DESIGN_REVIEW"
 }
