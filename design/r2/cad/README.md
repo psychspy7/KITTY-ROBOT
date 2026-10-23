@@ -2,6 +2,8 @@
 
 This is a working CAD source/export framework, not the final R2 body or a fit-approved print set. No physical dimensions have yet been supplied. `parameters.measured.json` therefore contains nulls. `parameters.example.json` is explicitly illustrative and produces only `draft_*` outputs.
 
+Open [kitty-draft-viewer.html](kitty-draft-viewer.html) to inspect the four checked example STL meshes. This standalone HTML embeds the meshes and fallback CAD images; it needs no external libraries or server. Drag to rotate, scroll/pinch to zoom, choose a part, or download its original draft STL. It shows separate draft parts, not an assembled or fitted R2 robot.
+
 ## Install and use
 
 The simulator and face workbench do not need these CAD packages. For CAD only, create a separate Python 3.12 environment and install `requirements.txt` (cadgen with snapshot support, pinned to 0.7.10). On Windows:
