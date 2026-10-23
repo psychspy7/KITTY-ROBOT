@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "units": "mm",
+  "kind": "measured",
+  "notice": "Fill from actual parts. Values remain unknown until measured; add an evidence entry for every dimension.",
+  "dimensions": {
+    "motor_length_mm": null,
+    "motor_width_mm": null,
+    "motor_height_mm": null,
+    "wheel_diameter_mm": null,
+    "wheel_width_mm": null,
+    "caster_height_mm": null,
+    "phone_width_mm": null,
+    "phone_height_mm": null,
+    "phone_thickness_mm": null,
+    "battery_width_mm": null,
+    "battery_depth_mm": null,
+    "battery_height_mm": null,
+    "sonar_pitch_mm": null,
+    "sonar_can_diameter_mm": null,
+    "printer_x_mm": null,
+    "printer_y_mm": null,
+    "printer_z_mm": null
+  },
+  "design": {
+    "base_width_mm": 200,
+    "base_depth_mm": 180,
+    "plate_mm": 4,
+    "wall_mm": 3,
+    "fit_clearance_mm": 0.8,
+    "fastener_clearance_mm": 3.4,
+    "phone_rim_mm": 10
+  },
+  "evidence": {}
+}

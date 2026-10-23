@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "units": "mm",
+  "kind": "example_fixture",
+  "notice": "ILLUSTRATIVE VALUES ONLY. NOT MEASURED PARTS. NOT FOR FINAL PRINTING.",
+  "dimensions": {
+    "motor_length_mm": 70,
+    "motor_width_mm": 22,
+    "motor_height_mm": 18,
+    "wheel_diameter_mm": 60,
+    "wheel_width_mm": 25,
+    "caster_height_mm": 35,
+    "phone_width_mm": 165,
+    "phone_height_mm": 75,
+    "phone_thickness_mm": 11,
+    "battery_width_mm": 70,
+    "battery_depth_mm": 65,
+    "battery_height_mm": 20,
+    "sonar_pitch_mm": 26,
+    "sonar_can_diameter_mm": 16,
+    "printer_x_mm": 220,
+    "printer_y_mm": 220,
+    "printer_z_mm": 250
+  },
+  "design": {
+    "base_width_mm": 200,
+    "base_depth_mm": 180,
+    "plate_mm": 4,
+    "wall_mm": 3,
+    "fit_clearance_mm": 0.8,
+    "fastener_clearance_mm": 3.4,
+    "phone_rim_mm": 10
+  },
+  "evidence": {}
+}
