@@ -47,6 +47,7 @@ def main():
                        'stl':base64.b64encode(data).decode(),
                        'image':'data:image/png;base64,'+base64.b64encode(png.read_bytes()).decode() if png.exists() else ''})
     template=(ROOT/'viewer-template.html.in').read_text()
+    template=template.replace('__STATIC_IMAGE__',models[0]['image'])
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(template.replace('__MODEL_DATA__',json.dumps(models,separators=(',',':'))))
     print(json.dumps({'viewer':str(args.out),'models':len(models),'bytes':args.out.stat().st_size}))

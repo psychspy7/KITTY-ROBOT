@@ -40,6 +40,8 @@ The checks inspect saved files: one valid positive-volume solid per printed part
 
 `python make_preview.py` creates an offline HTML viewer in `tmp/` from the built STLs. `--snapshots DIRECTORY` optionally embeds matching CAD snapshots named after each part; the assembly image names are `assembly-iso.png` and `printed-assembly.png`. `--out FILE` selects the HTML destination. The delivered viewer includes snapshots, full-robot and printed-only assemblies, individual part selection and exact STL downloads. It needs no network libraries.
 
+For design approval, prefer `python make_review.py --snapshots DIRECTORY --out-dir DIRECTORY`. This produces `KITTY-R2-REVIEW.html` and a smaller `KITTY-R2-SAVED-VIEWS.html`. Both show four coloured saved CAD views immediately, with native HTML/CSS view controls that work when JavaScript is disabled. The main review adds rotatable 3D only after clicking its button; a failed graphics context leaves the saved view visible. Open a downloaded HTML file in Chrome or Edge. These files review the existing draft; they do not approve fit, regenerate geometry or send a print.
+
 ## Assembly and print preparation
 
 1. Confirm the remaining dimensions before choosing a print release. Print critical interface samples after printer/material/tolerance choices are known; whole-shell geometry validity is not fit approval.

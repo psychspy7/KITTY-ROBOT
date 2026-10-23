@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "JavaScript disabled: four embedded coloured images load and native CSS view buttons work",
+    "Real WebGL: opt-in rendering, orbit, zoom and return to saved views pass; desktop/mobile fit; zero JS errors or external requests",
+    "WebGL disabled: first paint and post-attempt saved images remain visible; all photo controls stay usable",
+    "Throwing graphics-context API: caught without hiding the saved image",
+    "Asynchronous draw exception: caught and saved image restored; real WebGL/orbit rechecked"
+  ],
+  "geometry_changed": false,
+  "local_file_navigation": "not tested; managed cloud browser blocks file navigation; no external runtime dependencies",
+  "before_reproduction": "Original viewer leaves a blank visible canvas and hidden image when getContext raises an exception",
+  "legacy_viewer": "Static first paint, caught graphics exception and normal WebGL rendering passed"
+}

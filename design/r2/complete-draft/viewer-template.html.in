@@ -19,7 +19,7 @@
 <aside aria-label="Choose a draft part"><div id="parts" style="display:contents"></div><div class="info"><h2>What you are viewing</h2><p>Complete robot includes bought-part stand-ins for viewing only. Printed assembly contains the 12 proposed plastic parts. Units are millimetres.</p><p>Motor height/shaft, wheel hubs, caster, AA holder, camera/case and printer settings still need fit checks. Slice individual parts after those checks; assembled STLs are for viewing.</p><p>This file works offline. No installation, account or server is needed.</p></div></aside>
 <section class="stage" aria-label="Interactive STL viewer">
 <p class="notice" id="notice" role="status"></p>
-<div class="viewport" id="viewport"><canvas id="canvas" tabindex="0" aria-label="3D model. Drag to rotate, scroll or pinch to zoom. Arrow keys rotate; plus and minus zoom; Home resets."></canvas><img class="fallback" id="fallback" alt="Previously rendered CAD view of the selected draft part"><div class="corner">COMPLETE DRAFT / MILLIMETRES<b id="viewLabel">Isometric view</b></div><div class="hint">Drag to rotate · Scroll / pinch to zoom</div><div class="watermark">DRAFT / NOT FIT APPROVED</div></div>
+<div class="viewport" id="viewport"><canvas id="canvas" style="display:none" tabindex="0" aria-label="3D model. Drag to rotate, scroll or pinch to zoom. Arrow keys rotate; plus and minus zoom; Home resets."></canvas><img class="fallback" id="fallback" src="__STATIC_IMAGE__" style="display:block" alt="Previously rendered CAD view of the selected draft part"><div class="corner">COMPLETE DRAFT / MILLIMETRES<b id="viewLabel">Isometric view</b></div><div class="hint">Drag to rotate · Scroll / pinch to zoom</div><div class="watermark">DRAFT / NOT FIT APPROVED</div></div>
 <div class="toolbar" role="group" aria-label="View controls"><button id="reset" type="button">Reset view</button><button type="button" data-view="top">Top</button><button type="button" data-view="front">Front</button><button type="button" data-view="side">Side</button><button id="zoomIn" type="button" aria-label="Zoom in">＋</button><button id="zoomOut" type="button" aria-label="Zoom out">−</button><label><input id="wireframe" type="checkbox"> Wireframe</label><label><input id="rotate" type="checkbox"> Auto rotate</label></div>
 <div class="details"><div><h2 id="partName"></h2><div id="dimensions" class="dimensions"></div><p id="description"></p><div id="meta" class="meta"></div></div><button id="download" type="button" class="download">Download selected STL ↓</button></div>
 <div class="status" id="status" role="status">Loading embedded mesh…</div>
@@ -32,7 +32,8 @@
 'use strict';
 const parts=JSON.parse(document.getElementById('model-data').textContent);
 const $=id=>document.getElementById(id), canvas=$('canvas');
-const gl=canvas.getContext('webgl',{antialias:true,alpha:false,preserveDrawingBuffer:true});
+let gl=null;
+try{gl=canvas.getContext('webgl',{antialias:true,alpha:false,preserveDrawingBuffer:true});}catch(error){}
 let current=0, yaw=-0.58, elevation=0.65, zoom=1.28, mesh=null, program=null, normalLocation, positionLocation, locations;
 let lost=false;
 const pointers=new Map(); let pinchDistance=0;
@@ -81,7 +82,7 @@ function select(index){
  current=index;const p=parts[index];$('partName').textContent=p.label;$('description').textContent=p.note;$('dimensions').textContent=p.dimensions.map(x=>x.toFixed(1)).join(' × ')+' mm · X / Y / Z';$('meta').textContent=p.triangles.toLocaleString()+' triangles · '+p.stem+'.stl';
  document.querySelectorAll('[data-part]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.part)===index)));
  if(!gl||!program||lost){fallback('Interactive 3D is unavailable in this browser. Showing the saved CAD snapshot instead.');return;}
- try{dispose();mesh=parse(p);reset();$('status').textContent='Embedded STL · '+p.triangles.toLocaleString()+' triangles · millimetres · offline';}catch(error){fallback('Could not render the embedded mesh. Showing the saved CAD snapshot.');}
+ try{dispose();mesh=parse(p);canvas.style.display='block';$('fallback').style.display='none';reset();$('status').textContent='Embedded STL · '+p.triangles.toLocaleString()+' triangles · millimetres · offline';}catch(error){fallback('Could not render the embedded mesh. Showing the saved CAD snapshot.');}
 }
 parts.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='part';b.dataset.part=i;b.setAttribute('aria-pressed','false');const n=document.createElement('span');n.className='num';n.textContent=String(i+1).padStart(2,'0');const text=document.createElement('span'),strong=document.createElement('strong'),small=document.createElement('small');strong.textContent=p.label;small.textContent=p.dimensions.join(' × ')+' mm';text.append(strong,small);b.append(n,text);b.onclick=()=>select(i);$('parts').append(b);});
 if(gl){try{initialize();}catch(error){program=null;notice('3D rendering could not start.');}}
