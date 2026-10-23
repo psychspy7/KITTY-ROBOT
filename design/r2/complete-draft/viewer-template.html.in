@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>KITTY R2 · Complete draft CAD</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#edf2f3;background:#101415;--gold:#ffca73;--muted:#9da9ae;--line:#303b3e}
+*{box-sizing:border-box}body{margin:0}button,a{touch-action:manipulation}button{font:inherit;cursor:pointer;color:inherit;background:#20282b;border:1px solid #3b484c;border-radius:9px;padding:10px 14px}button:hover{border-color:var(--gold)}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:4px}button[aria-pressed=true]{background:#ffca7320;border-color:var(--gold);color:var(--gold)}header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:22px 30px;border-bottom:1px solid var(--line)}.brand{font-size:19px;font-weight:750;letter-spacing:3px}.brand span{color:var(--muted);font-size:11px;letter-spacing:2px;margin-left:10px}.tag{font-size:10px;letter-spacing:1.5px;border:1px solid #715f40;color:var(--gold);border-radius:99px;padding:7px 12px;white-space:nowrap}.intro{padding:26px 30px 20px;max-width:1100px}.eyebrow{color:var(--gold);font-size:10px;letter-spacing:2px;font-weight:700}h1{font-size:clamp(27px,4vw,40px);letter-spacing:-1.4px;margin:8px 0}p{color:var(--muted);font-size:14px;line-height:1.65;margin:8px 0}.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:20px;padding:0 30px 28px;max-width:1700px;margin:auto}aside{display:flex;flex-direction:column;gap:9px}.part{text-align:left;display:flex;align-items:center;gap:13px;padding:14px}.part .num{color:var(--muted);font-family:ui-monospace,monospace;font-size:11px}.part strong{display:block;font-size:14px}.part small{display:block;font-size:11px;color:var(--muted);margin-top:5px}.info{border:1px solid var(--line);border-radius:13px;padding:18px;margin-top:10px}.info h2{font-size:12px;margin:0 0 12px;color:#d4dce0}.info p{font-size:12px}.info a{color:var(--gold)}.stage{border:1px solid var(--line);border-radius:17px;overflow:hidden;min-width:0;background:radial-gradient(ellipse at 50% 35%,#263236 0%,#151d20 60%,#111719 100%)}.viewport{position:relative;height:clamp(350px,58vh,660px);min-height:330px}canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab;outline-offset:-4px}canvas:active{cursor:grabbing}.corner{position:absolute;left:20px;top:18px;pointer-events:none;font-size:11px;letter-spacing:1.2px;color:#b1c2c9}.corner b{display:block;color:#e0e7ea;margin-top:6px;font-weight:500;font-size:13px;letter-spacing:0}.watermark{position:absolute;right:18px;bottom:18px;color:#bac8cd;font-size:10px;letter-spacing:1.4px;pointer-events:none}.hint{position:absolute;left:20px;bottom:18px;color:#9dafb6;font-size:11px;pointer-events:none}.toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:13px 16px;background:#151c1f;border-top:1px solid var(--line)}.toolbar button{padding:8px 12px;font-size:12px}.toolbar label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);padding:6px}.toolbar input{accent-color:var(--gold)}.details{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;padding:20px;border-top:1px solid var(--line);background:#151b1d}.details h2{font-size:20px;margin:0 0 6px}.details p{font-size:13px;max-width:670px}.dimensions{font-family:ui-monospace,monospace;font-size:13px;color:var(--gold);margin:8px 0}.download{background:var(--gold);border-color:var(--gold);color:#241b0c;font-weight:700;align-self:start;white-space:nowrap}.meta{font-size:11px;color:#85969e}.foot{font-size:11px;color:#88999f;padding:0 30px 25px}.fallback{display:none;width:100%;height:100%;object-fit:contain;background:#e4e7eb}.notice{display:none;margin:0;padding:12px 20px;color:var(--gold);background:#332b1d;font-size:12px}.status{padding:10px 20px;font-size:11px;color:#90a7af;border-top:1px solid var(--line);background:#111719}noscript p{padding:20px;color:#ffca73}
+@media(max-width:800px){header{padding:18px}.brand span{display:none}.intro{padding:22px 18px 18px}.layout{grid-template-columns:minmax(0,1fr);padding:0 18px 20px;gap:14px}aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.info{grid-column:1/-1;margin-top:0}.part{padding:12px;gap:8px}.part strong{font-size:12px}.part small{font-size:10px}.stage{grid-row:1}aside{grid-row:2}.viewport{height:440px;min-height:300px}.details{grid-template-columns:1fr}.download{justify-self:start}.foot{padding:0 18px 20px}.hint{bottom:34px;font-size:10px}.toolbar{padding:12px}.watermark{font-size:9px}.corner{left:14px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="brand">KITTY<span>/ SENTINEL CAD</span></div><div class="tag">DRAFT · FIT CHECKS PENDING</div></header>
+<div class="intro"><div class="eyebrow">TEAM PROMETHEUS / MECHANICAL FRAMEWORK</div><h1>KITTY R2. The complete draft.</h1><p>Rotate and inspect the whole robot, or select one of its 12 proposed printed parts. Phone, wheel diameter and motor length/width use your reported measurements. Remaining interfaces still need confirmation.</p></div>
+<main class="layout">
+<aside aria-label="Choose a draft part"><div id="parts" style="display:contents"></div><div class="info"><h2>What you are viewing</h2><p>Complete robot includes bought-part stand-ins for viewing only. Printed assembly contains the 12 proposed plastic parts. Units are millimetres.</p><p>Motor height/shaft, wheel hubs, caster, AA holder, camera/case and printer settings still need fit checks. Slice individual parts after those checks; assembled STLs are for viewing.</p><p>This file works offline. No installation, account or server is needed.</p></div></aside>
+<section class="stage" aria-label="Interactive STL viewer">
+<p class="notice" id="notice" role="status"></p>
+<div class="viewport" id="viewport"><canvas id="canvas" tabindex="0" aria-label="3D model. Drag to rotate, scroll or pinch to zoom. Arrow keys rotate; plus and minus zoom; Home resets."></canvas><img class="fallback" id="fallback" alt="Previously rendered CAD view of the selected draft part"><div class="corner">COMPLETE DRAFT / MILLIMETRES<b id="viewLabel">Isometric view</b></div><div class="hint">Drag to rotate · Scroll / pinch to zoom</div><div class="watermark">DRAFT / NOT FIT APPROVED</div></div>
+<div class="toolbar" role="group" aria-label="View controls"><button id="reset" type="button">Reset view</button><button type="button" data-view="top">Top</button><button type="button" data-view="front">Front</button><button type="button" data-view="side">Side</button><button id="zoomIn" type="button" aria-label="Zoom in">＋</button><button id="zoomOut" type="button" aria-label="Zoom out">−</button><label><input id="wireframe" type="checkbox"> Wireframe</label><label><input id="rotate" type="checkbox"> Auto rotate</label></div>
+<div class="details"><div><h2 id="partName"></h2><div id="dimensions" class="dimensions"></div><p id="description"></p><div id="meta" class="meta"></div></div><button id="download" type="button" class="download">Download selected STL ↓</button></div>
+<div class="status" id="status" role="status">Loading embedded mesh…</div>
+</section>
+</main>
+<div class="foot">12 connected closed printed parts; static assembly interference checked. Physical fit, strength, supports and print settings remain unverified. Source: psychspy7/KITTY-ROBOT / complete-draft.</div>
+<noscript><p>Enable JavaScript to rotate the embedded STL meshes and download individual draft files.</p></noscript>
+<script id="model-data" type="application/json">__MODEL_DATA__</script>
+<script>
+'use strict';
+const parts=JSON.parse(document.getElementById('model-data').textContent);
+const $=id=>document.getElementById(id), canvas=$('canvas');
+const gl=canvas.getContext('webgl',{antialias:true,alpha:false,preserveDrawingBuffer:true});
+let current=0, yaw=-0.58, elevation=0.65, zoom=1.28, mesh=null, program=null, normalLocation, positionLocation, locations;
+let lost=false;
+const pointers=new Map(); let pinchDistance=0;
+function bytes(part){return Uint8Array.from(atob(part.stl),c=>c.charCodeAt(0));}
+function notice(text){$('notice').textContent=text;$('notice').style.display=text?'block':'none';}
+function fallback(text){canvas.style.display='none';$('fallback').style.display='block';if(parts[current].image){$('fallback').src=parts[current].image;}else{$('fallback').style.display='none';text='3D is unavailable. Download the selected STL to inspect it in a CAD application.';}notice(text);$('status').textContent='Static CAD snapshot · embedded STL download is available';for(const el of document.querySelectorAll('.toolbar button,.toolbar input'))el.disabled=true;}
+function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;}
+function initialize(){
+ const vertex=shader(gl.VERTEX_SHADER,'attribute vec3 aPosition;attribute vec3 aNormal;uniform mat3 uRotation;uniform float uAspect;uniform float uZoom;varying vec3 vNormal;void main(){vec3 p=uRotation*aPosition;gl_Position=vec4(p.x*uZoom/uAspect,p.y*uZoom,-p.z*0.25,1.0);vNormal=uRotation*aNormal;}');
+ const fragment=shader(gl.FRAGMENT_SHADER,'precision mediump float;varying vec3 vNormal;uniform vec3 uColor;uniform bool uLit;void main(){float light=1.0;if(uLit){vec3 n=normalize(vNormal);if(!gl_FrontFacing)n=-n;light=0.30+0.70*max(dot(n,normalize(vec3(-0.35,0.55,1.0))),0.0);}gl_FragColor=vec4(uColor*light,1.0);}');
+ program=gl.createProgram();gl.attachShader(program,vertex);gl.attachShader(program,fragment);gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
+ gl.deleteShader(vertex);gl.deleteShader(fragment);gl.useProgram(program);
+ positionLocation=gl.getAttribLocation(program,'aPosition');normalLocation=gl.getAttribLocation(program,'aNormal');
+ locations=Object.fromEntries(['uRotation','uAspect','uZoom','uColor','uLit'].map(n=>[n,gl.getUniformLocation(program,n)]));
+ gl.enable(gl.DEPTH_TEST);gl.clearColor(0.075,0.105,0.12,1);
+}
+function buffer(data){const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data),gl.STATIC_DRAW);return b;}
+function parse(part){
+ const data=bytes(part),v=new DataView(data.buffer),count=v.getUint32(80,true),positions=[],normals=[],edges=[];
+ const min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];
+ if(data.length!==84+count*50)throw Error('Unexpected embedded STL length');
+ for(let i=0;i<count;i++){const offset=84+i*50,n=[0,1,2].map(k=>v.getFloat32(offset+k*4,true));const triangle=[];
+  for(let j=0;j<3;j++){const p=[0,1,2].map(k=>v.getFloat32(offset+12+j*12+k*4,true));for(let k=0;k<3;k++){min[k]=Math.min(min[k],p[k]);max[k]=Math.max(max[k],p[k]);}positions.push(...p);normals.push(...n);triangle.push(p);}
+  for(let j=0;j<3;j++)edges.push(...triangle[j],...triangle[(j+1)%3]);
+ }
+ const size=Math.max(...max.map((x,i)=>x-min[i])),center=max.map((x,i)=>(x+min[i])/2);
+ function normalized(list){return list.map((x,i)=>(x-center[i%3])/size);}
+ const floor=(min[2]-center[2])/size-0.012,grid=[];
+ for(let i=-10;i<=10;i++){const t=i/10;grid.push(-1,t,floor,1,t,floor,t,-1,floor,t,1,floor);}
+ return{position:buffer(normalized(positions)),normal:buffer(normals),edge:buffer(normalized(edges)),grid:buffer(grid),vertices:count*3,edgeCount:count*6,gridCount:grid.length/3};
+}
+function dispose(){if(mesh)for(const k of ['position','normal','edge','grid'])gl.deleteBuffer(mesh[k]);}
+function setPosition(b){gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.enableVertexAttribArray(positionLocation);gl.vertexAttribPointer(positionLocation,3,gl.FLOAT,false,0,0);}
+function matrix(){const c=Math.cos(yaw),s=Math.sin(yaw),se=Math.sin(elevation),ce=Math.cos(elevation);return[c,se*s,-ce*s,-s,se*c,-ce*c,0,ce,se];}
+function draw(){
+ if(!gl||!program||!mesh||lost)return;
+ const rect=canvas.getBoundingClientRect(),ratio=Math.min(window.devicePixelRatio||1,2),w=Math.max(1,Math.round(rect.width*ratio)),h=Math.max(1,Math.round(rect.height*ratio));
+ if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}gl.viewport(0,0,w,h);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+ gl.uniformMatrix3fv(locations.uRotation,false,new Float32Array(matrix()));gl.uniform1f(locations.uAspect,w/h);gl.uniform1f(locations.uZoom,zoom);
+ gl.disableVertexAttribArray(normalLocation);gl.vertexAttrib3f(normalLocation,0,0,1);gl.uniform1i(locations.uLit,0);gl.uniform3f(locations.uColor,0.17,0.23,0.26);setPosition(mesh.grid);gl.drawArrays(gl.LINES,0,mesh.gridCount);
+ if($('wireframe').checked){gl.uniform1i(locations.uLit,0);gl.uniform3f(locations.uColor,1,0.79,0.45);setPosition(mesh.edge);gl.drawArrays(gl.LINES,0,mesh.edgeCount);}
+ else{gl.uniform1i(locations.uLit,1);gl.uniform3f(locations.uColor,0.91,0.92,0.88);setPosition(mesh.position);gl.bindBuffer(gl.ARRAY_BUFFER,mesh.normal);gl.enableVertexAttribArray(normalLocation);gl.vertexAttribPointer(normalLocation,3,gl.FLOAT,false,0,0);gl.drawArrays(gl.TRIANGLES,0,mesh.vertices);}
+}
+function reset(){yaw=-0.58;elevation=0.65;zoom=canvas.clientWidth<500?1.05:1.28;$('viewLabel').textContent='Isometric view';draw();}
+function select(index){
+ current=index;const p=parts[index];$('partName').textContent=p.label;$('description').textContent=p.note;$('dimensions').textContent=p.dimensions.map(x=>x.toFixed(1)).join(' × ')+' mm · X / Y / Z';$('meta').textContent=p.triangles.toLocaleString()+' triangles · '+p.stem+'.stl';
+ document.querySelectorAll('[data-part]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.part)===index)));
+ if(!gl||!program||lost){fallback('Interactive 3D is unavailable in this browser. Showing the saved CAD snapshot instead.');return;}
+ try{dispose();mesh=parse(p);reset();$('status').textContent='Embedded STL · '+p.triangles.toLocaleString()+' triangles · millimetres · offline';}catch(error){fallback('Could not render the embedded mesh. Showing the saved CAD snapshot.');}
+}
+parts.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='part';b.dataset.part=i;b.setAttribute('aria-pressed','false');const n=document.createElement('span');n.className='num';n.textContent=String(i+1).padStart(2,'0');const text=document.createElement('span'),strong=document.createElement('strong'),small=document.createElement('small');strong.textContent=p.label;small.textContent=p.dimensions.join(' × ')+' mm';text.append(strong,small);b.append(n,text);b.onclick=()=>select(i);$('parts').append(b);});
+if(gl){try{initialize();}catch(error){program=null;notice('3D rendering could not start.');}}
+select(0);
+$('reset').onclick=reset;
+function changeZoom(factor){zoom=Math.max(0.35,Math.min(7,zoom*factor));draw();}
+$('zoomIn').onclick=()=>changeZoom(1.2);$('zoomOut').onclick=()=>changeZoom(1/1.2);$('wireframe').onchange=draw;
+for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>{const name=b.dataset.view;yaw=name==='side'?Math.PI/2:0;elevation=name==='top'?Math.PI/2:0;$('viewLabel').textContent=name[0].toUpperCase()+name.slice(1)+' view';draw();};
+canvas.addEventListener('wheel',event=>{event.preventDefault();changeZoom(Math.exp(-event.deltaY*0.001));},{passive:false});
+function distance(){const a=[...pointers.values()];return a.length===2?Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y):0;}
+canvas.addEventListener('pointerdown',event=>{canvas.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});pinchDistance=distance();});
+canvas.addEventListener('pointermove',event=>{const prev=pointers.get(event.pointerId);if(!prev)return;pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});if(pointers.size===1){yaw+=(event.clientX-prev.x)*0.009;elevation=Math.max(-1.5,Math.min(1.57,elevation+(event.clientY-prev.y)*0.009));$('viewLabel').textContent='Custom view';draw();}else{const d=distance();if(pinchDistance>0&&d>0)changeZoom(d/pinchDistance);pinchDistance=d;}});
+function release(event){pointers.delete(event.pointerId);pinchDistance=distance();}canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);canvas.addEventListener('lostpointercapture',release);
+canvas.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','Home'].includes(event.key))event.preventDefault();else return;if(event.key==='Home')return reset();if(event.key==='+'||event.key==='=')return changeZoom(1.15);if(event.key==='-')return changeZoom(1/1.15);if(event.key==='ArrowLeft')yaw-=0.1;if(event.key==='ArrowRight')yaw+=0.1;if(event.key==='ArrowUp')elevation=Math.min(1.57,elevation+0.1);if(event.key==='ArrowDown')elevation=Math.max(-1.5,elevation-0.1);$('viewLabel').textContent='Custom view';draw();});
+$('download').onclick=()=>{const p=parts[current],url=URL.createObjectURL(new Blob([bytes(p)],{type:'model/stl'})),a=document.createElement('a');a.href=url;a.download=p.stem+'.stl';a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);};
+canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();lost=true;fallback('3D rendering stopped. The saved CAD snapshot and original STL are still available.');});
+window.addEventListener('resize',draw);
+const motion=window.matchMedia('(prefers-reduced-motion: reduce)');let previousTime=0;
+function animate(time){if($('rotate').checked&&!document.hidden&&!motion.matches&&!pointers.size){yaw+=Math.min((time-previousTime)/1000,0.05)*0.3;$('viewLabel').textContent='Auto rotate';draw();}previousTime=time;requestAnimationFrame(animate);}requestAnimationFrame(animate);
+</script>
+</body>
+</html>
