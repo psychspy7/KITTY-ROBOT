@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KITTY / Sentinel workbench</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header><a class="wordmark" href="/">KITTY<span> / SENTINEL</span></a><span id="connection" role="status">CONNECTING</span></header>
+  <main>
+    <section class="face-panel" aria-label="Animated KITTY face">
+      <div class="eyebrow">TEAM PROMETHEUS · PERSONALITY PREVIEW</div>
+      <div class="face" id="face" data-expression="idle" role="img" aria-label="KITTY idle">
+        <div class="ear left-ear"></div><div class="ear right-ear"></div>
+        <div class="eyes"><div class="eye" id="eyeLeft"><i></i></div><div class="eye" id="eyeRight"><i></i></div></div>
+        <div class="mouth"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="face-label"><span id="expressionLabel">IDLE</span><button id="fullscreen" type="button">Full screen</button><a href="/face">Face view</a></div>
+      <div class="truth" id="truth">NO LIVE CAMERA · PHYSICAL OUTPUT DISABLED</div>
+    </section>
+    <section class="workbench">
+      <div class="intro"><div class="eyebrow">DEVELOPMENT WORKBENCH</div><h1>A face. A guarded mind.<br>A small verified step.</h1><p>Try the controller with labelled example observations. Nothing here connects to an ESP32 or sends motor commands.</p></div>
+      <section class="card" aria-labelledby="controllerTitle">
+        <div class="card-title"><h2 id="controllerTitle">Mission preview</h2><span class="badge">FIXTURE INPUT</span></div>
+        <dl><div><dt>State</dt><dd id="mode">DISARMED</dd></div><div><dt>Reason</dt><dd id="reason">not_armed</dd></div><div><dt>Frame age</dt><dd id="age">—</dd></div></dl>
+        <div class="command" id="command">0.00 m/s · 0.00 rad/s · preview only</div>
+        <label for="scenario">Example observation</label>
+        <div class="row"><select id="scenario"><option value="centered">Target centered</option><option value="left">Target on left</option><option value="right">Target on right</option><option value="obstacle">Obstacle close</option><option value="arrived">Target arrival fixture</option><option value="lost_target">Unreliable / missing target</option></select><button id="run" class="primary" type="button">Run fixture</button></div>
+        <div class="buttons"><button data-action="pause_feed" type="button">Pause feed</button><button data-action="resume_feed" type="button">Resume feed</button><button data-action="arm_preview" type="button">Rearm preview</button><button data-action="disarm" type="button">Disarm</button></div>
+        <div class="buttons"><button data-action="estop" class="danger" type="button">EMERGENCY STOP</button><button data-action="reset_estop" type="button">Reset stop</button></div>
+        <p class="hint">Pause the feed to test expiry. Resume does not rearm. Resetting stop leaves the preview disarmed. The arrival example includes a separate target-range fixture; sonar alone does not establish arrival.</p>
+      </section>
+      <section class="card" aria-labelledby="personalityTitle">
+        <h2 id="personalityTitle">Personality & expressions</h2>
+        <label for="expression">Face audition</label><select id="expression"><option value="auto">Follow controller</option><option value="idle">Idle / blink</option><option value="happy">Happy</option><option value="focused">Focused</option><option value="listening">Listening</option><option value="thinking">Thinking</option><option value="speaking">Speaking</option><option value="sleeping">Sleeping</option></select>
+        <p class="hint">Audition affects appearance only. Fault and stop states override it.</p>
+        <div id="chatLog" role="log" aria-live="polite"><p class="reply">Hello. I’m KITTY. Eyes online, wheels still on paper. What shall we verify?</p></div>
+        <form id="chatForm"><label class="sr-only" for="chatInput">Message KITTY</label><div class="row"><input id="chatInput" maxlength="700" placeholder="Ask about status or camera…" required><button class="primary" type="submit">Send</button></div></form>
+        <label class="voice"><input id="speak" type="checkbox"> Speak replies using this browser</label>
+      </section>
+    </section>
+  </main>
+  <div id="notice" role="status"></div>
+  <footer>SOFTWARE PREVIEW · NO CAMERA / MODEL / MOTOR TRANSPORT CONNECTED · ALL DISTANCES IN FIXTURES ARE EXAMPLES</footer>
+</body>
+</html>

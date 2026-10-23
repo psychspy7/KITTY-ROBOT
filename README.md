@@ -23,6 +23,12 @@ python main.py
 
 Open the actual localhost URL printed in the terminal. The operating system chooses a free port. Motors, map, position and range readings are simulated. No hardware or API account is required. Tests: `python -m unittest discover -s tests -v` from that same folder.
 
+## New development workbench
+
+`software/kitty/` adds an animated KITTY face, offline personality replies and a guarded mission preview. From that directory run `python main.py` (Windows: `py -3 main.py`) and use the printed local address. All observation inputs are explicitly labelled developer fixtures; physical motor output is disabled and no hardware transport exists. See `software/kitty/README.md` for the preview tests and limits.
+
+Start real component intake with `docs/BENCH-START.md`. Current reported parts and unresolved power requirements are in `docs/ACTUAL-PARTS-REPORTED.md`. `design/r2/cad/` contains the parameterized STL/STEP framework; example exports are drafts and measured input is intentionally incomplete. No fitted R2 print release or physical test is claimed.
+
 ## Proposed real system
 
 Phone camera → laptop target detector/tracker → deterministic mission/guard → explicitly enabled ESP32 adapter → correctly rated motor driver → wheels. Real range sensor and local output timeout constrain motion. Physical motor-power cutoff remains reachable. Optional conversation has no direct motor authority.
