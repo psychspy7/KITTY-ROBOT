@@ -61,6 +61,8 @@ def verify_tail_joint(p,a,saved,bodies):
         assert not rear.is_inside((x,y,p['tail_height'])),'socket cross bore blocked'
         assert not tail.is_inside((x,y,p['tail_height'])),'tail cross bore blocked'
     assert not rear.is_inside((-12,p['body_depth']/2-1,44)),'rear service opening blocked'
+    assert rear.is_inside((-13.4,a['tail_y']-10,p['tail_height']-8)), 'tail removal arrow missing'
+    assert not rear.is_inside((-13.4,y,p['tail_height'])), 'arrow blocks screw-entry access'
     # Tail plastic stays above the service-window band (maximum Z=54 mm).
     assert tail.bounding_box().min.Z>54+20,'tail crosses lower service access'
     failures=[]
@@ -138,6 +140,18 @@ def main():
     neck=saved['v3_neck']
     for z in (1,5,p['neck_height']/2,p['neck_height']-1):
         assert not neck.is_inside((0,0,z)),('blocked cable route',z)
+    # The new tie passages must stay open without cutting the main neck wall.
+    for x in (-14,14):
+        for offset in (-4,0,4):
+            assert not neck.is_inside((x+offset,22,14.5)), 'blocked rear tie eye'
+        assert neck.is_inside((x,24.5,14.5)), 'missing outer tie-eye web'
+        assert neck.is_inside((x,15,17)), 'tie eye detached from neck wall'
+    same(neck.bounding_box().size.X,80)
+    same(neck.bounding_box().size.Y,58)
+    report['rear_neck_tie_eyes']={'count':2,'slot_width_mm':p['neck_tie_slot_width'],
+                                  'slot_length_mm':p['neck_tie_slot_length'],
+                                  'saved_passages':'open along X; outer webs and wall attachment present',
+                                  'limits':'Actual cable/tie fit and strength unverified; not lifting points'}
     sensor=saved['v3_sensor_bracket']
     for x in (-p['sonar_pitch']/2,p['sonar_pitch']/2):
         assert not sensor.is_inside((x,-78.5,p['sonar_z']-a['deck'])),'blocked sonar bore'

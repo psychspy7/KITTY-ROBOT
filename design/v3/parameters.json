@@ -41,6 +41,8 @@
     "phone_thickness": 8,
     "phone_margin": 8,
     "neck_height": 36,
+    "neck_tie_slot_width": 3.2,
+    "neck_tie_slot_length": 7,
     "sonar_pitch": 26,
     "sonar_diameter": 16,
     "sonar_z": 43,
@@ -77,7 +79,7 @@
     "printer_y": "ASSUMED usable print volume",
     "printer_z": "ASSUMED usable print volume"
   },
-  "design_status": "Dimensions not listed in measurement_status are proposed design values. V3 retains the 166 x 160 mm chassis footprint and all user-reported component dimensions, lowers the phone by 19 mm, and refines the body, bezel, vents and detachable tail. Socket/root clearance 0.4 mm per side remains untested. Fasteners, actual stability, printer and physical fit remain unverified.",
+  "design_status": "Dimensions not listed in measurement_status are proposed design values. V3 Signature retains the 166 x 160 mm chassis footprint and all user-reported component dimensions. It lowers the phone by 19 mm and adds a folded chest collar, faceted neck cuff, two rear tie eyes and a tail-removal arrow to the compact V3 body. Tie slots are proposed 3.2 x 7 mm openings; actual tie/cable fit is pending. Socket/root clearance 0.4 mm per side remains untested. Fasteners, actual stability, printer and physical fit remain unverified.",
   "catalog_lookup": "api.step.parts search for TT motor was blocked by the cloud HTTPS egress proxy (403 CONNECT). No catalog absence or exact vendor-model match is claimed. Bought items are generic visual/clearance envelopes only.",
-  "revision": "V3_COMPACT_SENTINEL_DESIGN_REVIEW"
+  "revision": "V3_SIGNATURE_DESIGN_REVIEW"
 }

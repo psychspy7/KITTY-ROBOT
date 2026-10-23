@@ -90,12 +90,15 @@ def cover(p, front):
     else:
         brow=box(76,9,6,0,-d/2,61)
         shape += bd.chamfer(brow.edges(),length=1.5)
-        # A raised V follows the sloping chest; it does not thin the shell.
+        # A broad folded collar follows the chest without thinning the shell.
+        # The paired ruled sections give the positive relief a bevelled rim.
         slope=(d-p['top_depth'])/(2*(top-shoulder))
-        panel=bd.Plane(origin=(0,-d/2+slope*(90-shoulder)+0.4,90),
+        panel=bd.Plane(origin=(0,-d/2+slope*(94-shoulder)+0.4,94),
                        x_dir=(1,0,0),z_dir=(0,-1,slope))
-        emblem=panel*bd.Polygon((-11,6),(0,-5),(11,6),(11,2),(0,-9),(-11,2),align=None)
-        shape += bd.extrude(emblem,amount=1.6,dir=(0,-1,slope))
+        emblem=bd.Polygon((-38,10),(-20,8),(0,-3),(20,8),(38,10),
+                          (36,4),(20,2),(0,-11),(-20,2),(-36,4),align=None)
+        relief=bd.loft([emblem,bd.Pos(0,0,2.2)*bd.scale(emblem,by=0.92)],ruled=True)
+        shape += panel*relief
     return colored(shape,'front_cover_DRAFT' if front else 'rear_cover_DRAFT','#E9E6DC')
 
 
@@ -123,6 +126,11 @@ def tail_socket(p):
     # Nut enters from the right; screw enters from the left, above the wheels.
     nut=bd.extrude(bd.RegularPolygon(3.3,6),amount=3)
     shape -= bd.Pos(10,y-p['tail_bolt_inset'],z)*bd.Rot(0,90,0)*nut
+    # The screw-entry side carries a rearward arrow below the cross bore.
+    # It is a removal-direction cue, not a latch or a seated-fit indicator.
+    arrow=bd.Polygon((-6,-1),(1,-1),(1,-2.5),(6,0),(1,2.5),(1,1),(-6,1),align=None)
+    plane=bd.Plane(origin=(-12.6,y-10,z-8),x_dir=(0,1,0),z_dir=(1,0,0))
+    shape += bd.extrude(plane*arrow,amount=1.2,dir=(-1,0,0))
     return shape
 
 
@@ -222,6 +230,17 @@ def neck(p):
     t=p['wall'];h=p['neck_height']
     shape=outline(80,58,4,8)
     shape += bd.loft([octagon(52,34,6),bd.Pos(0,0,h)*octagon(46,28,5)],ruled=True)
+    # Faceted cuff repeats the chest fold, within the existing flange envelope.
+    shape += bd.loft([bd.Pos(0,0,z)*octagon(52-6*z/h+extra,34-6*z/h+extra,6)
+                      for z,extra in ((8,3),(10,4),(14,3))],ruled=True)
+    # Rear tie eyes sit outside the main cable cavity. Actual tie/cable fit is
+    # pending; they are wire-tidying points, not lifting or retention handles.
+    for x in (-14,14):
+        eye=box(10,11,13,x,19.5,8)
+        eye=bd.chamfer(eye.edges(),length=0.5)
+        slot=bd.Plane.YZ*bd.SlotOverall(p['neck_tie_slot_length'],p['neck_tie_slot_width'],rotation=90)
+        eye -= bd.Pos(x,22,14.5)*bd.extrude(slot,amount=6,both=True)
+        shape += eye
     inside=bd.loft([bd.Pos(0,0,4)*octagon(44,26,4),bd.Pos(0,0,h-4)*octagon(38,20,3)],ruled=True)
     shape -= inside
     shape -= box(40,20,6,0,0,-1)

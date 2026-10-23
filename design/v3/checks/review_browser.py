@@ -25,10 +25,12 @@ def main():
     parser.add_argument('--directory',type=Path,required=True)
     parser.add_argument('--browser-executable',required=True)
     args=parser.parse_args();out=args.directory.resolve()
+    geometry=json.loads((ROOT/'checks/last-verified.json').read_text())
+    volume_reduction=f"{geometry['optimization']['total_printed_solid_volume_mm3']['reduction_percent']:.2f}%"
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(out)))
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
     origin=f'http://127.0.0.1:{server.server_port}/';url=origin+'KITTY-V3-REVIEW.html'
-    report={'revision':'V3_COMPACT_SENTINEL_DESIGN_REVIEW','transport':'internal HTTP; managed cloud browser file navigation is restricted','checks':[],'external_requests':[],'page_errors':[]}
+    report={'revision':geometry['revision'],'transport':'internal HTTP; managed cloud browser file navigation is restricted','checks':[],'external_requests':[],'page_errors':[]}
 
     def track(page):
         page.on('pageerror',lambda e:report['page_errors'].append(str(e)))
@@ -52,7 +54,7 @@ def main():
             context=browser.new_context(viewport={'width':1440,'height':1000})
             page=context.new_page();track(page);page.goto(url);page.wait_for_load_state('load')
             assert page.locator('.stage .iso').is_visible() and page.locator('#canvas').is_hidden()
-            assert page.locator('.metrics').is_visible() and '4.99%' in page.locator('.metrics').inner_text()
+            assert page.locator('.metrics').is_visible() and volume_reduction in page.locator('.metrics').inner_text()
             assert page.locator('.metrics tbody tr').count()==3
             page.locator('#enable3d').click();page.wait_for_timeout(500)
             assert page.locator('#review').evaluate("e=>e.classList.contains('interactive')"),page.locator('#state').inner_text()

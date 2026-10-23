@@ -36,10 +36,11 @@ def main():
         stem=file.stem
         if stem in ('v3_complete_draft','v3_printed_assembly','v3_reference_hardware'):continue
         camera='iso'
-        if stem=='v3_tail_joint_review':camera={'position':[260,400,240],'target':[0,100,80],'up':[0,0,1]}
-        if stem=='v3_cover_rear':camera={'position':[250,340,190],'target':[0,70,50],'up':[0,0,1]}
+        if stem=='v3_tail_joint_review':camera={'position':[-260,400,240],'target':[0,100,80],'up':[0,0,1]}
+        if stem=='v3_cover_rear':camera={'position':[-250,340,190],'target':[0,70,50],'up':[0,0,1]}
         if stem=='v3_cover_front':camera={'position':[200,-300,160],'target':[0,-40,55],'up':[0,0,1]}
         add(stem,[(stem,camera)])
+    add('v3_neck',[('neck-cable-eyes',{'position':[90,140,90],'target':[0,5,15],'up':[0,0,1]})])
     path=ROOT/'tmp/snapshot-jobs.json';path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps({'jobs':jobs},indent=2)+'\n')
     if args.write_job_only:

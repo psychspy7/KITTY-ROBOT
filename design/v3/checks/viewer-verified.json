@@ -1,5 +1,5 @@
 {
-  "revision": "V3_COMPACT_SENTINEL_DESIGN_REVIEW",
+  "revision": "V3_SIGNATURE_DESIGN_REVIEW",
   "transport": "internal HTTP; managed cloud browser file navigation is restricted",
   "checks": [
     "JavaScript disabled: six native saved-view controls and embedded images passed",
@@ -13,9 +13,7 @@
   "external_requests": [],
   "page_errors": [],
   "HTML_sha256": {
-    "KITTY-V3-SAVED-VIEWS.html": "c896c131f01cd16660d90fa0b3098b1dc8640f4f43fc8176ea1a5e48d9243af0",
-    "KITTY-V3-REVIEW.html": "cd2f6bf9bc8eaaf021fb82e8b489393446fb5dee3823862efcb768a23da13e9f"
-  },
-  "geometry_report": "last-verified.json",
-  "geometry_changed": true
+    "KITTY-V3-REVIEW.html": "3257910da86eba309872ee93d5d99c9743ab629c24d84f094780a5bb5efec117",
+    "KITTY-V3-SAVED-VIEWS.html": "90830e4616ee4b1295185ebd72c31d43c9cb220c172e1c579ad6c1baa834113d"
+  }
 }
