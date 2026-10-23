@@ -1,0 +1,70 @@
+{
+  "artifact": "KITTY-V7-3D-STUDIO.html",
+  "sha256": "69b5bdef5f18eed6650ed3f53a746cbec2e6b85785d5882d02895204395dbbf9",
+  "bytes": 11477796,
+  "browser": {
+    "checks": [
+      "Offline desktop: real WebGL pixels, 24 actual part meshes / 22 default visible, first-frame render",
+      "Hidden optional part, disabled reference hardware, and reference selected from print layout all isolate to exactly the selected visible part",
+      "Real pointer orbit, camera presets, zoom, fit and keyboard controls",
+      "Surface modes, ghost shell, XYZ cuts, exploded/print layouts, optional and purchased-hardware filters, dimensions and labels",
+      "Part selection/focus/isolate/reset, exact original STL download, reference download exclusion, PNG export, quality, turntable and idle rendering suspension",
+      "Real graphics context loss: native saved-view fallback, restored-context recovery and retained selected-part inspection/STL controls",
+      "Mobile 390\u00d7844: GPU view, responsive no-overflow layout and controls",
+      "JavaScript disabled: four saved native CAD views and CSS-only selection",
+      "No WebGL: actionable fallback, no blank canvas, saved rear-view control"
+    ],
+    "requests": [],
+    "errors": [],
+    "transport": "exact HTML via set_content; browser offline",
+    "html_sha256": "69b5bdef5f18eed6650ed3f53a746cbec2e6b85785d5882d02895204395dbbf9"
+  },
+  "code_review": {
+    "review_status": "complete",
+    "review_run_id": "20261023-192550-7e9b4c52",
+    "findings_applied": [
+      1,
+      2
+    ],
+    "findings_skipped": [],
+    "unresolved_findings": [],
+    "fix_batch": "one runtime-file subagent batch; parent-owned browser regressions and verification",
+    "test_gap_resolution": "Settled GPU pixel comparisons for X/Y/Z cuts and full-model restoration passed.",
+    "red_regression_observed": "Before runtime fixes, isolating the default-hidden optional tray produced selected=null and visible=[].",
+    "simplification": {
+      "applied_quality": 2,
+      "applied_efficiency": 3,
+      "skipped_reuse": 1,
+      "reason_skipped": "Two-line SHA helper reuse would introduce an unnecessary cross-script import."
+    }
+  },
+  "model_provenance_sha256": "32d1e5536cda9356058e58bb3676315724d11fd50020e9e95109673763a34e69",
+  "source_sha256": {
+    "viewer.css": "3cd8168fd9c69189fd28e10e224a12f5b57cd47d32d3322e9cfd4fb15e31d2a5",
+    "check_browser.py": "cc51087b2c9c53024fab7ef8867d41cd3bf7e43f3ef5c1498297cf8b39325173",
+    "viewer.html.in": "ede3ec6bf73f062e837c71115b3e7ef360c01c7bd2936152638a19c115e34b18",
+    "build_viewer.py": "b5eb10b5f6c2239d440609f7d0f75b4aa11c1dffd411c32715947dc3f3428913",
+    "README.md": "95e37e7c2107a185f0d42d42d78e983cda9c029ea6056fdb391a616eb36c25f9",
+    "viewer.js": "567472f75d2958425237b2cd598f3cb2d4e56e043a786117f76aa307bde0cb4c",
+    "vendor/OrbitControls.js": "7aa4372a5ec60b49988edde81014c7361740a57962d032003ca33301c1f4edd5",
+    "vendor/THREE-LICENSE.txt": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d",
+    "vendor/three.min.js": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa"
+  },
+  "source_syntax_checks": [
+    "node --check viewer.js",
+    "Python py_compile builder and browser harness",
+    "authored text whitespace"
+  ],
+  "lint_typecheck_configuration": "No separate lint/typecheck configuration for this standalone HTML viewer.",
+  "verification_strategy": "New standalone UI verified with real offline Chromium integration; existing V7 review_browser.py inspected. Regressions added and observed red for a confirmed inspection defect before the runtime fix.",
+  "visual_inspection": "Desktop, mobile, wireframe, exploded, section, parts and graphics-fallback captures inspected during development; final suite refreshes the same views after state fixes.",
+  "cad_geometry_changed": false,
+  "native_placement_bounds_checked": 13,
+  "printed_meshes": 13,
+  "default_production_parts": 12,
+  "hardware_reference_envelopes": 11,
+  "physical_fit_verified": false,
+  "user_gpu_performance_verified": false,
+  "post_deploy": "No additional operational monitoring required: standalone offline design viewer; no robot control or hosted runtime changed.",
+  "preexisting_wip": "Excluded; BUILD-STATUS local update retained with its preexisting edits rather than including unrelated notes in this source commit."
+}
