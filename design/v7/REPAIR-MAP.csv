@@ -1,0 +1,11 @@
+problem,replaceable_file,first_action,remaining_limit
+Motor position slightly off,v7_motor_left.stl or v7_motor_right.stl,Loosen base screws and adjust within verified nominal +/-2 mm then clamp with suitable washers,Shaft height or hub incompatibility needs a corrected small cradle; slots cannot fix every motor
+Motor cradle cracks,v7_motor_left.stl or v7_motor_right.stl,Remove ties and the two base fasteners; replace that cradle,Actual clamp loads and material strength untested
+Phone retainer cracks,v7_phone_cap.stl,Replace the removable top cap and check padding and retention,If the cradle itself is wrong only that module needs a corrected print
+Phone case is thicker,v7_phone_cradle.stl and possibly v7_phone_cap.stl,Use the thickness gauge and update the measured phone/case parameters before production,Not fixed by scaling the whole robot
+AA holder differs,v7_battery_tray.stl OPTIONAL or a later external adapter,Measure the bought holder and design a separate matching restraint,External holder not selected; no glued-battery mounting approval
+Sonar board fit differs,v7_sensor_bracket.stl,Correct or replace the separate sensor bracket,Actual PCB retention and fields of view unresolved
+Caster height differs,v7_caster_bridge.stl,Correct the small bridge using installed caster height and actual axle height,Ground contact must be verified with real hardware
+Tail breaks,v7_tail.stl,Remove cross screw and replace the tail,Do not use tail as a handle
+Tail socket breaks,v7_cover_rear.stl,Replace rear cover after releasing neck and cover fasteners,Socket is integral; this failure still needs a cover reprint
+Controller board differs,v7_electronics_deck.stl,Use existing tie slots or correct the separate deck,Connector and wiring clearances need verification

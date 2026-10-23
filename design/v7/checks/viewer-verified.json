@@ -1,5 +1,5 @@
 {
-  "revision": "V7_FINAL_DESIGN_EXPORT_FIT_PENDING",
+  "revision": "V7_SERVICE_REVISION_FIT_PENDING",
   "transport": "internal HTTP; managed cloud browser file navigation is restricted",
   "checks": [
     "JavaScript disabled: six native saved-view controls and embedded images passed",
@@ -13,7 +13,7 @@
   "external_requests": [],
   "page_errors": [],
   "HTML_sha256": {
-    "KITTY-V7-SAVED-VIEWS.html": "0f6c61b6ed9d1edf393397303d956c7de50851b55f768ceddbb4f640cb21ea68",
-    "KITTY-V7-REVIEW.html": "4be34224969d6975f55c13a7492b1e53c2a2485b2eb163b3f088450a4f69f4c6"
+    "KITTY-V7-SAVED-VIEWS.html": "cddad2b1aa5e67c05dffcbe8c04113b0936058bc84612fd625f6ecb84d4bf75f",
+    "KITTY-V7-REVIEW.html": "4f10c05d7afa1f9f7cb65e000c774f2ec587814af2e46f27f0f5886c2c10d6f4"
   }
 }

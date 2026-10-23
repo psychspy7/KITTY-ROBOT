@@ -1,0 +1,22 @@
+{
+  "client_date": "2026-10-24",
+  "request": "common yellow BO geared DC motor and wheel reference",
+  "attempts": [
+    {
+      "url": "https://api.step.parts/v1/parts?q=TT%20motor&limit=5",
+      "result": "HTTPS proxy CONNECT 403 Forbidden; no page/document read",
+      "retry": "same result with network permission"
+    },
+    {
+      "url": "https://www.adafruit.com/product/3777",
+      "result": "HTTPS proxy CONNECT 403 Forbidden; no page/document read",
+      "retry": "same result with network permission"
+    },
+    {
+      "url": "https://www.dfrobot.com/product-143.html",
+      "result": "HTTPS proxy CONNECT 403 Forbidden; no page/document read",
+      "retry": "same result with network permission"
+    }
+  ],
+  "conclusion": "No vendor-confirmed motor/shaft match; user ranges drive the envelope; shaft height and axial wheel width remain explicit assumptions."
+}

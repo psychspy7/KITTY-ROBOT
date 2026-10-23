@@ -1,20 +1,20 @@
-# V7 mesh and print-orientation review
+# V7 service revision — measured print review
 
-These measurements apply to the 13 separate body-part STLs in the V7 package. Each is one watertight body, has millimetre-consistent scale, and has a complete tool report. Native-solid validity, oriented mesh edges, volume agreement and assembly checks are recorded separately in GEOMETRY-VERIFICATION.json.
+The exact 13 body STLs and four separate fit-sample STLs were measured. Each is one watertight body with millimetre-consistent scale and a complete report. Native validity, oriented mesh edges, mesh/native volume agreement, adjustment positions, branding, tail gaps and sample dimensions have separate checks.
 
-The actual printer, material, nozzle and layer height are unknown. The tool used the default 45-degree support threshold. FDM/FFF is a candidate process, not a confirmed print profile. No G-code or print job is included.
+Actual printer, material, nozzle, layer height and tolerance are unconfirmed. Measurements use the default 45-degree support threshold, with conditional FDM comparison. PETG is a quote option; no slicing or print job has been performed.
 
-## Measured facts
+## Facts
 
-Thickness is ray-cast surface sampling with a 2,000-sample request per part, not an exhaustive wall map. Minimum readings can include bevels, rims and raised details. Support area measures downward-facing mesh faces below 45 degrees, excluding faces on the plate; it is not support-material usage or a slicer result. Orientation candidates are the six axis rotations only.
+Thickness is deterministic ray-cast surface sampling, with a request of 2,000 samples per file, not an exhaustive wall audit. Small minima can occur on bevels, reliefs and label edges. Down-facing area below 45 degrees excludes build-plate faces and is not slicer support usage. Six-axis candidates report geometric area and height only.
 
 | Part | Sampled min mm | Sampled p05 mm | Current support area mm² | Lowest-area axis candidate | Candidate support area mm² | Candidate height mm |
 | --- | --- | --- | --- | --- | --- | --- |
 | v7_base | 4.000 | 4.000 | 0.00 | current_plus_z | 0.00 | 4.00 |
-| v7_cover_front | 1.647 | 2.327 | 8609.64 | flip_180_x | 809.43 | 100.00 |
-| v7_cover_rear | 1.685 | 2.121 | 9337.39 | flip_180_x | 1274.40 | 100.00 |
-| v7_motor_left | 2.000 | 2.000 | 48.00 | current_plus_z | 48.00 | 22.00 |
-| v7_motor_right | 2.000 | 2.000 | 48.00 | current_plus_z | 48.00 | 22.00 |
+| v7_cover_front | 1.693 | 2.170 | 8609.64 | flip_180_x | 809.43 | 99.75 |
+| v7_cover_rear | 1.563 | 2.121 | 9337.39 | flip_180_x | 1274.40 | 99.75 |
+| v7_motor_left | 2.000 | 2.000 | 48.00 | current_plus_z | 48.00 | 24.00 |
+| v7_motor_right | 2.000 | 2.000 | 48.00 | current_plus_z | 48.00 | 24.00 |
 | v7_battery_tray | 2.500 | 2.500 | 84.00 | current_plus_z | 84.00 | 27.00 |
 | v7_electronics_deck | 3.000 | 3.000 | 4065.87 | flip_180_x | 0.00 | 26.00 |
 | v7_caster_bridge | 4.000 | 4.000 | 1394.16 | rot_plus_90_x | 139.13 | 32.00 |
@@ -23,19 +23,20 @@ Thickness is ray-cast surface sampling with a 2,000-sample request per part, not
 | v7_phone_cradle | 1.800 | 3.000 | 536.29 | current_plus_z | 536.29 | 14.80 |
 | v7_phone_cap | 0.800 | 7.400 | 0.00 | current_plus_z | 0.00 | 11.40 |
 | v7_tail | 4.300 | 10.814 | 149.67 | current_plus_z | 149.67 | 12.00 |
+| v7_fit_tail_socket | 0.125 | 3.500 | 755.24 | rot_plus_90_x | 15.37 | 24.00 |
+| v7_fit_tail_key | 4.000 | 12.000 | 0.00 | current_plus_z | 0.00 | 12.00 |
+| v7_fit_phone_thickness | 3.000 | 3.000 | 0.00 | current_plus_z | 0.00 | 4.00 |
+| v7_fit_screws | 0.108 | 4.000 | 0.00 | current_plus_z | 0.00 | 4.00 |
 
-## Findings for print preparation
+## Findings and limits
 
-- Watertightness: all 13 meshes pass the mesh tool's check (`mesh.watertight`, `mesh.body_count`) and the independent closed, oriented-edge check.
-- Sampled walls: every `wall_thickness.p05_mm` exceeds the default FDM supported/unsupported wall limits of 1.2/1.6 mm. Local sampled minima on the rear cover, neck and phone cap are thinner; inspect those exact `thinnest_samples` locations in the slicer. This is not an exhaustive minimum-wall or strength approval.
-- Supports: the covers have large horizontal internal roofs in their supplied CAD orientation. Flipping them 180 degrees about X substantially reduces measured support area without changing their 100 mm build height. The electronics deck also benefits from this flip. The caster bridge and sensor bracket have lower-area 90-degree-X candidates. These are slicer-review candidates; the delivered STLs retain their documented CAD axes and Z=0 datum.
-- Residual support needs remain on the shell details, neck and other parts. Confirm supports, first-layer contact, brim, fit tolerances and fastener holes in the selected slicer. Neither a zero-area reading nor a low support ratio proves a successful print.
-- Hole diameter, minimum positive feature and maximum bridge are not measured by this tool. Small lettering, tail cue, joints and ear tips need slicer review. The saved CAD verifies the proposed hole/key geometry; printer-specific clearance still needs fit samples.
+- All 17 meshes pass measured watertightness and single-body checks. Scale flags are clear. Independent closed-oriented-edge and positive native-solid/volume checks also pass.
+- Every sampled p05 thickness exceeds 1.6 mm, satisfying the default FDM supported/unsupported wall comparisons of 1.2/1.6 mm for that sampled statistic. Local minima below those numbers remain on the rear shell, neck, cap and engraved samples; inspect the exact `wall_thickness.thinnest_samples` coordinates. The very small sample minima are not a claimed whole-wall thickness. No exhaustive wall or load-strength approval follows.
+- Covers need internal-roof support review; their 180-degree-X candidates substantially reduce measured area. The electronics deck also benefits from inversion. The caster and sensor bracket have useful 90-degree-X candidates. The sample socket has horizontal keyways and the sample key lies flat: match their orientations and support strategy to the production socket and tail before treating the fit result as transferable.
+- Font/positive-feature width, hole diameter and unsupported span are not measured by this tool. Native checks verify the proposed bores/slots/key clearances, but the service must inspect fine labels, letters, overhangs and fit in its actual slicer. Suggested material, layer height and infill are not tested printer parameters.
+- Sample key insertion is checked in all three saved keyways at 0/10/22 mm withdrawal. The two motor groups are sampled at -2/0/+2 mm; those checks are not a continuous swept analysis or physical shaft/hub proof.
+- Coupon results are unknown until printed. If 0.4 mm tail clearance or 3.4 mm holes do not fit, update the relevant CAD parameter and regenerate the affected piece; do not scale the entire robot or silently repair the mesh.
 
-## Limits and alternate processes
+Limits source: `text-to-cad:dfam-check/references/process-limits.md`, FDM supported wall 1.2 mm, unsupported wall 1.6 mm, self-supporting angle 45 degrees. A service datasheet/profile supersedes those generic defaults. The sampled p05 values exceed the table's wall defaults for SLA/DLP, SLS and MJF too, but those are not approvals: SLA/DLP needs its own 30-degree support measurements, and powder processes need powder-escape review. No metal process is assessed.
 
-The comparison limits come from `text-to-cad:dfam-check/references/process-limits.md`: FDM supported wall 1.2 mm, unsupported wall 1.6 mm, self-supporting angle 45 degrees. These are generic defaults; the printer/material datasheet takes precedence.
-
-The sampled p05 thickness values also exceed that table's wall defaults for SLA/DLP, SLS and MJF, but these are not process approvals. SLA/DLP needs its own 30-degree support measurement; SLS/MJF need powder-escape review rather than these support-angle findings. No metal-print assessment was performed.
-
-Measurement source: `text-to-cad:dfam-check/scripts/dfam_tool.py`, run on the exact current STL files. Individual JSON reports and six-axis orientation candidates are in `dfam/`; summary.json binds the measurements to STL SHA-256 hashes. Runtime packages: trimesh, numpy, rtree, scipy, networkx and lxml. No model rescaling was performed.
+Tool: `text-to-cad:dfam-check/scripts/dfam_tool.py`; runtime dependencies trimesh, numpy, rtree, scipy, networkx and lxml. JSON facts include exact input hashes. Individual measure/orientation reports are in dfam/. No rescaling was performed. Start with PRINT-SERVICE-BRIEF.md.

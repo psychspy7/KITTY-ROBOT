@@ -17,7 +17,7 @@ def load():
            not math.isfinite(v) for v in p.values()):
         raise ValueError('Dimensions must be finite numbers')
     for name, value in p.items():
-        if name not in ('caster_y',) and value <= 0:
+        if name not in ('caster_y','electronics_y') and value <= 0:
             raise ValueError('Expected positive dimension: ' + name)
     if p['sonar_pitch'] <= p['sonar_diameter'] + 2*p['fit_gap']:
         raise ValueError('Clearance-expanded sonar holes overlap')
@@ -25,6 +25,8 @@ def load():
         raise ValueError('Assumed motor shaft and wheel ground plane disagree')
     if p['wall'] < 3:
         raise ValueError('Draft shell design requires at least 3 mm nominal wall')
+    if p['motor_adjust_y'] > 2:
+        raise ValueError('Motor travel above +/-2 mm needs a new interference review')
     return p
 
 

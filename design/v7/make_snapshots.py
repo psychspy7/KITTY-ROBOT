@@ -39,6 +39,8 @@ def main():
         if stem=='v7_tail_joint_review':camera={'position':[-260,400,240],'target':[0,100,80],'up':[0,0,1]}
         if stem=='v7_cover_rear':camera={'position':[-250,340,190],'target':[0,70,50],'up':[0,0,1]}
         if stem=='v7_cover_front':camera={'position':[200,-300,160],'target':[0,-40,55],'up':[0,0,1]}
+        if stem=='v7_fit_tail_socket':camera={'position':[90,160,130],'target':[0,0,10],'up':[0,0,1]}
+        if stem=='v7_fit_tail_key':camera={'position':[-120,100,90],'target':[12,0,6],'up':[0,0,1]}
         add(stem,[(stem,camera)])
     add('v7_neck',[('neck-cable-eyes',{'position':[90,140,90],'target':[0,5,15],'up':[0,0,1]})])
     path=ROOT/'tmp/snapshot-jobs.json';path.parent.mkdir(exist_ok=True)

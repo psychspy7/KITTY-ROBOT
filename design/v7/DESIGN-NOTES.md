@@ -1,9 +1,7 @@
-# V7 design intent
+# V7 service revision
 
-The front carries the team name PROMETHEUS above the folded collar. The rear carries KITTY in the clear band below the tail mount and above the service windows. Both names are raised geometry in the original cover pieces; they are not image overlays or separate loose letters. A 0.7 mm tracking gap keeps the T bars distinct.
+The approved V7 appearance and both names stay. The motor envelope now uses the upper end of the user's estimated 61–65 × 22–24 × 18–20 mm range. Wider cradles move inward, the electronics deck moves forward with matched base holes, and the optional tray loses colliding ears. Two mounting slots per cradle provide proposed ±2 mm fore/aft adjustment before clamping.
 
-The latest request locks the version label V7 and delegates the final finish. The compact body, face frame, collar/cuff details and curled tail retain the liked V3 silhouette. The body keeps 13 proposed printed pieces and the six user-reported component dimensions. Bought hardware is excluded from the individual STL package.
+Four separate first-print samples and a replaceable-part map reduce the cost of discovering interface or process errors. They are not physical fit evidence. The user clarified 62.5 mm wheel diameter; shaft height, hub and axial width remain assumptions. Public catalog/drawing requests were blocked with 403, so no exact common-motor match is claimed.
 
-The design follows the prior Compound Engineering idea review in `../../docs/ideation/2026-10-23-kitty-v3-final-detail-ideation.md`. Lettering placement and print-support review supply the final changes; extra mechanisms and modules would add integration work without improving this deliverable.
-
-The package is a final appearance export with checked native solids and meshes. Actual component fit, retention loads, process, material and slicer setup remain unverified. The body supports the vision-and-stop demonstration; appearance alone does not establish autonomous hardware or a hackathon result.
+The tail socket is still integral with the rear cover and the fixed neck spans the cover seam. Those service limits are retained explicitly. An outside AA holder is user intent, not a selected or mechanically validated assembly. No unknown failure is guaranteed repairable without reprinting a part.

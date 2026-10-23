@@ -1,5 +1,5 @@
-# Open KITTY V7
+# KITTY V7 — service revision preview
 
-Open `index.html` in Chrome or Edge. The saved CAD views show the model immediately; use Front to read PROMETHEUS and Rear angle to read KITTY below the tail. Enable rotatable 3D if needed. `saved-views.html` is the smaller backup and works without JavaScript or WebGL.
+Open index.html in Chrome or Edge. Saved CAD views appear immediately; Front shows PROMETHEUS and Rear angle shows KITTY. Rotatable 3D is optional. saved-views.html is the smaller backup and works without JavaScript/WebGL.
 
-The separate STL package contains only the 13 proposed body parts. The purchased wheels, motors, phone, caster and electronics shown in the viewer are reference envelopes. Final appearance export is complete; physical fit and printer/slicer setup remain unverified.
+The latest motor cradles reserve a 65 × 24 × 20 mm estimated motor envelope with proposed ±2 mm fore/aft adjustment. Wheel diameter is now user-confirmed 62.5 mm. Shaft height and axial tyre width remain assumptions. Four separate fit-sample renders and the motor/assembly views accompany the service package. Follow PRINT-SERVICE-BRIEF.md before commissioning the full print.

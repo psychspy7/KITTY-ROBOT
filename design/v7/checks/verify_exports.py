@@ -136,6 +136,51 @@ def verify_branding(p,a,saved):
     return results
 
 
+def verify_motor_adjustment(p,a,saved,bodies):
+    failures=[];queries=0;washer_areas=[]
+    for side,name in ((-1,'v7_motor_left'),(1,'v7_motor_right')):
+        own={name,'REFERENCE_ONLY_motor_envelope_'+str(side),'REFERENCE_ONLY_wheel_envelope_'+str(side)}
+        group=[(label,solid) for label,solid,_ in bodies if label in own]
+        assert len(group)==3,('motor adjustment group',name)
+        bolt_x=-side*(p['motor_x']-46)
+        for travel in (-p['motor_adjust_y'],0,p['motor_adjust_y']):
+            for y in (-25,25):
+                bolt=(bd.Pos(bolt_x,y-travel,-1)*bd.Cylinder(p['m3_clearance']/2,p['motor_floor']+2,
+                      align=(bd.Align.CENTER,bd.Align.CENTER,bd.Align.MIN))).solids()[0]
+                assert overlap_volume(saved[name],bolt)<0.01,(name,'M3 bolt does not fit slot',travel)
+                # Test actual head/washer volumes and bearing area, not only
+                # the shaft. The wider cradle needs open rail access here.
+                washer=bd.Pos(bolt_x,y-travel,p['motor_floor'])*bd.Cylinder(4,0.8,
+                       align=(bd.Align.CENTER,bd.Align.CENTER,bd.Align.MIN))
+                head=bd.Pos(bolt_x,y-travel,p['motor_floor']+0.8)*bd.Cylinder(2.75,3,
+                     align=(bd.Align.CENTER,bd.Align.CENTER,bd.Align.MIN))
+                assert overlap_volume(saved[name],washer.solids()[0])<0.01,(name,'washer blocked',travel)
+                assert overlap_volume(saved[name],head.solids()[0])<0.01,(name,'screw head blocked',travel)
+                footprint=bd.Pos(bolt_x,y-travel,0)*bd.Cylinder(4,p['motor_floor'],
+                          align=(bd.Align.CENTER,bd.Align.CENTER,bd.Align.MIN))
+                area=overlap_volume(saved[name],footprint.solids()[0])/p['motor_floor']
+                assert area>20,(name,'insufficient sampled washer bearing area',travel,area)
+                washer_areas.append(area)
+            for label,solid in group:
+                moved=(bd.Pos(0,travel,0)*solid).solids()[0]
+                bounds=moved.bounding_box(optimal=False)
+                for other_label,other,other_bounds in bodies:
+                    if other_label in own or not bounds_intersect(bounds,other_bounds):continue
+                    queries+=1;volume=overlap_volume(moved,other)
+                    if volume>0.01:failures.append((label,travel,other_label,volume))
+    assert not failures,('motor adjustment interference',failures)
+    for x in (-45,45):
+        for dy in (-12,12):assert not saved['v7_base'].is_inside((x,p['electronics_y']+dy,2)),'electronics mounting hole blocked'
+    return {'proposed_fore_aft_travel_mm':[-p['motor_adjust_y'],p['motor_adjust_y']],
+            'sampled_positions_per_side_mm':[-p['motor_adjust_y'],0,p['motor_adjust_y']],
+            'exact_queries':queries,'failures':[],
+            'group_moved':'bracket plus its motor and wheel envelopes; opposite side held nominal',
+            'slot_checks':'full nominal M3-clearance cylinders clear both saved slots at each sampled position',
+            'fastener_access':'8 mm OD x 0.8 mm washer and 5.5 mm OD x 3 mm head envelopes clear the saved rails at all samples',
+            'minimum_sampled_washer_bearing_area_mm2':round(min(washer_areas),3),
+            'limits':'Sampled positions only; real shaft/hub, cables, fasteners and clamping strength unverified'}
+
+
 def main():
     p=load();a=datums(p);report={'release':'DRAFT_NOT_FIT_APPROVED','parts':{},'unverified':['physical fit','strength','material/nozzle/slicing','actual mass and stability','moving wheel sweep and sensor coverage']}
     saved={}
@@ -185,6 +230,7 @@ def main():
             assert solid.is_valid and solid.volume>0,leaf.label
             bodies.append((leaf.label,solid,solid.bounding_box(optimal=False)))
     assert len(bodies)==24,('assembly component count',len(bodies))
+    report['motor_adjustment']=verify_motor_adjustment(p,a,saved,bodies)
     report['tail_joint']=verify_tail_joint(p,a,saved,bodies)
     failures=[];exact=0;total=0
     for (na,sa,ba),(nb,sb,bb) in combinations(bodies,2):

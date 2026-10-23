@@ -67,7 +67,7 @@ def base(p):
     patterns = [(x,y) for x in (-68,68) for y in (-65,65)]
     patterns += [(s*46,p['motor_y']+y) for s in (-1,1) for y in (-25,25)]
     patterns += [(s*44,p['battery_y']) for s in (-1,1)]
-    patterns += [(x,y) for x in (-45,45) for y in (-44,-20)]
+    patterns += [(x,p['electronics_y']+dy) for x in (-45,45) for dy in (-12,12)]
     patterns += [(x,p['caster_y']) for x in (-28,28)]
     patterns += [(x,-72) for x in (-25,25)]
     for x,y in patterns:
@@ -198,11 +198,16 @@ def motor_mount(p, side):
     shape += box(w,3,7,0,(il+3)/2)
     shape -= box(w+4,12,height,0,p['shaft_y'],floor+p['shaft_z']-4)
     for y in (-25,25):
-        x=-side*20
-        shape += box(12,12,floor,x+side*3,y)
+        x=-side*(p['motor_x']-46)
+        shape += box(14,14,floor,x+side*3,y)
         shape += cylinder(5,floor,x,y)
-        shape = bore(shape,x,y,-1,floor+2,p['m3_clearance'])
-    for y in (-19,0):
+        slot=bd.SlotOverall(p['m3_clearance']+2*p['motor_adjust_y'],p['m3_clearance'],rotation=90)
+        shape -= bd.Pos(x,y,-1)*bd.extrude(slot,amount=floor+2)
+        # A squared rail opening removes the complete local wall segment;
+        # a round clearance pocket leaves tangent feather edges in this wall.
+        shape -= box(p['motor_fastener_clearance'],
+                     p['motor_fastener_clearance']+2*p['motor_adjust_y'],height,x,y,floor)
+    for y in (-12,8):
         for x in (-iw/2,iw/2):
             shape -= box(8,4,6,x,y,floor+1)
     return colored(shape,'motor_mount_left_DRAFT' if side<0 else 'motor_mount_right_DRAFT','#30383D')
@@ -213,10 +218,8 @@ def battery_tray(p):
     shape=box(iw+6,id+6,2.5)+box(3,id+6,27,-(iw+3)/2)+box(3,id+6,27,(iw+3)/2)
     shape += box(iw,3,12,0,-(id+3)/2)
     shape += box(iw,3,12,0,(id+3)/2)
-    for x in (-44,44):
-        shape += box(9,10,2.5,x+(-3 if x>0 else 3))
-        shape += cylinder(5,2.5,x)
-        shape=bore(shape,x,0,-1,5,p['m3_clearance'])
+    # Strap through the aligned tray/base slots; removable ties avoid wide
+    # mounting ears next to the larger estimated BO-motor envelopes.
     for x in (-25,25):shape -= box(3,18,5,x,0,-1)
     for x in (-(iw+3)/2,(iw+3)/2):shape -= box(8,14,4,x,0,4)
     return colored(shape,'battery_tray_DRAFT_holder_selection_pending','#30383D')

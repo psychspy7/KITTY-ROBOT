@@ -26,7 +26,7 @@ def v7_printed_assembly():
         bd.Pos(-p['motor_x'],p['motor_y'],a['deck'])*v7_motor_left(),
         bd.Pos(p['motor_x'],p['motor_y'],a['deck'])*v7_motor_right(),
         bd.Pos(0,p['battery_y'],a['deck'])*v7_battery_tray(),
-        bd.Pos(0,-32,a['deck'])*v7_electronics_deck(),
+        bd.Pos(0,p['electronics_y'],a['deck'])*v7_electronics_deck(),
         bd.Pos(0,p['caster_y'],a['deck'])*v7_caster_bridge(),
         bd.Pos(0,0,a['deck'])*v7_sensor_bracket(),
         bd.Pos(0,0,p['cover_top'])*v7_neck(),
