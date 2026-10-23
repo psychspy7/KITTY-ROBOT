@@ -1,0 +1,232 @@
+{
+  "release": "DRAFT_NOT_FIT_APPROVED",
+  "process": "unconfirmed; default 45 degree measurements and conditional FDM comparison",
+  "measurements": [
+    {
+      "part": "v7_base",
+      "STL_sha256": "ee538b4a0730fff407da7f67b6ea675690e8489b27e4617b5789e37436a69564",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 4.0,
+      "sampled_p05_mm": 4.0,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 0.0,
+      "lowest_area_axis_candidate": {
+        "orientation": "current_plus_z",
+        "support_area_mm2": 0.0,
+        "build_height_mm": 4.0
+      }
+    },
+    {
+      "part": "v7_cover_front",
+      "STL_sha256": "a7f8dfe905ed2bded16e8b994004b017227b60149767dd575e85a0770c96a93c",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 1.647,
+      "sampled_p05_mm": 2.327,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 8609.64,
+      "lowest_area_axis_candidate": {
+        "orientation": "flip_180_x",
+        "support_area_mm2": 809.43,
+        "support_area_pct": 1.2,
+        "build_height_mm": 100.0
+      }
+    },
+    {
+      "part": "v7_cover_rear",
+      "STL_sha256": "ba8b1dd66f22edd309ea713de8246eef5cd7226207c15063c10997da4f3890f3",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 1.685,
+      "sampled_p05_mm": 2.121,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 9337.39,
+      "lowest_area_axis_candidate": {
+        "orientation": "flip_180_x",
+        "support_area_mm2": 1274.4,
+        "support_area_pct": 1.7,
+        "build_height_mm": 100.0
+      }
+    },
+    {
+      "part": "v7_motor_left",
+      "STL_sha256": "a4cc7d78f1e24cdcd090803e142ec80181f6496a1182a4ab0c305079ac4c5173",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 2.0,
+      "sampled_p05_mm": 2.0,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 48.0,
+      "lowest_area_axis_candidate": {
+        "orientation": "current_plus_z",
+        "support_area_mm2": 48.0,
+        "support_area_pct": 0.5,
+        "build_height_mm": 22.0
+      }
+    },
+    {
+      "part": "v7_motor_right",
+      "STL_sha256": "f2b138c2cb4cc942b653e7d889a2421648f744da28ce0cabe4fb635339f3c100",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 2.0,
+      "sampled_p05_mm": 2.0,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 48.0,
+      "lowest_area_axis_candidate": {
+        "orientation": "current_plus_z",
+        "support_area_mm2": 48.0,
+        "support_area_pct": 0.5,
+        "build_height_mm": 22.0
+      }
+    },
+    {
+      "part": "v7_battery_tray",
+      "STL_sha256": "0d5a27e2eb550734566965199094ba4aa76eaa7969ed12729c4d57c04a8f3836",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 2.5,
+      "sampled_p05_mm": 2.5,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 84.0,
+      "lowest_area_axis_candidate": {
+        "orientation": "current_plus_z",
+        "support_area_mm2": 84.0,
+        "support_area_pct": 0.4,
+        "build_height_mm": 27.0
+      }
+    },
+    {
+      "part": "v7_electronics_deck",
+      "STL_sha256": "c5da44346eac4765f47ae060b8077e4b78614b836adcb644459d3f7da04675f8",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 3.0,
+      "sampled_p05_mm": 3.0,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 4065.87,
+      "lowest_area_axis_candidate": {
+        "orientation": "flip_180_x",
+        "support_area_mm2": 0.0,
+        "support_area_pct": 0.0,
+        "build_height_mm": 26.0
+      }
+    },
+    {
+      "part": "v7_caster_bridge",
+      "STL_sha256": "5ec9a1bc53757645511c31678f8f45b355dd7335f4c76716e622750865d9b620",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 4.0,
+      "sampled_p05_mm": 4.0,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 1394.16,
+      "lowest_area_axis_candidate": {
+        "orientation": "rot_plus_90_x",
+        "support_area_mm2": 139.13,
+        "support_area_pct": 1.8,
+        "build_height_mm": 32.0
+      }
+    },
+    {
+      "part": "v7_sensor_bracket",
+      "STL_sha256": "dec7f03ccfb1bf82660cccef74d612d0a8af8d5408a65ad6420a08fa091ad857",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 3.0,
+      "sampled_p05_mm": 3.0,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 81.62,
+      "lowest_area_axis_candidate": {
+        "orientation": "rot_plus_90_x",
+        "support_area_mm2": 16.28,
+        "support_area_pct": 0.3,
+        "build_height_mm": 14.0
+      }
+    },
+    {
+      "part": "v7_neck",
+      "STL_sha256": "701b4bd260e13a5eae5bc9af2f66680aeeaf7206e008e1e35668f4e5ff04196b",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 1.128,
+      "sampled_p05_mm": 3.71,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 941.98,
+      "lowest_area_axis_candidate": {
+        "orientation": "current_plus_z",
+        "support_area_mm2": 941.98,
+        "support_area_pct": 4.7,
+        "build_height_mm": 36.0
+      }
+    },
+    {
+      "part": "v7_phone_cradle",
+      "STL_sha256": "05ddf91f2a17459b1f1126b4b568ccee197ba3fb15c909151701ee1cfb6cfe0a",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 1.8,
+      "sampled_p05_mm": 3.0,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 536.29,
+      "lowest_area_axis_candidate": {
+        "orientation": "current_plus_z",
+        "support_area_mm2": 536.29,
+        "support_area_pct": 2.0,
+        "build_height_mm": 14.8
+      }
+    },
+    {
+      "part": "v7_phone_cap",
+      "STL_sha256": "faebab26db27ad67645286097047b289d82c8affec9d5145fb0b4d9af83a87d9",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 0.8,
+      "sampled_p05_mm": 7.4,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 0.0,
+      "lowest_area_axis_candidate": {
+        "orientation": "current_plus_z",
+        "support_area_mm2": 0.0,
+        "build_height_mm": 11.4
+      }
+    },
+    {
+      "part": "v7_tail",
+      "STL_sha256": "517c8cd4c009d12bf05d5997ca70a9446f252205ecb6059b4a06ee7c7e81da90",
+      "watertight": true,
+      "body_count": 1,
+      "sampled_min_mm": 4.3,
+      "sampled_p05_mm": 10.814,
+      "samples_valid": 2000,
+      "support_angle_limit_deg": 45,
+      "current_support_area_mm2": 149.67,
+      "lowest_area_axis_candidate": {
+        "orientation": "current_plus_z",
+        "support_area_mm2": 149.67,
+        "support_area_pct": 2.3,
+        "build_height_mm": 12.0
+      }
+    }
+  ],
+  "limits_source": "text-to-cad:dfam-check/references/process-limits.md",
+  "unverified": [
+    "printer/material/nozzle/layer height",
+    "exhaustive wall/positive-feature/bridge audit",
+    "sliced support strategy",
+    "physical fit and strength"
+  ]
+}

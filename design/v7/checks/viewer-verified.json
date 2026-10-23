@@ -1,0 +1,19 @@
+{
+  "revision": "V7_FINAL_DESIGN_EXPORT_FIT_PENDING",
+  "transport": "internal HTTP; managed cloud browser file navigation is restricted",
+  "checks": [
+    "JavaScript disabled: six native saved-view controls and embedded images passed",
+    "Desktop: first-paint image, comparison table, real WebGL pixels, orbit, zoom/reset, keyboard controls, saved-view return and exact embedded mesh passed",
+    "Mobile 390x844: six saved views, no horizontal overflow, opt-in 3D and saved-view return passed",
+    "Throwing context initialization: saved-image fallback and controls passed",
+    "Throwing asynchronous drawing: saved-image fallback and controls passed",
+    "WebGL disabled: saved image stays visible and controls work",
+    "Smaller image-only file: six views passed without WebGL or mesh data"
+  ],
+  "external_requests": [],
+  "page_errors": [],
+  "HTML_sha256": {
+    "KITTY-V7-SAVED-VIEWS.html": "0f6c61b6ed9d1edf393397303d956c7de50851b55f768ceddbb4f640cb21ea68",
+    "KITTY-V7-REVIEW.html": "4be34224969d6975f55c13a7492b1e53c2a2485b2eb163b3f088450a4f69f4c6"
+  }
+}
