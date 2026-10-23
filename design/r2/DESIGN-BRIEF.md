@@ -1,0 +1,13 @@
+# Sentinel R2 — appearance proposal, fit pending
+
+User requested a more distinctive, polished robot and a single final STL set after design lock. This image proposes a warm-white faceted serviceable body, charcoal chassis, landscape phone face, restrained cat-like upper bezel corners and amber eye graphics. A short broad neck and low battery compartment favor stability. Two drive wheels plus caster; no arms or walking mechanism. Ears are passive frame details, not actuators.
+
+Approximate visual envelope is a20cm-wide base and28–32cm overall height, using65mm wheels only as an illustration assumption. **Do not manufacture from these values.** Actual phone, wheels, motors and printer bed may change them. The front sensor/camera-shaped inset is an appearance placeholder; it does not establish a purchased camera or sensor. The actual phone camera must have an unobstructed forward view. Standard sonar and ToF need different openings/mounts.
+
+Proposed printable modules: base, fitted motor mounts, low battery tray/strap points, removable split body cover, short neck, padded phone cradle with retention and camera/USB access, separate sensor bracket. These are not new CAD/STL exports yet. Print only necessary, fit-checked pieces. Keep battery, switch/cutoff, USB and driver service access reachable.
+
+Required before final CAD: actual motor type/dimensions/shaft location, wheel diameter/width/hub, caster installed height, phone W/H/T/camera/port positions, controller/driver/sensor footprints, battery dimensions, servo case/horn and usable printer bed. Phone load on a servo requires a torque/load review; do not use a small unknown servo as a whole-phone neck by assumption.
+
+Latest user input selects BO motors, wheels estimated60mm, HC-SR04, TB6612 and OPPO A57. ESP32 is primary controller; Uno is spare unless a concrete need emerges. Use this set for the next fitted CAD revision. OPPO A57 has multiple versions; verify model code/actual dimensions.
+
+Existing compact N20 and companion BO designs are preserved in the separate consolidated handoff. They are not interchangeable or the R2 design. A new fitted revision should use the selected real drivetrain, include STL+STEP+source, assembly view, quantities, mesh checks and fit checks. No new R2 STL is being called final while these inputs are missing.

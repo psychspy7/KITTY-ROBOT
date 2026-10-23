@@ -1,0 +1,15 @@
+test_chat_command (test_brain.TestBrain.test_chat_command) ... ok
+test_estop_and_recovery (test_brain.TestBrain.test_estop_and_recovery) ... ok
+test_goal_and_avoidance (test_brain.TestBrain.test_goal_and_avoidance) ... ok
+test_initial_state (test_brain.TestBrain.test_initial_state) ... ok
+test_manual_timeout (test_brain.TestBrain.test_manual_timeout) ... ok
+test_no_route_target_inside_obstacle (test_brain.TestBrain.test_no_route_target_inside_obstacle) ... ok
+test_obstacle_injection (test_brain.TestBrain.test_obstacle_injection) ... ok
+test_explicit_reset_phrases_clear_simulator_stop (test_handoff_regressions.TestHandoffRegressions.test_explicit_reset_phrases_clear_simulator_stop) ... ok
+test_reset_substring_does_not_release_stop (test_handoff_regressions.TestHandoffRegressions.test_reset_substring_does_not_release_stop) ... ok
+test_stop_phrase_still_latches (test_handoff_regressions.TestHandoffRegressions.test_stop_phrase_still_latches) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.043s
+
+OK
