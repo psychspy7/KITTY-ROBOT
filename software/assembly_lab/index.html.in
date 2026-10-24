@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>KITTY Assembly Lab · Team Prometheus</title>
+    <style>
+      __STYLE__
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#"
+        ><svg viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M6 14V5l10 7h8l10-7v23a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6Z" />
+          <path d="M13 22h4m6 0h4" /></svg
+        ><span
+          >KITTY <b>Assembly Lab</b><small>TEAM PROMETHEUS / V7.1</small></span
+        ></a
+      ><span class="badge">VIRTUAL WORKBENCH</span>
+      <div class="header-actions">
+        <button id="help">Quick guide</button
+        ><button id="import">Open project</button
+        ><button id="export">Save project ↓</button
+        ><input
+          id="project-file"
+          type="file"
+          accept=".json,application/json"
+          hidden
+        />
+      </div>
+    </header>
+    <div class="modebar">
+      <nav aria-label="Workbench modes">
+        <button data-mode="build" class="active">01 <b>Assemble</b></button
+        ><button data-mode="wire">02 <b>Wire</b></button
+        ><button data-mode="test">03 <b>Test arena</b></button>
+      </nav>
+      <p id="mode-hint">
+        Select a part. Attach it, detach it, or move it around the workbench.
+      </p>
+      <span id="gpu-status">Starting 3D…</span>
+    </div>
+    <main>
+      <aside class="library">
+        <div class="panel-heading">
+          <h1>Component library</h1>
+          <span id="assembly-count"></span>
+        </div>
+        <div class="library-actions">
+          <button id="assemble-all">Assemble all</button
+          ><button id="exercise">Assembly exercise</button>
+        </div>
+        <label class="search"
+          >⌕
+          <input
+            id="search"
+            placeholder="Find a component…"
+            aria-label="Find a component"
+        /></label>
+        <div id="parts-list"></div>
+        <div class="library-note">
+          V7.1 body uses the supplied STL meshes. Electronics are approximate
+          envelopes. Optional parts have placement-only behavior.
+        </div>
+      </aside>
+      <section id="stage" aria-label="Interactive 3D workbench">
+        <div id="fallback">
+          <img
+            src="__FALLBACK__"
+            alt="Saved KITTY V7.1 chassis view with motors, wheels, phone and both ultrasonic sensors"
+          />
+          <p id="fallback-message">
+            Loading the exact body meshes. Wiring controls also work without 3D.
+          </p>
+          <button id="retry">Retry graphics</button
+          ><noscript
+            >Enable JavaScript to assemble, wire and simulate.</noscript
+          >
+        </div>
+        <canvas
+          id="viewport"
+          aria-label="KITTY 3D assembly and virtual arena"
+        ></canvas>
+        <div class="scene-toolbar">
+          <button id="view-iso" title="Isometric view">◈ Isometric</button
+          ><button id="view-top">⊞ Top</button
+          ><button id="focus">◎ Focus</button
+          ><button id="wireframe">Wireframe</button
+          ><button id="screenshot">PNG ↓</button>
+        </div>
+        <div class="scene-options">
+          <label
+            ><input type="checkbox" id="ghost" checked /> See through
+            covers</label
+          ><label><input type="checkbox" id="show-wires" checked /> Wires</label
+          ><label
+            ><input type="checkbox" id="show-labels" checked /> Labels</label
+          ><select id="quality" aria-label="Graphics quality">
+            <option value="eco">Eco GPU</option>
+            <option value="balanced" selected>Balanced GPU</option>
+            <option value="ultra">Ultra GPU</option>
+          </select>
+        </div>
+        <div id="labels"></div>
+        <div class="scene-caption">
+          <span id="scene-title">THE ASSEMBLY BENCH</span
+          ><span id="scene-subtitle"
+            >Drag to orbit · scroll to zoom · right-drag to pan</span
+          >
+        </div>
+        <div id="toast" role="status" aria-live="polite"></div>
+        <div id="drive-overlay" hidden>
+          <div class="drive-status">
+            <strong id="drive-state">Disarmed</strong
+            ><span id="drive-reason"
+              >Load the demo circuit or complete your wiring.</span
+            >
+          </div>
+          <div class="drive-pad">
+            <button data-drive="forward" aria-label="Hold to drive forward">
+              ↑</button
+            ><button data-drive="left" aria-label="Hold to turn left">↶</button
+            ><button data-drive="back" aria-label="Hold to reverse">↓</button
+            ><button data-drive="right" aria-label="Hold to turn right">
+              ↷
+            </button>
+          </div>
+          <small>Hold buttons or WASD / arrows · Space = stop</small>
+        </div>
+      </section>
+      <aside class="inspector">
+        <section id="build-panel">
+          <div class="panel-heading">
+            <h2>Part inspector</h2>
+            <span class="eyebrow">SELECT / PLACE</span>
+          </div>
+          <h3 id="part-title">Base chassis</h3>
+          <p id="part-note"></p>
+          <div class="attach-actions">
+            <button id="attach" class="primary">Attach to mount</button
+            ><button id="detach">Detach to tray</button>
+          </div>
+          <div class="coordinates">
+            <label
+              >X offset<input
+                type="number"
+                id="offset-x"
+                step="1"
+                min="-1500"
+                max="1500"
+                value="0" /></label
+            ><label
+              >Y offset<input
+                type="number"
+                id="offset-y"
+                step="1"
+                min="-1500"
+                max="1500"
+                value="0" /></label
+            ><label
+              >Z offset<input
+                type="number"
+                id="offset-z"
+                step="1"
+                min="-1500"
+                max="1500"
+                value="0"
+            /></label>
+          </div>
+          <div class="inline">
+            <button id="rotate">Rotate 15°</button
+            ><button id="drag-part">Drag part: off</button>
+          </div>
+          <button id="next-step" class="wide">
+            Find next unattached part →
+          </button>
+          <p class="muted">
+            Offsets are in millimetres, Y is up. “Attach” restores the nominal
+            design position. Moving parts does not edit a print file or prove a
+            physical fit.
+          </p>
+        </section>
+        <section id="wire-panel" hidden>
+          <div class="panel-heading">
+            <h2>Wire editor</h2>
+            <span id="wire-count"></span>
+          </div>
+          <p>
+            Click two 3D terminals, use the pin buttons below, or choose
+            endpoints here.
+          </p>
+          <label>From<select id="wire-a"></select></label
+          ><label>To<select id="wire-b"></select></label>
+          <div class="inline">
+            <button id="connect" class="primary">Connect wire</button
+            ><button id="cancel-wire">Cancel pick</button>
+          </div>
+          <p id="pending-pin" class="muted">No terminal selected.</p>
+          <strong id="pin-title"></strong>
+          <div id="pin-buttons"></div>
+          <div class="inline">
+            <button id="demo" class="primary">Load demo circuit</button
+            ><button id="clear-wires">Clear wires</button>
+          </div>
+          <p class="muted">
+            Demo uses a classic ESP32 preset. Your actual board is unidentified.
+            This is a nominal circuit model, not a released wiring diagram.
+          </p>
+          <details>
+            <summary>Connection list</summary>
+            <div id="wire-list"></div>
+          </details>
+          <details>
+            <summary>Virtual multimeter</summary>
+            <label>Red probe<select id="probe-red"></select></label
+            ><label>Black probe<select id="probe-black"></select></label
+            ><output id="meter">— V</output>
+            <p class="muted">
+              DC nominal node voltages only. Floating or switching nodes are not
+              a valid DC reading. No current, transient or component-damage
+              model.
+            </p>
+          </details>
+          <details>
+            <summary>ECHO divider model</summary>
+            <label
+              >Upper resistor, Ω<input
+                id="r-top"
+                type="number"
+                value="2200"
+                min="100"
+                max="100000" /></label
+            ><label
+              >Lower resistance, Ω<input
+                id="r-bottom"
+                type="number"
+                value="3200"
+                min="100"
+                max="100000"
+            /></label>
+            <p class="muted">
+              Lower 3.2k = 2.2k + 1k in series. Each sensor uses two 2.2k
+              resistors and one 1k resistor in this example. Actual counts,
+              tolerances and GPIO/supply ratings remain unverified.
+            </p>
+          </details>
+        </section>
+        <section id="test-panel" hidden>
+          <div class="panel-heading">
+            <h2>Test console</h2>
+            <span class="eyebrow">SIMULATED</span>
+          </div>
+          <div class="inline">
+            <button id="arm" class="primary">Arm simulation</button
+            ><button id="disarm">Disarm</button>
+          </div>
+          <button id="estop" class="danger wide">■ EMERGENCY STOP</button
+          ><button id="reset-stop" class="wide">Reset stop latch</button
+          ><label
+            >AA chemistry, four cells<select id="chemistry">
+              <option value="alkaline">Alkaline · nominal 6 V</option>
+              <option value="nimh">NiMH · nominal 4.8 V</option>
+            </select></label
+          ><label class="check"
+            ><input id="power-switch" type="checkbox" checked /> Motor switch
+            closed</label
+          ><label
+            >Maximum virtual speed <output id="speed-value">180 mm/s</output
+            ><input
+              id="speed"
+              type="range"
+              min="30"
+              max="300"
+              step="10"
+              value="180" /></label
+          ><label
+            >Stop threshold <output id="stop-value">180 mm</output
+            ><input
+              id="stop-distance"
+              type="range"
+              min="160"
+              max="500"
+              step="10"
+              value="180"
+          /></label>
+          <details open>
+            <summary>Fault injection</summary>
+            <label class="check"
+              ><input id="link-ok" type="checkbox" checked /> Command link
+              available</label
+            ><label class="check"
+              ><input id="sensor-ok" type="checkbox" checked /> Range samples
+              valid</label
+            >
+            <p class="muted">
+              Loss, timeout and page blur disarm. Restoring a signal never
+              automatically re-arms.
+            </p>
+          </details>
+          <div class="inline">
+            <button id="add-obstacle">+ Obstacle</button
+            ><button id="reset-arena">Reset arena</button>
+          </div>
+          <button id="move-obstacle" class="wide">Drag obstacles: off</button>
+          <div id="obstacle-editor"></div>
+          <p class="muted">
+            Differential-drive kinematics, sampled range rays and a conservative
+            circular footprint. No friction, motor torque, acoustics, electrical
+            transients, firmware execution or real camera AI.
+          </p>
+        </section>
+        <section class="checks">
+          <div class="panel-heading">
+            <h2>Circuit checks</h2>
+            <span id="check-badge">Incomplete</span>
+          </div>
+          <div id="checks-list"></div>
+          <p class="muted">
+            A passing virtual check does not establish motor/driver current
+            suitability, battery capacity, physical clearances or safe real
+            wiring.
+          </p>
+        </section>
+      </aside>
+    </main>
+    <footer>
+      <div>
+        <span class="dot"></span
+        ><b id="status-line">Virtual only · physical outputs absent</b>
+      </div>
+      <dl>
+        <div>
+          <dt>FRONT</dt>
+          <dd id="front-reading">— cm</dd>
+        </div>
+        <div>
+          <dt>REAR</dt>
+          <dd id="rear-reading">— cm</dd>
+        </div>
+        <div>
+          <dt>WHEELS</dt>
+          <dd id="wheel-reading">0 / 0 %</dd>
+        </div>
+        <div>
+          <dt>MOTOR RAIL</dt>
+          <dd id="rail-reading">— V</dd>
+        </div>
+        <div>
+          <dt>RENDER</dt>
+          <dd id="performance">— FPS</dd>
+        </div>
+      </dl>
+    </footer>
+    <dialog id="guide">
+      <button id="close-guide" class="dialog-close" aria-label="Close guide">
+        ×</button
+      ><span class="eyebrow">WELCOME TO YOUR VIRTUAL BUILD BENCH</span>
+      <h2>Build it. Connect it. See it move.</h2>
+      <ol>
+        <li>
+          <strong>Assemble:</strong> select parts in the library or scene. Try
+          “Assembly exercise”, then attach each part. Use offset fields or “Drag
+          part” for free placement.
+        </li>
+        <li>
+          <strong>Wire:</strong> choose two terminals and connect them. “Load
+          demo circuit” creates the complete example. Use the multimeter and
+          remove a wire to see the checks respond.
+        </li>
+        <li>
+          <strong>Test arena:</strong> arm, then hold a drive button or WASD.
+          Move obstacles and try link loss, sensor loss, motor power off and the
+          stop latch. Release to stop.
+        </li>
+        <li>
+          <strong>Save:</strong> download a project JSON and reopen it later.
+          The project stores assembly positions, wires, settings and obstacles.
+          Runtime always starts disarmed.
+        </li>
+      </ol>
+      <p>
+        Runs locally in Chrome/Edge with GPU graphics acceleration; it can also
+        be served by a static web server. No login, CDN or device connection is
+        used. Open the downloaded HTML directly.
+      </p>
+      <p>
+        This lab models selected electrical constraints and robot behavior. It
+        cannot upload Arduino code, emulate ESP32 firmware, identify your real
+        board, test an actual circuit, measure current or guarantee physical
+        fit.
+      </p>
+      <button id="begin" class="primary">Enter the lab →</button>
+    </dialog>
+    <script id="model-data" type="application/json">
+      __MODEL__
+    </script>
+    <script>
+      __THREE__;
+    </script>
+    <script>
+      __ORBIT__;
+    </script>
+    <script>
+      __CORE__;
+    </script>
+    <script>
+      __APP__;
+    </script>
+  </body>
+</html>

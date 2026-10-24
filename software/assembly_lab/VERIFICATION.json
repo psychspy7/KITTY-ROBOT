@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-24",
+  "mode": "browser-only simulation",
+  "core_tests_passed": 18,
+  "packaging_tests_passed": 6,
+  "browser_check_groups_passed": 9,
+  "browser_page_errors": [],
+  "external_requests": [],
+  "final_html_sha256": "28f7ae346508f96c8c79264f85be023877e5ff755b1b36886bf34211f2f64ba6",
+  "code_review": {
+    "status": "complete",
+    "run_id": "20261024-145305-c3fd55a8",
+    "personas": 9,
+    "validated_findings": 3,
+    "fixed_findings": [
+      1,
+      2,
+      3
+    ],
+    "unresolved_findings": []
+  },
+  "baseline_simulator_tests_passed": 10,
+  "cad_geometry_changed": false,
+  "physical_outputs": false,
+  "firmware_emulated": false,
+  "public_site_deployed": false,
+  "verification_location": "cloud Chromium software WebGL; actual user GPU and physical components remain unverified",
+  "delivery": "standalone HTML and rebuildable source ZIP"
+}
