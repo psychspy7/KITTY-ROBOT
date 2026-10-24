@@ -1,0 +1,10 @@
+{
+  "status": "CANDIDATE_NOT_PHYSICALLY_RELEASED",
+  "board_assumption": "classic ESP32 carrier exposing all named GPIOs; photo shows ESP-32S",
+  "pins": {"Ain1":25,"Ain2":26,"Pwma":27,"Bin1":18,"Bin2":19,"Pwmb":23,"Standby":21,"FrontTrig":22,"FrontEcho":32,"RearTrig":16,"RearEcho":17,"Led":33,"Buzzer":13},
+  "rear_condition": "GPIO16/17 must be available and free of PSRAM/carrier conflicts; rear stays disabled until verified",
+  "logic_VCC_V": 3.3,
+  "echo_divider_ohms": {"upper":2200,"lower_series":[2200,1000]},
+  "led_series_ohms":1000,
+  "standby_pulldown_ohms":10000
+}

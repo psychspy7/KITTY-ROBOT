@@ -1,0 +1,47 @@
+{
+  "release": "PROMETHEUS staged commissioning kit rev1",
+  "scope": "USB/AP, independent components, short deliberately armed raised-wheel pulses; not floor navigation",
+  "software_checks": {
+    "native_cases": 21,
+    "browser_fixture_groups": 12,
+    "packaging_rebuild_groups": 8,
+    "pdf_pages": 18,
+    "arduino_cores": [
+      "2.0.17",
+      "3.3.2"
+    ],
+    "profiles_per_core": [
+      "distributed-locked",
+      "enabled-compile-fixture"
+    ]
+  },
+  "review": {
+    "lenses": 10,
+    "validated_findings_resolved": 8,
+    "cross_model": "not run; no different-provider CLI available",
+    "post_fix": "Independent targeted review found no new critical defect; WiFiClient timeout units corrected to seconds."
+  },
+  "hardware": "All distributed verification flags false; motor voltage/current, actual pack output/polarity, driver identity/VM and protection remain unverified. No flash or powered test.",
+  "artifacts": {
+    "PROMETHEUS-FINAL-TEST-GUIDE.pdf": "b089a949c9c71a75324d4458af1e9f41a76310146faf7168eaea0ab912d499d2",
+    "PROMETHEUS-FINAL-TEST-KIT.zip": "e83120f4838271d6232cdffd57f5a7534e3462f4bc111e8eb5cc2f1c2a2e529c",
+    "PROMETHEUS-CODE-CANVAS.html": "1b3397afba650dcbbe83b1653c2c7f7ff5689b6e829e94e21fb5ae2834a94617",
+    "PROMETHEUS-ALL-CODE.txt": "1d95791e6bd05fb027bf8a36a04925247e94aae50a8b5ef0a1b514bd9c66d79f"
+  },
+  "source_sha256": {
+    "dashboard.html": "aa8ee8128a5a3cc6374d02cf98a60cfdb6c1856a01b589d263d741e983c31bad",
+    "guide.py": "3858299166ef1c218cb89fff1841f6998e27e50b1b1f617c4f2854dbbc8d2be4",
+    "README.md": "79dd88402331c81f109cfd95239cd22b6ba73fc9beabcb55de389bdeed29594e",
+    "pins.json": "85b24be043e8187397f4cdf4b80b69a7d1324f7397bce41a4aa7a2f27ff0bf8c",
+    "build_kit.py": "a60551ba8d3aaaa8152c6fa6450bf8d80ee8d5212d1341a8745e7132c65064db",
+    "PrometheusTest/Settings.h": "d88f4eae041fc0a08ef3d49cf0cf57891d6814800dfc9f924b9f3e20655b0b83",
+    "PrometheusTest/Dashboard.h": "237492faf6baebdfff91b525fd6cf6e7017511612ffe81514a48876aa1ae3f75",
+    "PrometheusTest/PrometheusTest.ino": "d9c72725cc04614758e9bb1d32573c37d3aade7c7d6a99ee4dca7c5448e751c7",
+    "PrometheusTest/RobotPins.h": "81bdab5c823191b0ada5c7b46ac2035b8041497a06b101522ee022368d430832",
+    "PrometheusTest/HttpGate.h": "49c29b86ae5879c4157ba948e62fff36f3d9670417dac51149de9c71ee0b430a",
+    "PrometheusTest/SafetyCore.h": "b792c747f6668f6289d8f86620c6e6fed109b6b98cb71b375d8e53e631d68e20",
+    "tests/browser_test.py": "cf771cd4ad1a008ec6e9f9df81473a5020ee9a59b36f8959dc0582082c092016",
+    "tests/safety_test.cpp": "65ce7698d72ce74d4cc1c733f3829a88d696ce112d5338e65bff92ac84e2f6b5",
+    "tests/release_test.py": "cf7eafa0cb32dd65d919d1cd7d478dfd1b3045a13e05d3cab9d5d2bed4b9a559"
+  }
+}
