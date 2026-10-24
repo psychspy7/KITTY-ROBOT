@@ -5,9 +5,10 @@ Latest direct conversation supersedes the older handoff's incomplete list. Owner
 | Item | Current report |
 | --- | --- |
 | Controller | ESP32 DEVKIT V1; exact carrier/module, connector and pin layout pending |
-| Drivetrain | Two BO motor/wheel units; later user-reported wheel diameter 62 mm and motor length/width 61 × 20 mm; shaft/height/hub details pending |
+| Drivetrain | Two BO motor/wheel units; latest user-estimated motor range 61–65 × 22–24 × 18–20 mm and confirmed wheel outside diameter 62.5 mm; shaft/hub/axial wheel width remain unmeasured |
 | Driver | Two TB6612FNG dual-motor boards; exact carrier and load compatibility pending |
-| Range | Two HC-SR04 modules; variant pending |
+| Range | Two HC-SR04 modules; front and rear mounting requested; actual PCB/transducer/header variant and fit pending |
+| Additional sensor | One IR module confirmed by the user; type/markings and intended role remain unidentified |
 | Phone | OPPO A57; exact model code/case/camera arrangement pending |
 | Servo | SG90; quantity, electrical details and permissible phone load unverified |
 | Power | “HW battery” for temporary testing; AA cells intended for final version. Neither is an approved motor supply yet |
@@ -15,7 +16,7 @@ Latest direct conversation supersedes the older handoff's incomplete list. Owner
 | Other electronics | Buzzer, LEDs, light module transcribed “LN393”, LM393 sound detector, relay transcribed “KY 199V1”, “Keltro 220 micro” capacitor, three-pin screw terminal and switch |
 | Tools/assembly | Multimeter, Type-C/Arduino cables, soldering kit, glue gun, jumper wires, zip ties |
 | Spare | Arduino Uno R3; no first-stage task assigned |
-| Historical reports | IR sensor, breadboard and PCB were previously reported; current exact variants/counts remain unverified |
+| Historical reports | Breadboard and PCB were previously reported; current exact variants/counts remain unverified |
 
 Still missing: motor rated voltage/startup/stall current, height and shaft geometry; wheel width/hub and caster dimensions; battery identity/ratings and charger; final AA chemistry/cell count/holder; regulator, fuse and cutoff ratings; wire/connector ratings; capacitor value/voltage/polarity; resistor counts; phone case/camera/port details; printer bed/material/nozzle and fasteners. An identified switch does not establish a rated motor-power cutoff. No final pin assignment, wiring release or fit approval follows from this list.
 
@@ -34,3 +35,7 @@ The user supplied these values on 23 October 2026. They have not been independen
 The complete draft uses the phone in landscape: its 164 mm long edge runs horizontally. Motor height, shaft height/offset, wheel width/hub fit, caster, AA-holder, camera/ports, actual board footprints, printer and fasteners remain unresolved. See `design/r2/complete-draft/parameters.json` for the exact split between user-reported dimensions and assumptions.
 
 Begin with `docs/BENCH-START.md`. Physical setup evidence is still required before powered or flash tests.
+
+## 24 October 2026: front and rear range mounting
+
+V7.1 adds a separate rear HC-SR04 carrier using existing rear chassis bolts; the front mount remains present. The rear carrier uses a generic 45 × 20 × 1.6 mm PCB envelope and 16 mm transducers on 26 mm centres, with a first-print face gauge and strap retention. These dimensions are explicit design assumptions, not additional user measurements or a verified supplier match. See `design/v7/REAR-ULTRASONIC.md`. This is a mechanical revision; physical sensor fit, both ECHO interfaces, GPIO assignments and staggered triggering still require the actual-parts hardware stage. No rear sensor, IR sensor or motor has been electrically connected or tested by this CAD work.

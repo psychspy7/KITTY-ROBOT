@@ -1,0 +1,120 @@
+{
+  "revision": "V7.1_DUAL_ULTRASONIC_FIT_PENDING",
+  "parts": {
+    "v7_rear_sensor_bracket": {
+      "valid_connected_solids": 1,
+      "closed_oriented_mesh": true,
+      "triangles": 8146,
+      "volume_mm3": 15830.823,
+      "bounds_mm": [
+        160.0,
+        42.0,
+        72.75
+      ]
+    },
+    "v7_fit_rear_sensor_face": {
+      "valid_connected_solids": 1,
+      "closed_oriented_mesh": true,
+      "triangles": 5132,
+      "volume_mm3": 5773.849,
+      "bounds_mm": [
+        65.0,
+        10.0,
+        32.5
+      ]
+    }
+  },
+  "baseline_CAD_inputs_unchanged": true,
+  "ultrasonic_modules": {
+    "front": 1,
+    "rear": 1,
+    "transducers_per_module": 2,
+    "printed_mounts": 2
+  },
+  "static_interference": {
+    "bodies": 28,
+    "pairs": 378,
+    "exact_queries": 52,
+    "failures": []
+  },
+  "mounting": {
+    "shared_existing_bores_mm": [
+      [
+        -68,
+        65
+      ],
+      [
+        68,
+        65
+      ]
+    ],
+    "washer_envelope_mm": [
+      8,
+      0.8
+    ],
+    "head_envelope_mm": [
+      5.5,
+      3
+    ],
+    "nominal_head_ground_clearance_mm": 9.45,
+    "bolt_note": "3 mm extra bracket grip plus actual washer stack; actual screw length/engagement unverified"
+  },
+  "motor_adjustment_against_rear_module": {
+    "positions_mm": [
+      -2,
+      0,
+      2
+    ],
+    "exact_checks": 72,
+    "failures": []
+  },
+  "service_and_branding": "Both existing rear service openings and rearward KITTY sight corridor clear of new parts/envelopes.",
+  "tail_removal_positions_mm": [
+    0,
+    6,
+    12,
+    18,
+    24,
+    35
+  ],
+  "bracket_removal_positions_mm": [
+    0,
+    8,
+    16,
+    30
+  ],
+  "module_bench_installation_positions_mm": [
+    -16,
+    -8,
+    -4,
+    0
+  ],
+  "rear_sight_envelopes": [
+    {
+      "can_x_mm": 37.0,
+      "origin_y_mm": 106.8,
+      "half_angle_deg": 20,
+      "length_mm": 200
+    },
+    {
+      "can_x_mm": 63.0,
+      "origin_y_mm": 106.8,
+      "half_angle_deg": 20,
+      "length_mm": 200
+    }
+  ],
+  "limits": "Generic module assumptions; geometric sight envelopes are not measured acoustic coverage. Actual PCB/can/header/tie fit, fasteners, material, print profile and strength require physical checks.",
+  "source_sha256": {
+    "rear-sensor-parameters.json": "ca11b0888826e0cb3d5b6b0cf36b08a93a354f8c84e035594990ce45c155ee20",
+    "src/rear_sensor.py": "8740de1a04d601c9c641b12ece4dd1a2809b1ac238671321c1e4be769acbaa29",
+    "src/v7_rear_sensor_bracket.py": "b4c5052873ed223d9c7bdef27275f015cc913b30b5a2b164214473cbd9ef9ddf",
+    "src/v7_fit_rear_sensor_face.py": "10bd99cd21d6312948409f45ea325e5425773c5426fcbb4badbf2de2f4c69f6e",
+    "src/v7_rear_sensor_reference.py": "e8ff03e2307f6cd3fad286f3413f34c344fefb0725595162c30aaace2eaf1e06",
+    "src/v7_dual_ultrasonic.py": "301864c9374277b359061bf3e91bf21d615c915f4fdb65e8eaa0c384e389d8b9",
+    "checks/verify_rear_sensor.py": "ec72f993c6c6de577a3e4bc9c523effa7b6a9c7fc30dad3bb6cc6a1945c81194"
+  },
+  "STL_sha256": {
+    "v7_rear_sensor_bracket": "d79b789e10d6a1dc4458c090f558786fff8699e7fd15f62e063c42d92c40fd28",
+    "v7_fit_rear_sensor_face": "d77b49fea08ffa2872256e858f63974a0781c0f2de8b97e74f1e1bd1b7e6054b"
+  }
+}

@@ -42,6 +42,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--service', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--dual-ultrasonic', action='store_true', help='Include the removable V7.1 rear sensor module')
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     service = args.service.resolve()
@@ -51,7 +52,13 @@ def main():
     verified = json.loads((ROOT / 'checks/last-verified.json').read_text())
     for relative, digest in verified['input_sources_sha256'].items():
         assert sha(ROOT / relative) == digest, 'CAD input changed after verification: ' + relative
-    saved_scene = read_scene(ROOT / 'STEP/v7_complete_draft.step')
+    assembly = 'v7_dual_ultrasonic' if args.dual_ultrasonic else 'v7_complete_draft'
+    revision = 'V7.1_DUAL_ULTRASONIC_FIT_PENDING' if args.dual_ultrasonic else 'V7_SERVICE_REVISION_FIT_PENDING'
+    if args.dual_ultrasonic:
+        rear_verified = json.loads((ROOT / 'checks/rear-sensor-verified.json').read_text())
+        for relative,digest in rear_verified['source_sha256'].items():
+            assert sha(ROOT/relative)==digest, 'Rear sensor input changed after verification: '+relative
+    saved_scene = read_scene(ROOT / 'STEP' / (assembly+'.step'))
     saved_shapes = {leaf.label: leaf.shape() for leaf in saved_scene.leaves()}
     head = bd.Pos(0, 8, a['head_bottom'] + a['head_height']/2) * bd.Rot(90, 0, 0)
     entries = [
@@ -69,6 +76,10 @@ def main():
         ('v7_phone_cap', 'Removable phone retaining cap', head * bd.Pos(0, 0, 3.4), '#394852', [0, -70, 125]),
         ('v7_tail', 'Detachable keyed tail', tail_placement(p), '#ed9b4e', [0, 145, 45]),
     ]
+    if args.dual_ultrasonic:
+        from rear_sensor import rear_settings, mount_bottom
+        entries.append(('v7_rear_sensor_bracket','Rear HC-SR04 · removable bracket',
+                        bd.Pos(0,0,mount_bottom(p,rear_settings())),'#ed9b4e',[40,95,0]))
     parts = []
     for identifier, title, placement, color, explode in entries:
         relative = 'STL_PARTS/' + identifier + '.stl'
@@ -103,8 +114,10 @@ def main():
             title, color = 'OPPO phone envelope', '#0e1d26'
         elif 'display_graphic' in name:
             title, color = 'Phone display · eye', '#68e8d2'
+        elif 'rear_sonar_PCB' in name:
+            title, color = 'Rear HC-SR04 PCB/header · assumed envelope', '#507d70'
         elif 'sonar' in name:
-            title, color = 'HC-SR04 transducer envelope', '#adb9c1'
+            title, color = ('Rear' if 'rear_sonar' in name else 'Front')+' HC-SR04 transducer envelope', '#adb9c1'
         elif 'caster' in name:
             title, color = 'Purchased caster envelope', '#657582'
         else:
@@ -114,16 +127,19 @@ def main():
         raw = target.read_bytes()
         lo, hi = np.array(bounds(raw))
         centre = (lo + hi) / 2
-        explode = [float(np.sign(centre[0]) * 80 if abs(centre[0]) > 50 else 0),
-                   float(-55 if 'sonar' in name else 0),
+        explode = [float(40 if 'rear_sonar' in name else np.sign(centre[0]) * 80 if abs(centre[0]) > 50 else 0),
+                   float(95 if 'rear_sonar' in name else -55 if 'sonar' in name else 0),
                    float(125 if ('phone' in name or 'display' in name) else 20)]
         parts.append(dict(id=name, title=title, kind='reference', color=color,
                           optional=optional, pose=np.eye(4).tolist(), explode=explode,
                           bounds=[lo.tolist(), hi.tolist()], sha256=sha(target),
                           mesh=base64.b64encode(raw).decode()))
         target.unlink()  # Reference hardware is embedded for viewing only.
-    assert len(parts) == 24
+    assert len(parts) == (28 if args.dual_ultrasonic else 24)
     page = (HERE / 'viewer.html.in').read_text()
+    if args.dual_ultrasonic:
+        page = page.replace('<title>KITTY V7 ·','<title>KITTY V7.1 ·').replace('<span>V7</span>','<span>V7.1</span>')
+        page = page.replace('KITTY SENTINEL / V7','KITTY SENTINEL / V7.1 · FRONT + REAR')
     three = (HERE / 'vendor/three.min.js').read_text()
     orbit = (HERE / 'vendor/OrbitControls.js').read_text()
     orbit = re.sub(r'import\s*\{([\s\S]*?)\}\s*from\s*[\'"]three[\'"];', r'const {\1} = THREE;', orbit, count=1)
@@ -133,7 +149,7 @@ def main():
         '__THREE__': three, '__ORBIT__': orbit,
         '__APP__': (HERE / 'viewer.js').read_text(),
         '__STYLE__': (HERE / 'viewer.css').read_text(),
-        '__MODEL__': json.dumps({'parts': parts, 'revision': 'V7_SERVICE_REVISION_FIT_PENDING',
+        '__MODEL__': json.dumps({'parts': parts, 'revision': revision,
                                'units': 'mm', 'physicalFitVerified': False}, separators=(',', ':')),
         '__LICENSE__': (HERE / 'vendor/THREE-LICENSE.txt').read_text(),
     }
@@ -148,13 +164,13 @@ def main():
         if key in ('__THREE__', '__ORBIT__', '__APP__', '__MODEL__'):
             value = value.replace('</script', '<\\/script')
         page = page.replace(key, value)
-    target = args.out / 'KITTY-V7-3D-STUDIO.html'
+    target = args.out / ('KITTY-V7.1-DUAL-ULTRASONIC-3D-STUDIO.html' if args.dual_ultrasonic else 'KITTY-V7-3D-STUDIO.html')
     target.write_text(page)
     evidence = dict(html_sha256=sha(target), bytes=target.stat().st_size,
                     source_sha256={str(f.relative_to(HERE)): sha(f) for f in HERE.rglob('*')
                                    if f.is_file() and '__pycache__' not in str(f)},
                     parts=[{k: v for k, v in part.items() if k != 'mesh'} for part in parts],
-                    cad_step_sha256=sha(ROOT / 'STEP/v7_complete_draft.step'),
+                    cad_step_sha256=sha(ROOT / 'STEP' / (assembly+'.step')),
                     units='mm', changes_to_CAD_geometry=False)
     (args.out / 'MODEL-PROVENANCE.json').write_text(json.dumps(evidence, indent=2) + '\n')
     print(json.dumps({'file': str(target), 'bytes': target.stat().st_size, 'parts': len(parts)}))

@@ -277,7 +277,7 @@
       p.label.textContent = p.title; p.label.hidden = true; $('part-labels').append(p.label);
       state.parts.push(p);
     }
-    $('part-count').textContent = '12 STL + REFERENCES';
+    $('part-count').textContent = model.parts.filter(p => p.kind === 'printed' && !p.optional).length + ' STL + REFERENCES';
     $('performance').textContent = (triangles/1000).toFixed(0) + 'k triangles';
   }
   function cleanup() {

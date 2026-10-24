@@ -1,0 +1,42 @@
+{
+  "revision": "V7.1_DUAL_ULTRASONIC_FIT_PENDING",
+  "units": "mm",
+  "release": "DRAFT_NOT_FIT_APPROVED",
+  "dimensions": {
+    "sensor_x": 50,
+    "sensor_z": 72,
+    "board_width": 45,
+    "board_height": 20,
+    "board_thickness": 1.6,
+    "board_back_y": 93,
+    "can_pitch": 26,
+    "can_diameter": 16,
+    "can_length": 12,
+    "radial_clearance": 0.8,
+    "panel_left_x": 21,
+    "panel_right_x": 86,
+    "panel_back_y": 96,
+    "panel_thickness": 3,
+    "panel_height": 28,
+    "tie_slot_width": 3,
+    "tie_slot_length": 10,
+    "bridge_thickness": 3,
+    "bridge_width": 148,
+    "bridge_depth": 12,
+    "bridge_y": 65,
+    "post_x": 81,
+    "post_width": 8,
+    "post_back_y": 90,
+    "post_depth": 9,
+    "assumed_detection_half_angle_deg": 20,
+    "detection_review_length": 200
+  },
+  "assumptions": {
+    "module": "Generic HC-SR04 45 x 20 mm PCB, 26 mm can pitch, 16 mm can diameter and 12 mm can projection. Design assumptions, not a vendor match or actual-part measurements.",
+    "mounting": "Strap-retained PCB saddle with corner supports, two tie slots and a centre header/cable notch; no assumed PCB screw-hole pattern.",
+    "attachment": "Removable under-base bridge shares the existing two rear M3 cover/base holes at X +/-68, Y65. Two bolts need about 3 mm extra grip length plus the actual washer stack; verify engagement and clearance.",
+    "sensor_orientation": "Rearward +Y, offset to the right of the tail. The acoustic review envelope is a 20-degree half-angle geometric design check over 200 mm, not a measured field of view or guaranteed detection range.",
+    "catalog_reference": "No matched vendor drawing was obtained. The connected CAD catalogue and external vendor reads are unavailable under the observed network policy. Placeholder dimensions remain explicit and require the supplied fit coupon and actual module.",
+    "strength": "No physical load, clamp, print-profile or assembly test. This bracket is a replaceable sensor support, not a lifting point. IR module and external battery-holder mount remain unselected."
+  }
+}

@@ -25,8 +25,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--directory', type=Path, required=True)
     parser.add_argument('--browser', default='/usr/bin/chromium')
+    parser.add_argument('--dual-ultrasonic', action='store_true')
     args = parser.parse_args(); out = args.directory.resolve()
-    html = (out / 'KITTY-V7-3D-STUDIO.html').read_text()
+    filename = 'KITTY-V7.1-DUAL-ULTRASONIC-3D-STUDIO.html' if args.dual_ultrasonic else 'KITTY-V7-3D-STUDIO.html'
+    total_parts = 28 if args.dual_ultrasonic else 24
+    visible_parts = total_parts - 2
+    production_parts = 13 if args.dual_ultrasonic else 12
+    html = (out / filename).read_text()
     report = {'checks': [], 'requests': [], 'errors': [], 'transport': 'exact HTML via set_content; browser offline'}
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=args.browser, headless=True,
@@ -41,7 +46,7 @@ def main():
         page.set_content(html, wait_until='load')
         page.wait_for_function('window.kittyViewer && kittyViewer.info().ready', timeout=60000)
         page.wait_for_timeout(500)
-        info = page.evaluate('kittyViewer.info()'); assert len(info['visible']) == 22, info
+        info = page.evaluate('kittyViewer.info()'); assert len(info['visible']) == visible_parts, info
         assert info['drawn'] > 0 and info['triangles'] > 100000
         assert page.locator('#viewport').is_visible() and page.locator('#saved').is_hidden()
         page.screenshot(path=str(out / 'studio-desktop.png'))
@@ -50,7 +55,17 @@ def main():
           const p=new Uint8Array(c.width*c.height*4);g.readPixels(0,0,c.width,c.height,g.RGBA,g.UNSIGNED_BYTE,p);
           let n=0;for(let i=0;i<p.length;i+=4)if(p[i]>125&&p[i+1]>120&&p[i+2]>100)n++;return n}''')
         assert pixels > 12000, pixels
-        report['checks'].append('Offline desktop: real WebGL pixels, 24 actual part meshes / 22 default visible, first-frame render')
+        report['checks'].append(f'Offline desktop: real WebGL pixels, {total_parts} actual part meshes / {visible_parts} default visible, first-frame render')
+        if args.dual_ultrasonic:
+            assert 'v7_sensor_bracket' in info['visible'] and 'v7_rear_sensor_bracket' in info['visible']
+            page.locator('[data-view=rear]').click();page.wait_for_timeout(150)
+            page.screenshot(path=str(out/'studio-dual-rear.png'))
+            page.locator('[data-id=v7_rear_sensor_bracket] button').click()
+            with page.expect_download() as rear_download:page.locator('#download-part').click()
+            rear_path=Path('/workspace/outputs/kitty-robot/v7-dual-ultrasonic/STL_PARTS/v7_rear_sensor_bracket.stl')
+            assert Path(rear_download.value.path()).read_bytes()==rear_path.read_bytes()
+            page.locator('#reset').click()
+            report['checks'].append('Front and rear sensor mounts present; rear view and exact rear-bracket STL download passed')
         # A hidden group filter must never turn isolation into an empty model.
         for selected, setup in [
             ('v7_battery_tray','optional'),
@@ -101,12 +116,12 @@ def main():
         page.screenshot(path=str(out/'studio-exploded.png'))
         page.locator('#labels').uncheck();page.locator('#dimensions').uncheck()
         page.locator('[data-layout=print]').click();page.wait_for_timeout(120)
-        assert len(page.evaluate('kittyViewer.info().visible'))==12
+        assert len(page.evaluate('kittyViewer.info().visible'))==production_parts
         page.screenshot(path=str(out/'studio-parts.png'))
         page.locator('[data-layout=assembly]').click();page.locator('#optional').check()
-        assert len(page.evaluate('kittyViewer.info().visible'))==24
+        assert len(page.evaluate('kittyViewer.info().visible'))==total_parts
         page.locator('#optional').uncheck();page.locator('#hardware').uncheck()
-        assert len(page.evaluate('kittyViewer.info().visible'))==12
+        assert len(page.evaluate('kittyViewer.info().visible'))==production_parts
         page.locator('#hardware').check()
         report['checks'].append('Surface modes, ghost shell, XYZ cuts, exploded/print layouts, optional and purchased-hardware filters, dimensions and labels')
         page.locator('[data-id=v7_tail] button').click()
@@ -117,7 +132,7 @@ def main():
         source = Path('/workspace/outputs/kitty-robot/v7-print-service/STL_PARTS/v7_tail.stl').read_bytes()
         assert downloaded == source
         page.locator('#isolate').click();assert page.evaluate('kittyViewer.info().visible')==['v7_tail']
-        page.locator('#show-all').click();assert len(page.evaluate('kittyViewer.info().visible'))==22
+        page.locator('#show-all').click();assert len(page.evaluate('kittyViewer.info().visible'))==visible_parts
         page.locator('[data-id=REFERENCE_ONLY_phone_case_envelope] button').click()
         assert page.locator('#download-part').is_hidden()
         page.locator('#reset').click()

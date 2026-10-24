@@ -1,0 +1,227 @@
+{
+  "revision": "V7.1_DUAL_ULTRASONIC_FIT_PENDING",
+  "native": {
+    "revision": "V7.1_DUAL_ULTRASONIC_FIT_PENDING",
+    "parts": {
+      "v7_rear_sensor_bracket": {
+        "valid_connected_solids": 1,
+        "closed_oriented_mesh": true,
+        "triangles": 8146,
+        "volume_mm3": 15830.823,
+        "bounds_mm": [
+          160.0,
+          42.0,
+          72.75
+        ]
+      },
+      "v7_fit_rear_sensor_face": {
+        "valid_connected_solids": 1,
+        "closed_oriented_mesh": true,
+        "triangles": 5132,
+        "volume_mm3": 5773.849,
+        "bounds_mm": [
+          65.0,
+          10.0,
+          32.5
+        ]
+      }
+    },
+    "baseline_CAD_inputs_unchanged": true,
+    "ultrasonic_modules": {
+      "front": 1,
+      "rear": 1,
+      "transducers_per_module": 2,
+      "printed_mounts": 2
+    },
+    "static_interference": {
+      "bodies": 28,
+      "pairs": 378,
+      "exact_queries": 52,
+      "failures": []
+    },
+    "mounting": {
+      "shared_existing_bores_mm": [
+        [
+          -68,
+          65
+        ],
+        [
+          68,
+          65
+        ]
+      ],
+      "washer_envelope_mm": [
+        8,
+        0.8
+      ],
+      "head_envelope_mm": [
+        5.5,
+        3
+      ],
+      "nominal_head_ground_clearance_mm": 9.45,
+      "bolt_note": "3 mm extra bracket grip plus actual washer stack; actual screw length/engagement unverified"
+    },
+    "motor_adjustment_against_rear_module": {
+      "positions_mm": [
+        -2,
+        0,
+        2
+      ],
+      "exact_checks": 72,
+      "failures": []
+    },
+    "service_and_branding": "Both existing rear service openings and rearward KITTY sight corridor clear of new parts/envelopes.",
+    "tail_removal_positions_mm": [
+      0,
+      6,
+      12,
+      18,
+      24,
+      35
+    ],
+    "bracket_removal_positions_mm": [
+      0,
+      8,
+      16,
+      30
+    ],
+    "module_bench_installation_positions_mm": [
+      -16,
+      -8,
+      -4,
+      0
+    ],
+    "rear_sight_envelopes": [
+      {
+        "can_x_mm": 37.0,
+        "origin_y_mm": 106.8,
+        "half_angle_deg": 20,
+        "length_mm": 200
+      },
+      {
+        "can_x_mm": 63.0,
+        "origin_y_mm": 106.8,
+        "half_angle_deg": 20,
+        "length_mm": 200
+      }
+    ],
+    "limits": "Generic module assumptions; geometric sight envelopes are not measured acoustic coverage. Actual PCB/can/header/tie fit, fasteners, material, print profile and strength require physical checks.",
+    "source_sha256": {
+      "rear-sensor-parameters.json": "ca11b0888826e0cb3d5b6b0cf36b08a93a354f8c84e035594990ce45c155ee20",
+      "src/rear_sensor.py": "8740de1a04d601c9c641b12ece4dd1a2809b1ac238671321c1e4be769acbaa29",
+      "src/v7_rear_sensor_bracket.py": "b4c5052873ed223d9c7bdef27275f015cc913b30b5a2b164214473cbd9ef9ddf",
+      "src/v7_fit_rear_sensor_face.py": "10bd99cd21d6312948409f45ea325e5425773c5426fcbb4badbf2de2f4c69f6e",
+      "src/v7_rear_sensor_reference.py": "e8ff03e2307f6cd3fad286f3413f34c344fefb0725595162c30aaace2eaf1e06",
+      "src/v7_dual_ultrasonic.py": "301864c9374277b359061bf3e91bf21d615c915f4fdb65e8eaa0c384e389d8b9",
+      "checks/verify_rear_sensor.py": "ec72f993c6c6de577a3e4bc9c523effa7b6a9c7fc30dad3bb6cc6a1945c81194"
+    },
+    "STL_sha256": {
+      "v7_rear_sensor_bracket": "d79b789e10d6a1dc4458c090f558786fff8699e7fd15f62e063c42d92c40fd28",
+      "v7_fit_rear_sensor_face": "d77b49fea08ffa2872256e858f63974a0781c0f2de8b97e74f1e1bd1b7e6054b"
+    }
+  },
+  "printability": {
+    "revision": "V7.1_DUAL_ULTRASONIC_FIT_PENDING",
+    "baseline_unchanged_measured_meshes": 17,
+    "baseline_report_sha256": "08bd6587436c3f201e6df16b00a9280e4b72d00a0d44237562f88e13d3f7585a",
+    "new_exact_mesh_measurements": [
+      {
+        "file": "STL_PARTS/v7_rear_sensor_bracket.stl",
+        "STL_sha256": "d79b789e10d6a1dc4458c090f558786fff8699e7fd15f62e063c42d92c40fd28",
+        "sampled_min_mm": 1.97,
+        "sampled_p05_mm": 3.0,
+        "valid_samples": 2000,
+        "current_orientation": {
+          "orientation": "current_plus_z",
+          "support_area_mm2": 444.9,
+          "support_area_pct": 4.0,
+          "build_height_mm": 72.75
+        },
+        "lowest_support_candidate": {
+          "orientation": "current_plus_z",
+          "support_area_mm2": 444.9,
+          "support_area_pct": 4.0,
+          "build_height_mm": 72.75
+        },
+        "measure_report_sha256": "bc0b0f9850bd611f23476ed8b53f351825454f0a23e25c9969669ba9f781b815",
+        "orientation_report_sha256": "63981e173aee4d084d1cbc6c0a580be209df208c10685181041d53323df63a6e"
+      },
+      {
+        "file": "FIT_TEST_FIRST/v7_fit_rear_sensor_face.stl",
+        "STL_sha256": "d77b49fea08ffa2872256e858f63974a0781c0f2de8b97e74f1e1bd1b7e6054b",
+        "sampled_min_mm": 1.97,
+        "sampled_p05_mm": 3.0,
+        "valid_samples": 2000,
+        "current_orientation": {
+          "orientation": "current_plus_z",
+          "support_area_mm2": 157.67,
+          "support_area_pct": 3.3,
+          "build_height_mm": 32.5
+        },
+        "lowest_support_candidate": {
+          "orientation": "current_plus_z",
+          "support_area_mm2": 157.67,
+          "support_area_pct": 3.3,
+          "build_height_mm": 32.5
+        },
+        "measure_report_sha256": "1de2dffcecfacecbe00a843e02832f2c6ebb07e61908acbdc5558d43fe4c9122",
+        "orientation_report_sha256": "b7b82069f83b5ed76626e13925de68bd2b0f580a25d36f6ee4a09963ccc1e6fc"
+      }
+    ],
+    "tool_sha256": "fb759d8361f50b746f3f585f1475e9f9b17f9bb8f2ac7fdb8f70b49375d651b8",
+    "angle_limit_deg": 45,
+    "process": "unconfirmed; conditional FDM comparison only",
+    "limit_source": "text-to-cad dfam-check references/process-limits.md: supported wall 1.2 mm; unsupported wall 1.6 mm; self-support angle 45 degrees",
+    "limits": "Ray-sampled thickness is not exhaustive. Real profile, supports, hole tolerance and strength need the shop and fit-stage checks; no slicing or physical print performed."
+  },
+  "browser": {
+    "checks": [
+      "Offline desktop: real WebGL pixels, 28 actual part meshes / 26 default visible, first-frame render",
+      "Front and rear sensor mounts present; rear view and exact rear-bracket STL download passed",
+      "Hidden optional part, disabled reference hardware, and reference selected from print layout all isolate to exactly the selected visible part",
+      "Real pointer orbit, camera presets, zoom, fit and keyboard controls",
+      "Surface modes, ghost shell, XYZ cuts, exploded/print layouts, optional and purchased-hardware filters, dimensions and labels",
+      "Part selection/focus/isolate/reset, exact original STL download, reference download exclusion, PNG export, quality, turntable and idle rendering suspension",
+      "Real graphics context loss: native saved-view fallback, restored-context recovery and retained selected-part inspection/STL controls",
+      "Mobile 390\u00d7844: GPU view, responsive no-overflow layout and controls",
+      "JavaScript disabled: four saved native CAD views and CSS-only selection",
+      "No WebGL: actionable fallback, no blank canvas, saved rear-view control"
+    ],
+    "requests": [],
+    "errors": [],
+    "transport": "exact HTML via set_content; browser offline",
+    "html_sha256": "dc130c15de57ec4eb7ebcdfb40938d111dba7b4729c84114964fc6392ea7d2bb"
+  },
+  "shop_archive": {
+    "file": "KITTY-V7.1-FRONT-AND-REAR-SENSORS-SHOP.zip",
+    "sha256": "b1318d385fa5b08b2ba453c8aa015019c4d9c98e00c81f3d5761d846656cd664",
+    "bytes": 3842134,
+    "entries": 20,
+    "STL_files": 19,
+    "main_robot_parts": 13,
+    "optional_tray_files": 1,
+    "fit_samples": 5,
+    "instruction_PDF_pages": 1,
+    "front_sensor_mount": true,
+    "rear_sensor_mount": true,
+    "purchased_hardware_STLs": 0,
+    "archive_CRC": "passed"
+  },
+  "visual_review": "Inspected saved native rear bracket, upright gauge, installed rear mount and orthographic rear assembly, plus desktop rear-view, mobile viewer and one-page PDF captures. Tail, rear KITTY wordmark, can bores, tie slots and service openings are visible in their intended arrangement.",
+  "snapshots_sha256": {
+    "assembly-back.png": "13c2ff09916f71ef2c248becb83c48c2e7d036878ecd6aeb4a165946829a6085",
+    "assembly-front.png": "94b6ec010feafce555f9d4fb992bf94382056c3fe2dc31b21a96276664dd9b0a",
+    "assembly-hero.png": "2a963f864640c49c49cd875417f956f173b24ed712795540d700e961fdf9c090",
+    "assembly-iso.png": "103cd9742701ba18a02594b98324bba9a12b9b4cf27e827bab80444fac59f9ad",
+    "assembly-rear-angle.png": "b7f8e1b19a7f43484b83a13be68111bcd6a1ddec7ce1a16f623e14845c4fa98c",
+    "interior.png": "cd118c3b5f50f64758d4fcc00193a79bdaaf9896b6cc927ce116912c00fa3a2a",
+    "rear-bracket-back.png": "84bbc76796f5ba0271a354496661d58882132600344a42180df89938d1a52396",
+    "rear-bracket.png": "d742fbeb0a8ce9489f2ff4bf10bd2de33121680f9499fc29756700ea579e489d",
+    "rear-fit-gauge.png": "cf743f31ee48b249147e8a92d519d28c2eb04360caebe78a6333852e4256f64e",
+    "rear-mount-installed.png": "1d25590a2d30b2722e625aeea178ca48145fbc2e63af2b5eb6fe013f435bea55"
+  },
+  "syntax_checks": "Python py_compile for new/changed scripts and node --check viewer.js passed.",
+  "hardware_operation": "No flashing, powered test, sensor acoustic test, slicing or print job performed.",
+  "scope": "One additive rear mount and fit gauge; original 13 body meshes byte-identical. No IR mount or battery restraint added without an identified component.",
+  "preexisting_wip": "Other software and root tooling changes excluded; BUILD-STATUS updated locally while preserving its preexisting uncommitted notes."
+}
