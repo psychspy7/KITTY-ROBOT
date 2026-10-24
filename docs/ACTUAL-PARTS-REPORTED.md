@@ -2,6 +2,16 @@
 
 Latest direct conversation supersedes the older handoff's incomplete list. Ownership and labels are user-reported, not physically inspected or electrically verified.
 
+## Latest photographs and electrical inspection — 24 October 2026
+
+Four inline photographs now show a yellow TT-style geared motor with a rubber-treaded wheel, an **ESP-32S**-marked module on a Micro-USB development board, and a red dual-driver-style carrier with attached jumper leads. The visible ESP-32S marking is more specific photographic evidence than the earlier WROOM-32 description; the exact carrier revision, complete GPIO labels and chip internals are still not established. Successful uploads/AP operation remain user-reported. A USB cable is attached in board photographs, so unplug it and disconnect any batteries before rearranging loose wiring. Background screen content is not project evidence and is not copied into the repository.
+
+Driver-side VCC/GND and A/B output text is visible, but not every output numeral is equally legible. The user's transcription lists VCC, GND, AO1, AO2, BO2, BO1 and GND. VM and the complete control-pin bank are not independently readable; the main IC marking cannot be confirmed from these views. Connected lead colours and a similar-looking carrier do not establish endpoint functions or absence of solder shorts.
+
+The latest report explicitly leaves actual installed cells, chemistry, holder arrangement, voltage, polarity and motor ratings unconfirmed. Earlier four-AA/two-holder reports remain inventory context, not an established electrical configuration. The earlier 62.5 mm wheel diameter remains a user measurement to recheck against the pictured pair if needed; a new photograph supplies no reliable scale or replacement measurement. No motor encoder is visible; that is not a complete inspection for feedback hardware. The user reports ordering the V7.1 printed chassis, with physical fitting still pending.
+
+Next physical test: [isolated battery DC voltage/polarity measurement](prometheus/TEST-01-BATTERY-VOLTAGE.md). The [pin-by-name connection plan](prometheus/WIRING-PLAN-PENDING-POWER.md) is proposed and unreleased; no motor power or new robot wiring is authorized by these photographs.
+
 ## Latest physical bring-up update — 24 October 2026
 
 The user's new continuation request reports a working **ESP32-WROOM-32 development board with approximately 38 pins**, selected as **ESP32 Dev Module** in Arduino IDE. Windows used **COM8 during the successful test**; the port must still be selected from the actual connected device rather than fixed in code. They report successful compile/upload, execution, Serial Monitor at 115200 baud, Wi-Fi scanning, Access Point creation as **PROMETHEUS_ESP32**, Android association and the board-hosted website at **http://192.168.4.1/**. Earlier station-mode association with the phone hotspot failed; that does not negate the successful AP/web-server proof. The earlier upload-blocker status is superseded. These are user-reported physical results, not flashes or measurements performed by the cloud assistant.
@@ -43,7 +53,7 @@ Current build priority: assemble the unpowered box chassis; verify the motor-pow
 
 | Item | Current report |
 | --- | --- |
-| Controller | Latest: user reports ESP32-WROOM-32, approximately 38 pins, Arduino IDE ESP32 Dev Module; compile/upload/AP/web-server tests successful on COM8 during testing. Carrier pin labels/USB bridge and physical wiring still pending |
+| Controller | Latest photos show ESP-32S marking and Micro-USB; earlier report approximately 38 pins. Arduino IDE ESP32 Dev Module, upload/AP tests on COM8 during testing remain user-reported. Complete carrier pin labels and physical wiring pending |
 | Drivetrain | Two BO motor/wheel units; latest user-estimated motor range 61–65 × 22–24 × 18–20 mm and confirmed wheel outside diameter 62.5 mm; shaft/hub/axial wheel width remain unmeasured |
 | Driver | Two TB6612FNG dual-motor boards; exact carrier and load compatibility pending |
 | Third ground support | Caster wheel confirmed in the latest continuation request; installed height/mounting pending |
@@ -51,7 +61,7 @@ Current build priority: assemble the unpowered box chassis; verify the motor-pow
 | Additional sensor | One IR module confirmed by the user; type/markings and intended role remain unidentified |
 | Phone | OPPO A57, intended for camera/microphone/speaker/screen; exact model code/case/camera arrangement and combined operation pending |
 | Servo | One servo; earlier SG90 identification, electrical details and permissible phone load unverified |
-| Power | Latest report: two AA holders and four AA cells total; arrangement, chemistry, dimensions, voltage and load suitability pending. Earlier “HW battery” was for temporary testing only; neither is an approved motor supply yet |
+| Power | Latest inspection leaves actual installed cells/count, chemistry, holder arrangement, measured voltage/polarity and load suitability unknown. Earlier two-holder/four-AA report is inventory context; “HW battery” was temporary only. No approved motor supply |
 | Resistors | 2.2 kohm, 1 kohm, 2 kohm, 10 kohm; counts/tolerances pending |
 | Other electronics | Buzzer, LEDs, light module transcribed “LN393”, LM393 sound detector, relay transcribed “KY 199V1”, “Keltro 220 micro” capacitor, three-pin screw terminal and switch |
 | Tools/assembly | Multimeter, Type-C/Arduino cables, soldering kit, glue gun, jumper wires, zip ties |

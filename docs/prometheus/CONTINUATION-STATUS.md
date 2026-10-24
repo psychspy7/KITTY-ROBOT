@@ -4,7 +4,7 @@ The user requests staged development of a real temporary-box robot: ESP32-hosted
 
 ## User-reported working baseline
 
-ESP32-WROOM-32, approximately 38 pins; Arduino IDE `ESP32 Dev Module`; successful compile/upload and execution on COM8 during testing; Serial Monitor 115200; Wi-Fi scan; `PROMETHEUS_ESP32` AP; Android association and the ESP32 web page at `http://192.168.4.1/`. Keep AP mode. The failed earlier phone-hotspot station test does not require restarting the successful AP proof. No cloud-assisted flash or physical motor/sensor test is claimed.
+Earlier description: ESP32-WROOM-32, approximately 38 pins. Latest photographs show an **ESP-32S**-marked module and Micro-USB carrier; full board revision/pin identities remain pending. Arduino IDE `ESP32 Dev Module`; successful compile/upload and execution on COM8 during testing; Serial Monitor 115200; Wi-Fi scan; `PROMETHEUS_ESP32` AP; Android association and the ESP32 web page at `http://192.168.4.1/` are user-reported. Keep AP mode. The failed earlier phone-hotspot station test does not require restarting the successful AP proof. No cloud-assisted flash or physical motor/sensor test is claimed.
 
 ## Existing implementation to build on
 
@@ -35,4 +35,4 @@ The previous software build/test observations remain historical; this documentat
 
 ## Current next action
 
-Complete and report the unpowered chassis fit/stability check. Obtain the motor/driver/supply/protection details before releasing a matched physical wiring table. Phone mounting, final printed body, autonomous detours and floor-route execution follow the applicable staged tests.
+The user's latest immediate request is pin-by-pin electrical planning. A held candidate is in `WIRING-PLAN-PENDING-POWER.md`; the next single physical test is isolated holder DC voltage/polarity in `TEST-01-BATTERY-VOLTAGE.md`. Chassis fit/stability completion is still not reported. Obtain actual motor/driver/supply/protection details before releasing the candidate table or connecting motor power. Phone mounting, final printed body, autonomous detours and floor-route execution follow the applicable staged tests.
