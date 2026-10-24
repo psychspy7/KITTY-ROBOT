@@ -2,6 +2,12 @@
 
 Latest direct conversation supersedes the older handoff's incomplete list. Ownership and labels are user-reported, not physically inspected or electrically verified.
 
+## Latest physical bring-up update — 24 October 2026
+
+The user's new continuation request reports a working **ESP32-WROOM-32 development board with approximately 38 pins**, selected as **ESP32 Dev Module** in Arduino IDE. Windows used **COM8 during the successful test**; the port must still be selected from the actual connected device rather than fixed in code. They report successful compile/upload, execution, Serial Monitor at 115200 baud, Wi-Fi scanning, Access Point creation as **PROMETHEUS_ESP32**, Android association and the board-hosted website at **http://192.168.4.1/**. Earlier station-mode association with the phone hotspot failed; that does not negate the successful AP/web-server proof. The earlier upload-blocker status is superseded. These are user-reported physical results, not flashes or measurements performed by the cloud assistant.
+
+The latest list also confirms a caster and a small box/temporary chassis. The immediate physical task is unpowered temporary chassis assembly; see [the Phase 1 guide](prometheus/PHASE-1-TEMPORARY-CHASSIS.md). The printed V7.1 body can follow later. No motor power, sensor connection, buzzer drive, GPIO layout, stall-current compatibility or autonomous floor motion is approved by the successful Wi-Fi test. Motor rated voltage/current, actual AA chemistry/holder wiring/voltage, TB6612 carrier labels, fuse/cutoff/regulator details and resistor/buzzer details remain pending. Earlier reports of two HC-SR04 modules remain in the inventory; the new minimum list naming one does not establish that the second was removed.
+
 ## Latest approximate inventory — 24 October 2026
 
 The user supplied this list for context, explicitly saying that some items will not be used and more may be added. It is an availability report, not a requirement to install every component or change the printed body. They report approximately 24 hours remaining; the submission deadline has not been independently checked.
@@ -22,7 +28,7 @@ The user supplied this list for context, explicitly saying that some items will 
 | Capacitor | One, 220 microfarads; voltage rating and polarity not recorded |
 | Relay module | One; exact variant/ratings unverified |
 | Arduino Uno R3 | One |
-| ESP32 development board | One; previously reported as DevKit V1, exact module/USB bridge/pinout unidentified |
+| ESP32 development board | One; latest user report is ESP32-WROOM-32 with approximately 38 pins and working Arduino/AP tests; USB bridge and actual carrier pin labels remain unverified |
 | Three-pin terminal connector | Count/pitch/rating unspecified |
 | Infrared sensor | One; type and role unidentified |
 | OPPO A57 phone | Existing phone, intended for camera, microphone, speaker and animated screen; these functions are not yet verified together on the actual phone |
@@ -31,15 +37,16 @@ The user supplied this list for context, explicitly saying that some items will 
 
 The two BO motor/wheel units and two TB6612FNG boards reported earlier remain in the inventory below; their omission from this approximate update is not a withdrawal. Earlier buzzer, light module, 2 kohm resistors and USB cables also remain earlier reports rather than newly reconfirmed items.
 
-Immediate build priority remains: resolve the ESP32 upload/USB identification issue; verify the chosen power arrangement; test sensors and bounded raised-wheel motion; then integrate phone vision, face and control and record the demo. The Uno is an available fallback, not an already-tested replacement. Servo, relay, separate microphone, IR module and extra LEDs are optional until a specific demonstrated function needs them. Both HC-SR04 mounting positions already exist in V7.1; this inventory update does not alter the shop ZIP or approve any electrical connection.
+Current build priority: assemble the unpowered box chassis; verify the motor-power arrangement and matched pin/wiring plan; then test sensors and bounded raised-wheel motion before floor operation. ESP32 upload/AP/web-server operation is now user-reported working as recorded above. The Uno remains a spare. Servo, relay, separate microphone, IR module and extra LEDs are optional until a specific demonstrated function needs them. Both HC-SR04 mounting positions already exist in V7.1; this inventory update does not alter the shop ZIP or approve any electrical connection.
 
 ## Consolidated reports and unresolved interfaces
 
 | Item | Current report |
 | --- | --- |
-| Controller | ESP32 DEVKIT V1; exact carrier/module, connector and pin layout pending |
+| Controller | Latest: user reports ESP32-WROOM-32, approximately 38 pins, Arduino IDE ESP32 Dev Module; compile/upload/AP/web-server tests successful on COM8 during testing. Carrier pin labels/USB bridge and physical wiring still pending |
 | Drivetrain | Two BO motor/wheel units; latest user-estimated motor range 61–65 × 22–24 × 18–20 mm and confirmed wheel outside diameter 62.5 mm; shaft/hub/axial wheel width remain unmeasured |
 | Driver | Two TB6612FNG dual-motor boards; exact carrier and load compatibility pending |
+| Third ground support | Caster wheel confirmed in the latest continuation request; installed height/mounting pending |
 | Range | Two HC-SR04 modules; front and rear mounting requested; actual PCB/transducer/header variant and fit pending |
 | Additional sensor | One IR module confirmed by the user; type/markings and intended role remain unidentified |
 | Phone | OPPO A57, intended for camera/microphone/speaker/screen; exact model code/case/camera arrangement and combined operation pending |
