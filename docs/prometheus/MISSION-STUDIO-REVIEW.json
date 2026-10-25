@@ -1,0 +1,90 @@
+{
+  "scope": "software/mission_studio only; current CAD/print files and physical commissioning firmware unchanged",
+  "reviewers": [
+    "correctness",
+    "security",
+    "adversarial",
+    "testing",
+    "reliability",
+    "project standards",
+    "maintainability",
+    "API contract",
+    "performance",
+    "frontend races",
+    "agent intent boundary"
+  ],
+  "cross_provider": "No different-provider reviewer CLI available; local adversarial review completed.",
+  "independent_validation": "All eight retained primary findings independently validated before implementing caller fixes.",
+  "resolved": [
+    {
+      "finding": 1,
+      "severity": "P1",
+      "title": "Configured model delays conversational stop",
+      "caller_fix": "Local imperative STOP bypasses inference and aborts the browser request.",
+      "status": "fixed and verified"
+    },
+    {
+      "finding": 2,
+      "severity": "P2",
+      "title": "Backward scrubbing leaves the future map on mission footage",
+      "caller_fix": "Reset/import invalidate map, camera, audio and narration sampling clocks.",
+      "status": "fixed and verified"
+    },
+    {
+      "finding": 3,
+      "severity": "P2",
+      "title": "Project import leaves attachment controls out of sync",
+      "caller_fix": "Attachment controls synchronize with actual restored parts.",
+      "status": "fixed and verified"
+    },
+    {
+      "finding": 4,
+      "severity": "P2",
+      "title": "Graphics loss leaves held-drive and scrub actions running",
+      "caller_fix": "Graphics-loss cleanup cancels pending work and held drive; rendering checks lost context before GL calls.",
+      "status": "fixed and verified"
+    },
+    {
+      "finding": 5,
+      "severity": "P2",
+      "title": "Align rendered yaw with the controller heading",
+      "caller_fix": "Body, radar, wheels and future heading use the simulator coordinate convention.",
+      "status": "fixed and verified"
+    },
+    {
+      "finding": 6,
+      "severity": "P2",
+      "title": "Require explicit movement commands and correct destinations",
+      "caller_fix": "Explicit movement imperatives, word boundaries and home-before-marker routing.",
+      "status": "fixed and verified"
+    },
+    {
+      "finding": 7,
+      "severity": "P2",
+      "title": "Bind verification to the tested HTML response",
+      "caller_fix": "Browser/video tools replay the exact verified server response bytes.",
+      "status": "fixed and verified"
+    },
+    {
+      "finding": 8,
+      "severity": "P2",
+      "title": "Failed video rerender can retain stale verification",
+      "caller_fix": "Temporary video, successful probe, atomic publication and artifact-hash validation on packaging.",
+      "status": "fixed and verified"
+    }
+  ],
+  "additional_fixes": "Bounded optional model concurrency, explicit camera snapshot, recorder/speech cleanup, hidden-path optimization and edited-project/decoded-pixel coverage.",
+  "verification": {
+    "source_checks": 48,
+    "comprehensive_browser_groups": 23,
+    "rendered_rgb_follow_groups": 2,
+    "graphics_loss_groups": 3,
+    "browser_page_errors": 0,
+    "external_browser_requests": 0
+  },
+  "limits": [
+    "No physical hardware, phone audio/camera, user GPU benchmark or actual installed-model inference was tested.",
+    "Camera detector is a rendered-pixel colour tracker and navigation starts from a known arena prior.",
+    "Flight is a scripted concept animation without aerodynamics."
+  ]
+}

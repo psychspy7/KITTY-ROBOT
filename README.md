@@ -6,7 +6,22 @@ Kitty Sentinel by Team Prometheus: an indoor vision-guided wheeled robot, design
 
 Team: **Virat Anand (leader), Sarthak Suman, Rida Fatima.**
 
-## Current state — 23 October 2026
+## Interactive 3D prototype
+
+**PROMETHEUS Mission Studio** is the current video-ready software prototype.
+Open its standalone HTML in Chrome/Edge to explore the V7.1 robot, editable
+virtual wiring, three ultrasonic positions, IR, servo radar, known-prior A*
+navigation, rendered-pixel marker tracking, phone face and laptop-brain flow.
+A separate four-wheel folding/drone sequence is a concept animation.
+
+Download and launch instructions: [Mission Studio](docs/prometheus/MISSION-STUDIO.md).
+Editable implementation: [software/mission_studio](software/mission_studio).
+Default conversation uses labelled offline rules; an installed local Ollama
+model is optional. The studio has no physical device transport.
+
+![Mission Studio software prototype](docs/prometheus/mission-studio-preview.png)
+
+## Original simulator baseline — 23 October 2026
 
 The laptop simulator works and has 10 passing unit tests. The user reports purchasing electronics; exact parts/measurements and physical operation are not yet verified. User-reported hardware baseline: ESP32 + TB6612 + BO motors/wheels + HC-SR04, with OPPO A57 as phone; variants and fit remain pending. Real camera ingestion, target recognition, hardware bridge and physical navigation remain to be implemented. The R2 design image is an appearance proposal, **not final fitted CAD or a photograph of built hardware**.
 

@@ -1,0 +1,180 @@
+{
+  "scope": "Verified offline software prototype; no physical devices, actual model inference or user GPU benchmark. Separate flight concept has no aerodynamics.",
+  "checks": {
+    "node": 25,
+    "python": 23,
+    "browser": 28,
+    "total": 76
+  },
+  "html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+  "release_sha256": {
+    "PROMETHEUS-MISSION-STUDIO.html": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+    "PROMETHEUS-MISSION-STUDIO-COMPLETE.zip": "1bc6bc9072e6d3f88933a6f5225391dda191079efdc16d9f4146f59de67e2599",
+    "PROMETHEUS-KITTY-GUIDED-DEMO.mp4": "880b402645b971039ebc84c959410132f22345b65686f1472bb9f8fa7474c41e",
+    "VIDEO-PREVIEW.png": "221810bcc2986ffb98d6acb9b51ef3068f9e12d045bcf61908dd90efbd4d4a8c"
+  },
+  "zip_crc_ok": true,
+  "portable_source_rebuild_identical": true,
+  "verification_records": {
+    "VIDEO-VERIFICATION.json": {
+      "evidence_kind": "MP4 sampled from the actual software simulation renderer; silent, no physical footage",
+      "fps": 12,
+      "width": 1920,
+      "height": 1080,
+      "duration_s": 132.083333,
+      "frames": 1585,
+      "bytes": 8776797,
+      "sha256": "880b402645b971039ebc84c959410132f22345b65686f1472bb9f8fa7474c41e",
+      "artifact_sha256": {
+        "PROMETHEUS-KITTY-GUIDED-DEMO.mp4": "880b402645b971039ebc84c959410132f22345b65686f1472bb9f8fa7474c41e"
+      },
+      "html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "served_html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "input_sha256": {
+        "render_video.py": "9a6f833949d5ad36af8b8ff031e298dcb6e7198b88cf126053be8ecb30147870",
+        "verification.py": "5b6c57f43b8acdd7f82c98e14fe886339c41a90be4243d6e42363358ce857928"
+      },
+      "page_errors": [],
+      "render_wall_s": 694.2
+    },
+    "SOURCE-VERIFICATION.json": {
+      "evidence_kind": "executed Node controller/circuit/vision tests and Python bridge/packaging/helper tests; no hardware, actual inference or user GPU benchmark",
+      "passed": 48,
+      "groups": {
+        "node": 25,
+        "python_server": 13,
+        "python_package": 8,
+        "python_verification_helpers": 2
+      },
+      "commands": [
+        "node --test software/mission_studio/tests/core.test.js",
+        "python3 -B -m unittest discover -s software/mission_studio/tests -p 'test_*.py' -v"
+      ],
+      "input_sha256": {
+        "core.js": "d7a91113dcd2e47849c18b10ed7ac82e86f96020c10e6fdec830c0ffd9dd8c2c",
+        "tests/core.test.js": "3f5a5ddfee03716bb051b8f0fe5925723a6122581cc722326cec4c39f687fb8e",
+        "server.py": "242874cdab2c52083c08108c7007b9496d7a80c9a03ab078ffa2d56ee598564f",
+        "tests/test_server.py": "c171482b37a7a079281324596d77e0161ad8c8edec407eae9e4d6dded0018384",
+        "verification.py": "5b6c57f43b8acdd7f82c98e14fe886339c41a90be4243d6e42363358ce857928",
+        "tests/test_verification.py": "d1bd7a88754d1a993ea815310a6bcc535b6133631049981d868d560889d473f3",
+        "build_release.py": "e0cf6c46e57f2180312bc13b263e332a4d007abe1dc99896efaa136227e75556",
+        "tests/test_build.py": "ccd04e048d67d9e34d5104df44948caced72231569eefbb2bc097793dc199a92"
+      },
+      "encoding_check": "Build also passed with Python default-encoding warnings treated as errors; generated HTML SHA unchanged."
+    },
+    "VIDEO-FRAME-VERIFICATION.json": {
+      "evidence_kind": "FFmpeg-decoded frames of the completed MP4; contact sheet for visual review",
+      "html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "sampled_frames": [
+        {
+          "time_s": 0,
+          "rgb_stddev": [
+            30.671650461476247,
+            32.76743862591025,
+            29.65948022259289
+          ]
+        },
+        {
+          "time_s": 30,
+          "rgb_stddev": [
+            31.988787086721455,
+            33.37582656187366,
+            29.69876157230567
+          ]
+        },
+        {
+          "time_s": 65,
+          "rgb_stddev": [
+            52.2226320366871,
+            35.663593973357955,
+            37.69181240733033
+          ]
+        },
+        {
+          "time_s": 115,
+          "rgb_stddev": [
+            20.758820744863172,
+            22.905330753787077,
+            20.690838983385824
+          ]
+        }
+      ],
+      "artifact_sha256": {
+        "PROMETHEUS-KITTY-GUIDED-DEMO.mp4": "880b402645b971039ebc84c959410132f22345b65686f1472bb9f8fa7474c41e",
+        "VIDEO-PREVIEW.png": "221810bcc2986ffb98d6acb9b51ef3068f9e12d045bcf61908dd90efbd4d4a8c"
+      }
+    },
+    "BROWSER-VERIFICATION.json": {
+      "evidence_kind": "cloud Chromium software WebGL; no physical robot, user GPU benchmark, mic or model inference",
+      "passed": 23,
+      "checks": [
+        "real WebGL scene renders the body and all four future pods without page errors",
+        "actual wire editor/probes detect raw ECHO overvoltage and restore the nominal circuit",
+        "exploded assembly and labelled 3D wiring remain interactive",
+        "detach removes component nets; circuit restore reattaches and restores all 54 wires",
+        "UI mission request drives the real simulation integrator and planner",
+        "rendered body and radar heading agree with controller coordinates in both turn directions",
+        "stop latch zeros motion, rejects new goals and reset does not resume a mission",
+        "fault injection invalidates the actual channel and restoration leaves the latch stopped",
+        "deterministic guided timeline includes a sensed surprise crate and completed navigation",
+        "colour tracker finds a bounding box from real rendered RGB pixels, without a seeded detection",
+        "future transformation and final timeline scrub complete; flight sensors remain labelled not modeled",
+        "backward timeline seek repaints map immediately after resetting its clock",
+        "conversation is labelled offline rules and renders bounded text",
+        "edited world, circuit and pack survive download/import; attached-part buttons and disarmed state agree",
+        "operator stop cancels a pending scrub before a later scripted reset can clear the latch",
+        "a delayed file read cannot reset or restart an operator-stopped simulation",
+        "reset aborts browser inference and ignores late intents even from a stub that ignores abort",
+        "typed stop immediately halts an active mission without waiting for or calling the configured model",
+        "recorder startup failure releases the captured media track and restores controls",
+        "actual 1920x1080 MediaRecorder WebM decodes to visible, changing composed frames",
+        "390px responsive layout has no page-level horizontal overflow",
+        "actual graphics-context loss cancels held manual drive and leaves a stopped image-first fallback",
+        "no-WebGL offline fallback retains model image and useful virtual circuit controls"
+      ],
+      "page_errors": [],
+      "external_requests": [],
+      "input_sha256": {
+        "tests/check_browser.py": "161563d244ecfce731ebf7100f8f884336838c734234238c875ac08e60da0b35",
+        "verification.py": "5b6c57f43b8acdd7f82c98e14fe886339c41a90be4243d6e42363358ce857928"
+      },
+      "html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "served_html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "artifact_sha256": {
+        "browser-recording-test.webm": "a026e80fdaf68b4d6b4c93505edd7cb976f86ffcebcfef08d20c773d1a2e3310"
+      }
+    },
+    "FOLLOW-VERIFICATION.json": {
+      "evidence_kind": "actual synthetic RGB detection consumed by virtual camera-follow; no real camera or trained detector",
+      "passed": 2,
+      "checks": [
+        "Rendered-pixel marker permits FOLLOW and measured virtual displacement",
+        "Camera-fault UI latches FAULT and zeros virtual speed"
+      ],
+      "html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "served_html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "input_sha256": {
+        "tests/check_follow.py": "1357dc2d3d7f91f37cd356ea5651398497787cd7d2ff799dc55e926fd8ee8a1c",
+        "verification.py": "5b6c57f43b8acdd7f82c98e14fe886339c41a90be4243d6e42363358ce857928"
+      },
+      "page_errors": []
+    },
+    "GRAPHICS-VERIFICATION.json": {
+      "evidence_kind": "real Chromium forced WebGL loss; inference explicitly stubbed; no physical devices",
+      "passed": 3,
+      "checks": [
+        "held drive cancelled by actual graphics loss",
+        "pending scrub cancelled by actual graphics loss",
+        "pending reply cancelled by actual graphics loss"
+      ],
+      "html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "served_html_sha256": "9797249f41d5467cfbee715f690a6e8ab8b37e24d2a878ea1a14510fda2db11e",
+      "input_sha256": {
+        "tests/check_graphics.py": "d30023a44c5e274d1a2799a0878b1cd1eeea44fbac49de8fb3b021992e3b1651",
+        "verification.py": "5b6c57f43b8acdd7f82c98e14fe886339c41a90be4243d6e42363358ce857928"
+      },
+      "page_errors": []
+    }
+  },
+  "review_primary_findings_resolved": 8
+}

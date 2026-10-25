@@ -1,0 +1,35 @@
+1
+00:00:00,000 --> 00:00:10,000
+A phone becomes the face and senses. A laptop does the thinking.
+
+2
+00:00:10,000 --> 00:00:23,000
+Camera and microphone → laptop perception + prompted brain → guarded ESP32 control.
+
+3
+00:00:23,000 --> 00:00:37,000
+Two drive motors. Front ultrasonic + IR. Rear ultrasonic. A third ultrasonic scans on a servo.
+
+4
+00:00:37,000 --> 00:00:48,000
+Range hits update an occupancy grid. The corner servo sweeps a virtual radar.
+
+5
+00:00:48,000 --> 00:01:16,000
+A* chooses a route. New obstacles stop translation while the route is reconsidered.
+
+6
+00:01:16,000 --> 00:01:28,000
+A lost sensor or command link stops this simulated controller. Reset alone does not restart a mission.
+
+7
+00:01:28,000 --> 00:01:40,000
+The phone face, obstacle LED, buzzer and external speaker respond to the same state.
+
+8
+00:01:40,000 --> 00:02:05,000
+A separate four-wheel concept: folding wheel/rotor pods, takeoff, flight and landing animation.
+
+9
+00:02:05,000 --> 00:02:12,000
+Working software prototype today. Physical sensing, drivetrain and flight validation remain future work.

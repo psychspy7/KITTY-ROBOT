@@ -1,0 +1,10 @@
+{
+  "source_html_sha256": "dc130c15de57ec4eb7ebcdfb40938d111dba7b4729c84114964fc6392ea7d2bb",
+  "source_revision": "3be5bb0f7621d173dc4f235b6dde1e6bce17649b",
+  "model_parts": 28,
+  "physical_fit_verified": false,
+  "assets_sha256": {
+    "model.json.gz": "291f2990feb83d4e0b3f38b17bbad84bd4c127bddfcaef9a47af143cc4234b20",
+    "chassis.png": "cd118c3b5f50f64758d4fcc00193a79bdaaf9896b6cc927ce116912c00fa3a2a"
+  }
+}
