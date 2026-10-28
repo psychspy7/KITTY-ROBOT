@@ -76,5 +76,5 @@ The public repo front page now describes the current supported-command room-chec
 
 The Python simulator suite passes **10 tests**. The Node room-check suite passes its command acceptance/rejection, warning-before-detour, stop-during-warning, zero-collision fixture completion, STOP, and simulated IR-guard checks. JavaScript syntax passes. CI now runs both software suites. These results are software-only; no motor, sensor, firmware, phone, or physical autonomous behavior was exercised. Team-reported base testing remains separate from these checks.
 
-Repository source update is prepared for the existing public `psychspy7/KITTY-ROBOT` history. No hardware wiring/flash or public demo deployment was performed. Final circuit pinout, power design, physical sensor integration, camera/AI link, and full robot tests remain pending measured hardware intake.
+The source update is published to the existing public [`psychspy7/KITTY-ROBOT` repository](https://github.com/psychspy7/KITTY-ROBOT) on `main` in [commit `a77ac28`](https://github.com/psychspy7/KITTY-ROBOT/commit/a77ac28e44b4ab5f047d9517332773121ee30184). The two GitHub Actions jobs passed. No hardware wiring/flash or public demo deployment was performed. Final circuit pinout, power design, physical sensor integration, camera/AI link, and full robot tests remain pending measured hardware intake.
 
