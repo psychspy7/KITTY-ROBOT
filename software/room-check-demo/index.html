@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101923">
+  <meta name="description" content="Interactive software-only KITTY Sentinel room-check simulation by Team Prometheus.">
+  <title>KITTY Sentinel · Room-check simulation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="wordmark" href="#top" aria-label="KITTY Sentinel home"><span class="mark">K</span><span>KITTY<span class="wordmark-light"> / SENTINEL</span></span></a>
+      <div class="top-meta"><span class="live-dot"></span> HACK IN HILLS ’26 <span class="meta-sep">/</span> TEAM PROMETHEUS</div>
+    </header>
+
+    <main id="top">
+      <section class="intro">
+        <p class="eyebrow">VISION-BASED AUTONOMOUS ROBOT · SOFTWARE DEMO</p>
+        <h1>A room-check command.<br><span>One obstacle. A detour.</span></h1>
+        <p class="dek">KITTY demonstrates a supported room-check task: it follows the test map, pauses and sounds a virtual warning near an obstacle, then plans a detour.</p>
+        <div class="truthline"><span class="truth-icon">i</span><span>Software simulation only · supplied map and virtual sensors · no physical motor connection</span></div>
+      </section>
+
+      <section class="demo-card" aria-label="Interactive room-check simulation">
+        <div class="demo-head">
+          <div>
+            <p class="eyebrow">ROOM CHECK / FIXED TEST FIXTURE</p>
+            <h2>Try the task</h2>
+          </div>
+          <div id="phaseBadge" class="phase-badge" data-tone="ready"><span class="phase-dot"></span><span id="phaseText">READY</span></div>
+        </div>
+
+        <div class="controls-row">
+          <label class="command-field" for="commandInput"><span>SUPPORTED COMMAND</span><input id="commandInput" value="KITTY, check the room" aria-label="Supported robot command"></label>
+          <button class="button button-primary" id="runButton" type="button"><span aria-hidden="true">▶</span> Run task</button>
+          <button class="button" id="pauseButton" type="button" disabled>Pause</button>
+          <button class="button button-stop" id="stopButton" type="button">STOP</button>
+          <button class="button button-quiet" id="resetButton" type="button">Reset</button>
+        </div>
+
+        <div class="sim-layout">
+          <div class="canvas-wrap">
+            <div class="canvas-label"><span>ROOM MAP</span><span>KNOWN TEST FIXTURE · NOT LIVE CAMERA VIEW</span></div>
+            <canvas id="simCanvas" width="1000" height="610" aria-label="Top-down animated software simulation of KITTY following a route around a fixed obstacle map"></canvas>
+            <div class="canvas-footer"><span><i class="key key-path"></i> planned route</span><span><i class="key key-robot"></i> KITTY · simulated pose</span><span><i class="key key-obstacle"></i> map obstacle</span></div>
+          </div>
+
+          <aside class="side-panel">
+            <section class="panel-block">
+              <div class="section-title"><h3>Range inputs</h3><span>SIMULATED</span></div>
+              <div class="sensor-row"><div><span class="sensor-name">Front range</span><span class="sensor-note">virtual ultrasonic fan</span></div><strong id="frontValue">—</strong></div>
+              <div class="sensor-track"><span id="frontBar"></span></div>
+              <div class="sensor-row sensor-row-spaced"><div><span class="sensor-name">Rear range</span><span class="sensor-note">virtual ultrasonic fan</span></div><strong id="rearValue">—</strong></div>
+              <div class="sensor-track"><span id="rearBar" class="bar-rear"></span></div>
+              <div class="ir-chip"><span class="ir-lamp" id="irLamp"></span><span>Forward IR proximity</span><b id="irValue">CLEAR</b></div>
+            </section>
+
+            <section class="panel-block response-block">
+              <div class="section-title"><h3>Task response</h3><span>EVENTS</span></div>
+              <ol class="event-list" id="eventList" aria-live="polite"><li class="empty-event">Start the command to see the simulator events.</li></ol>
+            </section>
+
+            <section class="panel-block note-block">
+              <span class="note-icon">↳</span>
+              <p>The route planner can read this fixture’s map. The next engineering step is to connect measured physical sensors and validate the controller on the actual robot.</p>
+            </section>
+          </aside>
+        </div>
+
+        <div class="demo-foot"><span id="statusText">Ready when you are.</span><label class="sound-toggle"><input id="soundEnabled" type="checkbox"> Virtual buzzer sound</label></div>
+      </section>
+
+      <section class="sequence" aria-label="Task flow">
+        <div class="sequence-step" data-step="SCAN"><span>01</span><b>Check the task</b><small>supported command</small></div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-step" data-step="FOLLOW_COMMAND"><span>02</span><b>Follow the route</b><small>virtual motion loop</small></div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-step" data-step="OBSTACLE_WARNING"><span>03</span><b>Pause and warn</b><small>virtual stop + beep</small></div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-step" data-step="DETOUR"><span>04</span><b>Plan around</b><small>known test map</small></div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-step" data-step="TASK_COMPLETE"><span>05</span><b>Finish the task</b><small>simulator complete</small></div>
+      </section>
+
+      <section class="project-note">
+        <div><p class="eyebrow">WHAT THIS PROVES</p><h2>A repeatable software behavior.</h2></div>
+        <p>The demo checks a supported command, route planning, obstacle warning order, stopped motion during the warning, and task completion. It does not prove real-world perception, physical braking, or autonomous navigation.</p>
+      </section>
+
+      <footer><span>KITTY SENTINEL · TEAM PROMETHEUS</span><a href="../../docs/CIRCUIT-AND-SYSTEM.md">System &amp; circuit draft ↗</a><span>Hack in Hills, powered by TinyFish.</span></footer>
+    </main>
+  </div>
+  <script src="core.js"></script>
+  <script src="command-controller.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

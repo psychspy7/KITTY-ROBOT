@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" role="img" aria-labelledby="title desc">
+  <title id="title">KITTY Sentinel software and proposed hardware architecture</title>
+  <desc id="desc">A software-only room-check simulation is currently working. Phone, laptop perception, ESP32 control, sensors, motor driver, and motors are proposed physical integrations. A conceptual power path shows a protected motor supply and separate logic regulator. The diagram is not wiring-ready.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101923"/><stop offset="1" stop-color="#172632"/></linearGradient>
+    <linearGradient id="live" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#133c3a"/><stop offset="1" stop-color="#1a514b"/></linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#68d8c1"/></marker>
+    <marker id="arrowMuted" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#8395a1"/></marker>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#eaf1f2}.eyebrow{font-size:13px;letter-spacing:2px;font-weight:700;fill:#83e1cc}.title{font-size:25px;font-weight:700}.label{font-size:18px;font-weight:700}.small{font-size:14px;fill:#b0c0c8}.tiny{font-size:12px;fill:#9bacb5}.node{fill:#182732;stroke:#536977;stroke-width:1.5}.live{fill:url(#live);stroke:#5dd7bd;stroke-width:2}.planned{stroke-dasharray:7 5}.wire{fill:none;stroke:#68d8c1;stroke-width:3;marker-end:url(#arrow)}.futurewire{fill:none;stroke:#8395a1;stroke-width:2.4;stroke-dasharray:7 6;marker-end:url(#arrowMuted)}.sep{stroke:#344753;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1200" height="690" rx="26" fill="url(#bg)"/>
+  <text x="38" y="42" class="eyebrow">TEAM PROMETHEUS · KITTY SENTINEL</text>
+  <text x="38" y="78" class="title">A guarded task loop — current software and proposed hardware</text>
+  <rect x="910" y="28" width="252" height="42" rx="21" fill="#3a3020" stroke="#e2ad59"/>
+  <text x="1036" y="54" text-anchor="middle" class="tiny" style="fill:#f3c979;font-weight:700">CONCEPT ONLY · NOT WIRING-READY</text>
+
+  <text x="40" y="128" class="eyebrow">TASK AND CONTROL</text>
+  <rect x="40" y="146" width="226" height="116" rx="15" class="node live"/>
+  <text x="60" y="180" class="label">Supported command</text>
+  <text x="60" y="209" class="small">“KITTY, check the room”</text>
+  <text x="60" y="238" class="tiny">WORKING · SOFTWARE DEMO</text>
+
+  <path d="M266 203 H307" class="wire"/>
+  <rect x="310" y="146" width="240" height="116" rx="15" class="node live"/>
+  <text x="330" y="180" class="label">Task + route logic</text>
+  <text x="330" y="209" class="small">Fixed map · virtual sensors</text>
+  <text x="330" y="238" class="tiny">WORKING · SOFTWARE DEMO</text>
+
+  <path d="M550 203 H590" class="futurewire"/>
+  <rect x="593" y="146" width="226" height="116" rx="15" class="node planned"/>
+  <text x="613" y="180" class="label">ESP32 controller</text>
+  <text x="613" y="209" class="small">Local checks · timeout · stop</text>
+  <text x="613" y="238" class="tiny">PLANNED · NOT IN DEMO PATH</text>
+
+  <path d="M819 203 H859" class="futurewire"/>
+  <rect x="862" y="146" width="140" height="116" rx="15" class="node planned"/>
+  <text x="932" y="184" text-anchor="middle" class="label">TB6612</text>
+  <text x="932" y="212" text-anchor="middle" class="small">driver board</text>
+  <text x="932" y="238" text-anchor="middle" class="tiny">REPORTED</text>
+  <path d="M1002 203 H1034" class="futurewire"/>
+  <rect x="1037" y="146" width="125" height="116" rx="15" class="node planned"/>
+  <text x="1099" y="184" text-anchor="middle" class="label">BO motors</text>
+  <text x="1099" y="212" text-anchor="middle" class="small">+ wheels</text>
+  <text x="1099" y="238" text-anchor="middle" class="tiny">REPORTED</text>
+
+  <text x="40" y="306" class="eyebrow">PROPOSED INPUTS</text>
+  <rect x="40" y="326" width="225" height="105" rx="15" class="node planned"/>
+  <text x="60" y="360" class="label">Phone</text>
+  <text x="60" y="388" class="small">Camera · mic · speaker</text>
+  <text x="60" y="411" class="tiny">PLANNED · NO LIVE LINK</text>
+  <path d="M265 378 H307" class="futurewire"/>
+  <rect x="310" y="326" width="240" height="105" rx="15" class="node planned"/>
+  <text x="330" y="360" class="label">Laptop perception</text>
+  <text x="330" y="388" class="small">Vision / task planning</text>
+  <text x="330" y="411" class="tiny">PLANNED · NO AI IN DEMO</text>
+  <path d="M550 378 C572 378 566 264 593 231" class="futurewire"/>
+
+  <rect x="593" y="326" width="226" height="105" rx="15" class="node planned"/>
+  <text x="613" y="360" class="label">Sensor inputs</text>
+  <text x="613" y="388" class="small">HC-SR04 · IR reported</text>
+  <text x="613" y="411" class="tiny">MODEL / COUNT UNKNOWN</text>
+  <path d="M706 326 V265" class="futurewire"/>
+
+  <rect x="862" y="326" width="300" height="105" rx="15" fill="#30291e" stroke="#d09e4d" stroke-width="1.6"/>
+  <text x="882" y="360" class="label" style="fill:#f1ca80">Local safety boundary</text>
+  <text x="882" y="388" class="small">Reject stale / unsafe requests;</text>
+  <text x="882" y="411" class="small">stop on invalid or near obstacles</text>
+  <path d="M819 378 H858" class="futurewire"/>
+
+  <line x1="40" y1="462" x2="1162" y2="462" class="sep"/>
+  <text x="40" y="500" class="eyebrow">CONCEPT POWER PATH · RATINGS MUST BE MEASURED</text>
+  <rect x="40" y="522" width="185" height="94" rx="14" class="node planned"/>
+  <text x="132" y="558" text-anchor="middle" class="label">Protected battery</text>
+  <text x="132" y="585" text-anchor="middle" class="small">chemistry / voltage TBD</text>
+  <path d="M225 569 H262" class="futurewire"/>
+  <rect x="265" y="522" width="220" height="94" rx="14" class="node planned"/>
+  <text x="375" y="558" text-anchor="middle" class="label">Fuse + physical cutoff</text>
+  <text x="375" y="585" text-anchor="middle" class="small">required before motor power</text>
+  <path d="M485 569 H523" class="futurewire"/>
+  <rect x="526" y="522" width="210" height="94" rx="14" class="node planned"/>
+  <text x="631" y="558" text-anchor="middle" class="label">Motor supply → driver</text>
+  <text x="631" y="585" text-anchor="middle" class="small">TB6612 ratings TBD</text>
+  <path d="M736 569 H774" class="futurewire"/>
+  <rect x="777" y="522" width="177" height="94" rx="14" class="node planned"/>
+  <text x="865" y="558" text-anchor="middle" class="label">Regulated logic</text>
+  <text x="865" y="585" text-anchor="middle" class="small">voltage / load TBD</text>
+  <path d="M954 569 H992" class="futurewire"/>
+  <rect x="995" y="522" width="167" height="94" rx="14" class="node planned"/>
+  <text x="1078" y="558" text-anchor="middle" class="label">ESP32 + sensors</text>
+  <text x="1078" y="585" text-anchor="middle" class="small">common reference</text>
+  <text x="40" y="651" class="tiny">HC-SR04 ECHO level conditioning must match measured modules; never assume direct 5 V → ESP32 compatibility. Pins and component values remain unassigned.</text>
+</svg>
+

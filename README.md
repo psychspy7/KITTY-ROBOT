@@ -1,44 +1,57 @@
-# KITTY ROBOT
+# KITTY Sentinel — Team Prometheus
 
-**HACK IN HILLS HACKATHON.**
+**Hack in Hills ’26 · Vision-Based Autonomous Robot · HACK IN HILLS HACKATHON.**
 
-Kitty Sentinel by Team Prometheus: an indoor vision-guided wheeled robot, designed to identify a supported target, approach it through a guarded controller and stop when observations or communication become unreliable.
+KITTY is a proposed indoor companion robot for simple hands-busy tasks. In the current software demo, a supported room-check command starts a simulated route; the rover pauses and gives a virtual buzzer warning near an obstacle, then plans a detour. The robot does not yet understand open-ended speech, see through a live camera, or drive from this software.
 
-Team: **Virat Anand (leader), Sarthak Suman, Rida Fatima.**
+> **Pitch:** We help people with hands-busy tasks by turning a supported room-check command into a guarded, obstacle-aware robot task.
 
-## Current state — 23 October 2026
+**Team:** Virat Anand (leader), Sarthak Suman, and Rida Fatima.
 
-The laptop simulator works and has 10 passing unit tests. The user reports purchasing electronics; exact parts/measurements and physical operation are not yet verified. User-reported hardware baseline: ESP32 + TB6612 + BO motors/wheels + HC-SR04, with OPPO A57 as phone; variants and fit remain pending. Real camera ingestion, target recognition, hardware bridge and physical navigation remain to be implemented. The R2 design image is an appearance proposal, **not final fitted CAD or a photograph of built hardware**.
+## Try the interactive demo
 
-![Sentinel R2 appearance proposal](design/r2/appearance-proposal.png)
+Open [`software/room-check-demo/index.html`](software/room-check-demo/index.html) in a modern browser. Enter **“KITTY, check the room”** and select **Run task**. The animated simulation shows the command, virtual scan, obstacle pause and buzzer, route detour, and task completion. Pause, resume, reset, stop, and optional sound are available. No install, network, account, API key, or hardware is needed.
 
-## Run the simulator
+This demo uses a fixed software test map. Its virtual sensors and buzzer are not physical readings or outputs, and its planned route has access to the supplied map. There is no destination picker.
 
-Python 3.10+ standard library is enough:
+## What works today
 
-```text
-cd software/simulator
-python main.py
+- A browser-based, command-driven software simulation with a repeatable room-check task.
+- Deterministic route planning and a guarded simulated motion loop.
+- A virtual obstacle warning, stop, beep, detour, completion, and STOP command.
+- A separate earlier grid-navigation simulator in [`software/simulator/`](software/simulator/); it is retained as an exploratory baseline, not the current command demo.
+
+The team reports that the physical base was tested. That is a team-reported result; this repository's automated checks exercise software only. Full assembly and sensor-to-motor integration are not established here.
+
+## System at a glance
+
+![KITTY Sentinel software and proposed hardware architecture](hardware/system-architecture.svg)
+
+The software demo is local and simulated. A phone camera/microphone, laptop perception/planning, and an ESP32 safety controller are proposed integration steps. The ESP32 is intended to retain local authority over movement; model-generated text must never map directly to motor pins.
+
+See [`docs/CIRCUIT-AND-SYSTEM.md`](docs/CIRCUIT-AND-SYSTEM.md) for the circuit/power architecture, reported parts, open measurements, and why the draft is not wiring-ready. No GPIO assignment is published because exact board variants, sensor count, power source, and ratings have not been verified.
+
+## Run checks
+
+From the repository root:
+
+```bash
+python -m unittest discover -s software/simulator/tests -v
+node software/room-check-demo/test-command.cjs
 ```
 
-Open the actual localhost URL printed in the terminal. The operating system chooses a free port. Motors, map, position and range readings are simulated. No hardware or API account is required. Tests: `python -m unittest discover -s tests -v` from that same folder.
+The GitHub Actions workflow runs both suites on pushes and pull requests. These checks do not flash a board, energize motors, or verify physical behavior.
 
-## Proposed real system
+## Project notes
 
-Phone camera → laptop target detector/tracker → deterministic mission/guard → explicitly enabled ESP32 adapter → correctly rated motor driver → wheels. Real range sensor and local output timeout constrain motion. Physical motor-power cutoff remains reachable. Optional conversation has no direct motor authority.
+- [Build status and verified claims](docs/BUILD-STATUS.md)
+- [Reported parts and what remains unknown](docs/ACTUAL-PARTS-REPORTED.md)
+- [Circuit and system architecture](docs/CIRCUIT-AND-SYSTEM.md)
+- [Animated room-check demo](software/room-check-demo/README.md)
+- [Earlier navigation simulator](software/simulator/README.md)
+- [Appearance proposal and model plan](design/r2/DESIGN-BRIEF.md) · [`models/README.md`](models/README.md)
 
-## Design and models
+Phone AI, live camera processing, speech recognition, physical sensor transport, final body fit, and flight are not represented as working features. The wheel-to-rotor idea is a separate, unbuilt V2 concept and is not part of this prototype.
 
-- `design/r2/DESIGN-BRIEF.md`: body direction, serviceability and dimensions still needed before final STL.
-- `docs/MODEL-CHOICE.md`: Qwen3.5-2B starting recommendation, larger model only after laptop benchmark; detector benchmark plan.
-- `prompts/kitty-personality.txt`: original prompt for a concise, witty, truthful assistant.
-- `models/Modelfile`: optional local Ollama personality profile; weights are not bundled or downloaded.
-- `docs/BUILD-STATUS.md`: what remains before physical demonstration.
+No third-party runtime packages or model weights are bundled. No software license has been selected; preserve the original license terms for any future dependency or model.
 
-The profile is prepared, not a trained model or a benchmarked hardware integration. A repository stores/version-controls the project; the robot program runs on its laptop/controller. A website/CI job cannot replace that real-time control loop.
-
-## Development checks
-
-The included GitHub Actions workflow runs simulator tests on pushes and pull requests. It does not deploy motor control, download model weights, use API keys or flash hardware. No public hosted robot service exists.
-
-Private registration/TinyFish proofs, account credentials, local environments and unrelated Kitty Corp applications are excluded. A license for this repository has not yet been selected; preserve upstream model/software license terms when integrating dependencies.

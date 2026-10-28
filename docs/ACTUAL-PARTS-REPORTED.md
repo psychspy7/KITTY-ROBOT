@@ -1,7 +1,17 @@
-# User-reported parts —23October2026
+# Team-reported hardware intake
 
-ESP32;TB6612;HC-SR04;UnoR3;BO DC motor(s);BO wheels approximately60mm diameter (user estimate);IR sensor;220ohm,1kohm,10kohm resistors;M-M,F-F,M-Fjumpers;cable ties;breadboard;PCB;multimeter;soldering kit;LED;OPPOA57phone;laptop. All are user-reported, not inspected photographs or measured variants.
+**Status: reported by the team; not independently inspected or measured.** The base has been reported as tested, but full physical autonomous operation is not established by this inventory or by the software tests.
 
-Controller/driver pin labels, motor voltage/stall current/shaft offset, wheel exact size/hub, caster type/height, actual power pack/charger/fuse/cutoff, phone model code/case, available resistor counts, and printer bed remain unknown. A servo was mentioned previously but its model/quantity remains unknown. No assumption of a fitted mount or finalized circuit follows from this list.
+| Part | Reported item | Still to verify |
+|---|---|---|
+| Controller | ESP32 development board; Arduino Uno R3 also on hand | ESP32 variant/revision; which board is intended for control |
+| Motor driver | TB6612 board | Exact board/revision, logic rail, current and thermal limits |
+| Drive | BO DC motor(s), BO wheels estimated at about 60 mm | Counts, voltage, stall current, shaft/hub fit, measured wheel diameter |
+| Range | HC-SR04 and IR sensor | Exact modules, counts, electrical output levels, mounting coverage |
+| Phone | OPPO A57 | Model revision, case dimensions, mount fit, camera/audio integration |
+| Other | Resistors marked 220 Ω / 1 kΩ / 10 kΩ, jumper leads, breadboard/PCB, cable ties, multimeter, soldering tools, LED | Quantity, condition, wire/connector ratings, continuity |
+| Power / protection | Not confirmed in the intake | Battery chemistry and ratings, charger/BMS, regulator, fuse, physical cutoff |
+| Optional scan servo | Mentioned earlier; exact model and quantity unknown | Confirm whether present and rated for intended use |
 
-Plan: ESP32 control, BO drivetrain, HC-SR04 range guard, OPPO camera/face/audio; Uno spare. Do not add wiring complexity just to use every owned board. Exact voltage conditioning must be matched to HC-SR04/ESP32 and measured available resistors; raw ECHO must not feed a GPIO.
+No final pin map, fitted STL, verified bill of materials, or wiring-ready circuit follows from these reports. Do not use an ESP32 GPIO as a motor power output. A possible 5 V HC-SR04 ECHO must not be connected directly to an ESP32 input; condition and measure the signal for the exact sensor/board. See [`CIRCUIT-AND-SYSTEM.md`](CIRCUIT-AND-SYSTEM.md).
+

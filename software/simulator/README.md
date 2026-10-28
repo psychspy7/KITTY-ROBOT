@@ -1,4 +1,10 @@
-# TEAM PROMETHEUS — ROBOT MIND R1
+# Earlier grid-navigation simulator — exploratory baseline
+
+> This is the retained R1 grid sandbox, not the current Hack in Hills command demo. Use [`../room-check-demo/`](../room-check-demo/) for the supported “KITTY, check the room” task and obstacle-warning replay.
+
+The sandbox below is preserved for its independent path-planning and sensor-guard scenarios. It has destination/scenario controls that are not part of the current command-driven demo. Its environment, range readings, and motion remain simulated.
+
+## R1 simulator notes
 
 **A working laptop-first software prototype for the KITTY CORP / Team Prometheus hackathon robot.**
 
@@ -126,3 +132,4 @@ python -m unittest discover -s tests -v
 
 ### Scope
 R1 is a **laptop prototype mind**, not a production autonomous robot software stack. The next milestone is ESP32 integration plus wheel odometry, real ultrasonic measurements and a physical kill switch, followed by real-camera perception.
+
